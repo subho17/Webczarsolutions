@@ -11,7 +11,7 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  padding-top: 96px;
+  padding-top: clamp(72px, 9svh, 96px);
 }
 
 /* ---------- ambient composition ---------- */
@@ -88,9 +88,11 @@
 }
 
 .h1 {
-  margin-top: 22px;
+  margin-top: 16px;
   font-weight: 900;
-  font-size: clamp(46px, 6.6vw, 100px);
+  /* capped by viewport HEIGHT as well as width, so the two lines always
+     leave room for the stage + scroll cue inside the 100svh frame */
+  font-size: clamp(38px, min(6.2vw, 8.5svh), 96px);
   letter-spacing: -0.035em;
   line-height: 1.02;
 }
@@ -108,7 +110,7 @@
 }
 
 .sub {
-  margin: 22px auto 0;
+  margin: 16px auto 0;
   max-width: 560px;
   font-size: 15.5px;
   line-height: 1.65;
@@ -119,7 +121,7 @@
   display: flex;
   gap: 10px;
   justify-content: center;
-  margin-top: 26px;
+  margin-top: 20px;
 }
 .play {
   font-size: 9px;
@@ -135,7 +137,7 @@
   max-width: 1400px;
   width: 100%;
   margin: 0 auto;
-  padding: 30px 44px 0;
+  padding: 16px 44px 0;
   min-height: 0;
   z-index: 1;
 }
@@ -143,8 +145,8 @@
 .side {
   display: flex;
   flex-direction: column;
-  gap: 24px;
-  padding-bottom: 76px;
+  gap: 16px;
+  padding-bottom: clamp(24px, 5svh, 44px);
   z-index: 5;
 }
 .sideL {
@@ -209,27 +211,29 @@
   justify-content: center;
   align-items: flex-end;
   height: 100%;
-  min-height: 480px;
-  padding-bottom: 24px;
+  /* no fixed min-height: the frame is exactly 100svh with overflow hidden,
+     so the stage must yield to the flex layout instead of forcing overflow */
+  min-height: 0;
+  padding-bottom: 12px;
 }
 .arch {
   position: absolute;
-  bottom: 24px;
+  bottom: 12px;
   left: 50%;
   transform: translateX(-50%);
   width: min(450px, 78%);
-  height: min(88%, 540px);
+  height: min(94%, 480px);
   background: #f4f4f5;
   border-radius: 320px 320px 26px 26px;
   z-index: 1;
 }
 .archLine {
   position: absolute;
-  bottom: 38px;
+  bottom: 26px;
   left: 50%;
   transform: translateX(-50%) translateX(-16px);
   width: min(450px, 78%);
-  height: min(88%, 540px);
+  height: min(94%, 480px);
   border: 1.2px solid #e6e6e8;
   border-radius: 320px 320px 26px 26px;
   z-index: 0;
@@ -239,7 +243,7 @@
   position: relative;
   z-index: 3;
   width: auto;
-  height: min(54vh, 520px);
+  height: min(38svh, 440px);
   max-width: 92%;
   object-fit: contain;
   object-position: bottom;
@@ -334,7 +338,7 @@
   align-items: center;
   justify-content: center;
   gap: 10px;
-  padding: 20px 0 26px;
+  padding: 10px 0 14px;
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.22em;
@@ -359,8 +363,11 @@
   }
 }
 
-/* ============ Responsive ============ */
-@media (max-width: 1180px) {
+/* ============ Responsive ============
+   NOTE: the single-column breakpoint must match Scene's release breakpoint
+   (1000px). Between 1001–1180px the scene is still a 100svh frame with
+   overflow hidden — a tall stacked layout there would be clipped. */
+@media (max-width: 1000px) {
   .hero {
     padding-top: 104px;
     gap: 34px;
