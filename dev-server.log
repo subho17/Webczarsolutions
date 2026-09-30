@@ -1,0 +1,18 @@
+
+> gireesh-portfolio@0.1.0 dev
+> next dev
+
+▲ Next.js 16.3.0 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.1.141:3000
+✓ Ready in 617ms
+⚠ Warning: Next.js ignored package-lock.json in D:\webczar-website\webczar-website because it is outside the current Git repository (D:\webczar-website\webczar-website\webczar-website-).
+ To use this directory, set `turbopack.root` in your Next.js config.
+
+✓ Running next.config.ts took 56ms
+
+ GET / 200 in 996ms (next.js: 389ms, application-code: 607ms)
+ GET /tunnel 200 in 769ms (next.js: 648ms, application-code: 121ms)
+ GET /work/ecommerce-platform 200 in 676ms (next.js: 57ms, generate-params: 536ms, application-code: 83ms)
+ GET /sitemap.xml 200 in 525ms (next.js: 476ms, application-code: 50ms)
+ GET /robots.txt 200 in 347ms (next.js: 331ms, application-code: 16ms)
