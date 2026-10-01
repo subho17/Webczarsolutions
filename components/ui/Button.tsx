@@ -24,6 +24,8 @@ type Props = {
   lead?: ReactNode;
   magnetic?: boolean;
   className?: string;
+  target?: string;
+  rel?: string;
   onClick?: MouseEventHandler<HTMLAnchorElement>;
 };
 
@@ -36,6 +38,8 @@ export default function Button({
   lead,
   magnetic = true,
   className = "",
+  target,
+  rel,
   onClick,
 }: Props) {
   const ref = useRef<HTMLAnchorElement>(null);
@@ -68,6 +72,8 @@ export default function Button({
     <a
       ref={ref}
       href={href}
+      target={target}
+      rel={rel}
       onClick={onClick}
       className={`${styles.btn} ${styles[variant]} ${styles[size]} ${className}`}
     >

@@ -14,16 +14,17 @@ import Button from "@/components/ui/Button";
 import styles from "./Connect.module.css";
 import { useLang } from "@/lib/i18n";
 
-/* Gireesh's own photographs, in the order he supplied them (IMAGE 1–5).
+/* Subhadeep Chanda's photographs, in sequence (IMAGE 1–5).
    `focus` is object-position only: the frames are portrait and two of the
    photos are landscape, so this keeps him in frame — the images are cropped,
    never scaled non-uniformly, and their colour is left untouched. */
 const PANELS = [
-  { src: "/images/connect/moment-1.jpg", focus: "58% 30%", rotate: 26, z: -110, y: -26 },
-  { src: "/images/connect/moment-2.jpg", focus: "center 32%", rotate: 13, z: -40, y: -8 },
-  { src: "/images/connect/moment-3.jpg", focus: "center 34%", rotate: 0, z: 0, y: 0 },
-  { src: "/images/connect/moment-4.jpg", focus: "center 30%", rotate: -13, z: -40, y: -8 },
-  { src: "/images/connect/moment-5.jpg", focus: "46% 32%", rotate: -26, z: -110, y: -26 },
+  { src: "/images/team/team-1.jpg", focus: "center 15%", rotate: 20, z: -70, y: -16 },
+  { src: "/images/team/team-2.jpg", focus: "center 22%", rotate: 12, z: -30, y: -8 },
+  { src: "/images/team/team-3.jpg", focus: "center 20%", rotate: 4, z: -5, y: 0 },
+  { src: "/images/team/team-4.jpg", focus: "center 20%", rotate: -4, z: -5, y: 0 },
+  { src: "/images/team/team-5.jpg", focus: "44% 20%", rotate: -12, z: -30, y: -8 },
+  { src: "/images/team/team-6.jpg", focus: "center 22%", rotate: -20, z: -70, y: -16 },
 ];
 
 /* Official brand marks, inlined so they inherit size and need no requests.
@@ -159,7 +160,7 @@ export default function Connect() {
 
       {/* curved memory arc */}
       <div className={styles.arc} aria-hidden="true">
-        {PANELS.map((p, i) => (
+        {PANELS.map((p) => (
           <div
             className={styles.panel}
             key={p.src}
@@ -205,16 +206,6 @@ export default function Connect() {
           </a>
         ))}
       </div>
-
-      <footer className={styles.footer}>
-        <span>
-          {t("connect.credit")} <b>Webczar Solutions</b>
-        </span>
-        <a href="#home" className={styles.top}>
-          {t("connect.top")}
-        </a>
-        <span>© 2026 Webczar Solutions. All rights reserved.</span>
-      </footer>
     </section>
   );
 }

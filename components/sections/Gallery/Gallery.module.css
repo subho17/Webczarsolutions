@@ -109,18 +109,8 @@
 }
 .wall {
   position: absolute;
-  left: 50%;
-  top: 50%;
-  /* NARROWER than the frame on purpose. The 3D projection (rotateX + rotateY
-     under perspective) spreads the plane roughly 22% wider than its layout
-     width, so laying it out at ~84% lands the *projected* wall just inside
-     the viewport. The reference's oversized wall is exactly what sliced the
-     outer columns permanently. */
-  width: 88%;
-  height: 124%;
-  /* gentler turn for the same reason — a hard rotateY throws the outer
-     columns past the edge */
-  transform: translate(-50%, -48%) rotateX(11deg) rotateY(-5deg);
+  inset: -12% 4%;
+  transform: rotateX(8deg) rotateY(-4deg);
   transform-style: preserve-3d;
   display: grid;
   grid-template-columns: repeat(var(--cols, 5), 1fr);
@@ -220,20 +210,14 @@
 @media (max-width: 1399px) {
   .wall {
     --cols: 4;
-    width: 88%;
+    inset: -12% 4%;
   }
 }
 @media (max-width: 1099px) {
   .wall {
     --cols: 3;
-    /* less rotation here, so the projection spreads less and the wall can
-       be laid out wider */
-    width: 88%;
-    transform: translate(-50%, -48%) rotateX(11deg) rotateY(-6deg);
-  }
-  .wallView {
-  }
-  .tile {
+    inset: -10% 3%;
+    transform: rotateX(8deg) rotateY(-5deg);
   }
 }
 @media (max-width: 699px) {
@@ -242,9 +226,8 @@
   }
   .wall {
     --cols: 2;
-    /* almost flat on a phone: depth must never cost visibility */
-    width: 90%;
-    transform: translate(-50%, -48%) rotateX(8deg) rotateY(-3deg);
+    inset: -8% 2%;
+    transform: rotateX(6deg) rotateY(-2deg);
   }
   /* a proportionally wider dissolve — 5% of a phone is only ~19px, too
      narrow to absorb the edge columns */

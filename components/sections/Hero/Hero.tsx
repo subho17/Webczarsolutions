@@ -198,10 +198,16 @@ export default function Hero() {
         </h1>
         <p className={styles.sub}>{t("hero.sub")}</p>
         <div className={styles.ctas}>
-          <Button href="#work" variant="primary" arrow>
+          <Button href="tel:9988221729" variant="primary" arrow>
             {t("hero.cta1")}
           </Button>
-          <Button href="#about" variant="ghost" lead={<span className={styles.play}>▶</span>}>
+          <Button
+            href="https://api.whatsapp.com/send/?phone=919988221729&text&type=phone_number&app_absent=0"
+            variant="ghost"
+            target="_blank"
+            rel="noopener noreferrer"
+            lead={<span className={styles.play}>▶</span>}
+          >
             {t("hero.cta2")}
           </Button>
         </div>

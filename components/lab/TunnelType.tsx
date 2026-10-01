@@ -11,7 +11,7 @@
  *   floor/ceiling/wall slab slots · vibrant color materials · image textures
  *   with fade-in · fog · camera-chase interpolation · DPR cap · resize.
  * · The canvas renders opaque (the tunnel's own dark world). A raster of
- *   "GIREESH" — drawn with the page's real loaded display font — is applied
+ *   "WEBCZAR" — drawn with the page's real loaded display font — is applied
  *   as a CSS mask ON the canvas element. Masking happens in the compositor:
  *   the WebGL loop keeps running untouched, so the 3D world moves while the
  *   stationary letters act as windows into it.
@@ -62,7 +62,7 @@ type Props = {
   text?: string;
 };
 
-export default function TunnelType({ text = "GIREESH" }: Props) {
+export default function TunnelType({ text = "WEBCZAR" }: Props) {
   const frameRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [webglOk, setWebglOk] = useState(true);
@@ -84,7 +84,7 @@ export default function TunnelType({ text = "GIREESH" }: Props) {
         powerPreference: "high-performance",
       });
     } catch {
-      setWebglOk(false);
+      queueMicrotask(() => setWebglOk(false));
       return;
     }
     renderer.setPixelRatio(Math.min(2, window.devicePixelRatio || 1));

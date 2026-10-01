@@ -8,7 +8,7 @@
  *   speed 42px/s · direction up · variance 0.45 · parallax 0.6 · lift 64
  *   fade 0.6 · radius 14 · roll 0 · pauseOnHover false · grayscale false
  *
- * Two deliberate departures from the reference, both to keep Gireesh's own
+ * Two deliberate departures from the reference, both to keep Webczar's own
  * photographs intact:
  *   · overlayColor #060010 → the portfolio's white ground, as instructed
  *   · dim 0.55 → tiles are NOT darkened. Depth reads through scale, the
@@ -54,7 +54,7 @@ export default function Gallery() {
   const { t } = useLang();
 
   /* Columns are computed on the client so the count can follow the viewport.
-     Round-robin keeps Gireesh's numbering: 1,2,3,4,5 across the first row,
+     Round-robin keeps the numbering: 1,2,3,4,5 across the first row,
      then 6,7,8… so the sequence reads left-to-right down the wall. */
   const [cols, setCols] = useState<number>(COLS_DESKTOP);
 
@@ -183,7 +183,7 @@ export default function Gallery() {
     };
   }, [cols]);
 
-  /* deal the 14 frames into columns, round-robin, preserving Gireesh's order */
+  /* deal the 14 frames into columns, round-robin, preserving the original order */
   const columns: (typeof FRAMES)[] = Array.from({ length: cols }, () => []);
   FRAMES.forEach((f, i) => columns[i % cols].push(f));
 

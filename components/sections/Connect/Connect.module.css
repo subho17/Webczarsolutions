@@ -4,7 +4,13 @@
   position: relative;
   background: #fff;
   overflow: hidden;
-  padding: 130px 0 0;
+  height: 100%;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(64px, 8svh, 96px) 0 clamp(32px, 4svh, 56px);
+  box-sizing: border-box;
 }
 
 .head {
@@ -30,11 +36,11 @@
   letter-spacing: 0.05em;
 }
 .h2 {
-  margin-top: 18px;
+  margin-top: 14px;
   font-weight: 900;
-  font-size: clamp(42px, 6.4vw, 92px);
+  font-size: clamp(34px, 5vw, 76px);
   letter-spacing: -0.035em;
-  line-height: 1.0;
+  line-height: 1.02;
 }
 .serif {
   font-family: var(--font-serif), Georgia, serif;
@@ -43,14 +49,14 @@
   color: var(--accent);
 }
 .lede {
-  margin: 20px auto 0;
+  margin: 12px auto 0;
   max-width: 480px;
-  font-size: 15.5px;
-  line-height: 1.65;
+  font-size: clamp(14px, 1.05vw, 15.5px);
+  line-height: 1.55;
   color: var(--ink-2);
 }
 .cta {
-  margin-top: 28px;
+  margin-top: 18px;
   display: flex;
   justify-content: center;
 }
@@ -60,8 +66,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 26px;
-  margin-top: 72px;
+  gap: clamp(12px, 1.5vw, 22px);
+  margin-top: clamp(28px, 4svh, 48px);
   perspective: 1400px;
   transform-style: preserve-3d;
 }
@@ -72,29 +78,29 @@
 }
 .panelInner {
   position: relative;
-  width: 218px;
-  height: 300px;
-  border-radius: 22px;
-  background: var(--ph);
-  border: 1px solid var(--line);
-  box-shadow: 0 30px 70px -22px rgba(20, 20, 20, 0.2);
+  width: clamp(140px, 13vw, 195px);
+  height: clamp(205px, 25.5svh, 285px);
+  border-radius: 20px;
+  background: #f7f7f9;
+  border: 1px solid rgba(20, 20, 20, 0.08);
+  box-shadow: 0 24px 55px -18px rgba(20, 20, 20, 0.18);
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: transform 0.4s var(--ease-out-expo), box-shadow 0.4s ease,
     border-color 0.4s ease, filter 0.4s ease;
-  filter: saturate(0.94);
+  filter: saturate(1);
   will-change: transform;
 }
-.panel:nth-child(1) .panelInner,
-.panel:nth-child(5) .panelInner {
-  height: 340px;
-  border-radius: 90px 90px 26px 26px;
+.panel:first-child .panelInner,
+.panel:last-child .panelInner {
+  height: clamp(230px, 29svh, 320px);
+  border-radius: 80px 80px 22px 22px;
 }
 .panel:hover .panelInner {
   transform: translateZ(46px) scale(1.04);
-  filter: saturate(1) brightness(1.02);
+  filter: saturate(1.03) brightness(1.02);
   border-color: rgba(255, 46, 15, 0.28);
   box-shadow: 0 44px 96px -24px rgba(20, 20, 20, 0.3), 0 0 0 5px rgba(255, 46, 15, 0.06);
 }
@@ -103,7 +109,7 @@
    rest, so the photograph reads exactly as supplied. */
 .hasPhoto {
   filter: none;
-  background: #101012;
+  background: #f4f5f7;
 }
 .photo {
   position: absolute;
@@ -138,7 +144,7 @@
   justify-content: center;
   gap: 14px;
   flex-wrap: wrap;
-  margin: 76px auto 0;
+  margin: clamp(24px, 4svh, 48px) auto 0;
   padding: 0 24px;
   position: relative;
   z-index: 4;
@@ -261,14 +267,12 @@
     width: 172px;
     height: 240px;
   }
-  .panel:nth-child(1) .panelInner,
-  .panel:nth-child(5) .panelInner {
+  .panel:first-child .panelInner,
+  .panel:last-child .panelInner {
     height: 268px;
   }
 }
-/* Promoted from 820px: five 172px panels plus four 26px gaps need ~964px, so
-   between 821 and 963px the outer two were cropped by the viewport edge. The
-   arc drops to three panels for the whole mobile range instead. */
+/* Promoted from 820px: outer panels drop for smaller viewports */
 @media (max-width: 1000px) {
   .connect {
     padding-top: 100px;
@@ -277,8 +281,8 @@
     gap: 16px;
     margin-top: 56px;
   }
-  .panel:nth-child(1),
-  .panel:nth-child(5) {
+  .panel:first-child,
+  .panel:last-child {
     display: none;
   }
   .panelInner {

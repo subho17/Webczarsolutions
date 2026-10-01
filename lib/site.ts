@@ -9,7 +9,7 @@ export const COMPANY = {
   name: "Webczar Solutions",
   tagline: "Technology & Digital Solutions",
   email: "info@webczarsolutions.com",
-  phone: "+91 98765 43210",
+  phone: "+91 99882 21729",
   location: "India",
   description:
     "Webczar Solutions is a technology and digital solutions company focused on helping businesses build, transform, and grow in the digital world.",
@@ -21,13 +21,12 @@ export const COMPANY = {
 };
 
 export const PERSON = {
-  name: "Gireesh Kumar Reddy Kolli",
-  jobTitle: "Product Designer & UX Consultant",
-  email: "kolligireeshkumarreddy0622@gmail.com",
-  location: "Antibes, France",
+  name: "Subhadeep Chanda",
+  jobTitle: "Founder & Technology Director",
+  email: "subhadeep@webczarsolutions.com",
+  location: "India",
   sameAs: [
-    "https://www.linkedin.com/in/gireesh-kumar-reddy-kolli-",
-    "https://github.com/gireeshkumarreddy",
-    "https://www.instagram.com/itsgireeshreddy",
+    "https://www.linkedin.com/",
+    "https://github.com/",
   ],
 };

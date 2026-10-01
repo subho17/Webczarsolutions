@@ -1,249 +1,328 @@
-/* ============ MY DESIGN STACK — spiral orbit ============ */
+/* ============ TECHNOLOGY & BRANDING PLATFORMS ============ */
 
 .section {
   position: relative;
-  background: #fff;
+  background: #ffffff;
   border-bottom: 1px solid var(--line);
   overflow: hidden;
   height: 100svh;
-  min-height: 660px;
+  min-height: 680px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-/* ambient light behind the spiral — the glass has something to refract */
-.glowA,
-.glowB {
-  position: absolute;
-  border-radius: 50%;
-  pointer-events: none;
-}
-.glowA {
-  width: min(1100px, 92vw);
-  height: min(1100px, 92vw);
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  background: radial-gradient(
-    circle,
-    rgba(255, 46, 15, 0.05) 0%,
-    rgba(255, 46, 15, 0) 62%
-  );
-}
-.glowB {
-  width: 520px;
-  height: 520px;
-  right: -80px;
-  bottom: -60px;
-  background: radial-gradient(
-    circle,
-    rgba(20, 20, 20, 0.045) 0%,
-    rgba(20, 20, 20, 0) 66%
-  );
-}
-
-/* ---------- stage: the whole viewport is the canvas ---------- */
-.stage {
+/* Ambient subtle background illumination */
+.ambientGlow {
   position: absolute;
   inset: 0;
-  --card-w: 132px;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse 65% 55% at 50% 50%,
+    rgba(255, 69, 0, 0.028) 0%,
+    rgba(59, 130, 246, 0.02) 45%,
+    transparent 75%
+  );
+  z-index: 0;
 }
 
-/* stationary focal point */
-.center {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: min(340px, 68%);
-  text-align: center;
-  z-index: 120;
-}
-.eyebrow {
-  display: inline-flex;
+/* Stage container: holds the orbit and centers the content */
+.stage {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  max-width: 1540px;
+  margin: 0 auto;
+  display: flex;
   align-items: center;
-  gap: 12px;
-  font-size: 11.5px;
+  justify-content: center;
+  z-index: 1;
+}
+
+/* SVG Orbit connecting ellipse & node dots */
+.orbitSvg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Orbit node pulse animation */
+@keyframes orbitPulse {
+  0%, 100% {
+    r: 3.6;
+    opacity: 0.95;
+  }
+  50% {
+    r: 5;
+    opacity: 1;
+  }
+}
+
+.nodePulse {
+  animation: orbitPulse 3s ease-in-out infinite;
+  transform-origin: center;
+}
+
+/* ============ Central Content ============ */
+.center {
+  position: relative;
+  z-index: 10;
+  max-width: 660px;
+  text-align: center;
+  padding: 0 24px;
+}
+
+.eyebrow {
+  display: inline-block;
+  font-size: 11px;
   font-weight: 700;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--ink-3);
-  margin-bottom: 18px;
+  color: #64748b;
+  margin-bottom: 14px;
 }
-.eyebrow span {
-  color: var(--accent);
-  letter-spacing: 0.05em;
-}
+
 .h2 {
   font-weight: 900;
-  font-size: clamp(36px, 4.4vw, 64px);
-  letter-spacing: -0.03em;
-  line-height: 1.0;
+  font-size: clamp(34px, 4.1vw, 56px);
+  letter-spacing: -0.035em;
+  line-height: 1.08;
+  color: #0f172a;
+  margin: 0 0 18px 0;
 }
-.serif {
-  font-family: var(--font-serif), Georgia, serif;
-  font-style: italic;
-  font-weight: 400;
-  color: var(--accent);
+
+.accentRed {
+  display: block;
+  margin-top: 4px;
+  color: #FF3503;
+  font-weight: 900;
+  letter-spacing: -0.035em;
 }
+
 .lede {
-  margin-top: 16px;
-  font-size: 14.5px;
-  line-height: 1.6;
-  color: var(--ink-2);
-}
-.count {
-  margin-top: 18px;
-  font-size: 11.5px;
-  font-weight: 700;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--ink-3);
-}
-.count span {
-  color: var(--accent);
+  font-size: clamp(14px, 1.1vw, 15.5px);
+  line-height: 1.62;
+  color: #475569;
+  max-width: 530px;
+  margin: 0 auto 26px;
 }
 
-/* ---------- orbit ---------- */
-.orbit {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 0;
-  height: 0;
-  list-style: none;
-  pointer-events: none;
+/* 3 Pillars */
+.pillars {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  margin-top: 10px;
 }
 
+.pillar {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #334155;
+  letter-spacing: -0.01em;
+}
+
+.pillarIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.pillarDivider {
+  width: 1px;
+  height: 20px;
+  background: #e2e8f0;
+}
+
+/* ============ Orbiting Cards ============ */
 .card {
   position: absolute;
-  left: 0;
-  top: 0;
-  margin-left: calc(var(--card-w) / -2);
-  margin-top: -23px;
-  width: var(--card-w);
-  will-change: transform, opacity;
-  pointer-events: auto;
-  /* hidden until the first layout pass places it — no flash of stacked cards */
-  opacity: 0;
+  top: 50%;
+  left: 50%;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  text-decoration: none;
+  user-select: none;
+  will-change: transform;
 }
 
-/* the visible surface — JS owns .card's transform, CSS owns .face's */
-.face {
-  display: flex;
+/* Ambient color glow underneath card */
+.cardHalo {
+  position: absolute;
+  top: 24px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 170%;
+  height: 180%;
+  border-radius: 50%;
+  filter: blur(28px);
+  opacity: 0.65;
+  pointer-events: none;
+  z-index: 0;
+  transition: opacity 0.35s ease, transform 0.35s ease, filter 0.35s ease;
+}
+
+/* White Pill Container */
+.cardPill {
+  display: inline-flex;
   align-items: center;
   gap: 10px;
-  width: 100%;
-  height: 46px;
-  padding: 0 14px;
-  border-radius: 14px;
-  background: rgba(255, 255, 255, 0.72);
-  border: 1px solid rgba(20, 20, 20, 0.07);
-  box-shadow: 0 14px 34px -12px rgba(20, 20, 20, 0.16),
-    inset 0 1px 0 rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(10px) saturate(140%);
-  -webkit-backdrop-filter: blur(10px) saturate(140%);
-  transition: transform 0.35s var(--ease-out-expo), box-shadow 0.35s ease,
-    background 0.35s ease, border-color 0.35s ease;
-}
-.card:hover .face {
-  transform: scale(1.14);
-  background: #fff;
-  border-color: rgba(255, 46, 15, 0.3);
-  box-shadow: 0 22px 50px -14px rgba(20, 20, 20, 0.24),
-    0 0 0 4px rgba(255, 46, 15, 0.08);
-}
-
-.mark {
-  flex: 0 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 26px;
-  height: 26px;
-}
-.mark img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-.mono {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-  border-radius: 8px;
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: -0.02em;
-}
-
-.name {
-  font-size: 12.5px;
-  font-weight: 700;
-  letter-spacing: -0.01em;
-  color: var(--ink-2);
+  padding: 10px 18px;
+  background: #ffffff;
+  border-radius: 9999px;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow:
+    0 10px 25px -4px rgba(0, 0, 0, 0.06),
+    0 4px 10px -2px rgba(0, 0, 0, 0.02),
+    0 0 0 1px rgba(0, 0, 0, 0.03);
+  position: relative;
+  z-index: 1;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.35s ease;
   white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+}
+
+.card:hover .cardPill {
+  transform: translateY(-4px) scale(1.03);
+  border-color: rgba(0, 0, 0, 0.09);
+  box-shadow:
+    0 18px 38px -6px rgba(0, 0, 0, 0.12),
+    0 6px 14px -3px rgba(0, 0, 0, 0.04),
+    0 0 0 1px rgba(0, 0, 0, 0.05);
+}
+
+.card:hover .cardHalo {
+  opacity: 1;
+  filter: blur(34px);
+  transform: translate(-50%, -50%) scale(1.25);
+}
+
+/* Card Icon Box */
+.cardIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* Card Title */
+.cardTitle {
+  font-size: 14.5px;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  color: #0f172a;
+}
+
+/* 2-line Subtitle below pill */
+.cardSubtitle {
+  margin-top: 8px;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.38;
+  color: #64748b;
+  text-align: center;
+  letter-spacing: -0.01em;
+  pointer-events: none;
   transition: color 0.3s ease;
 }
-.card:hover .name {
-  color: var(--ink);
+
+.card:hover .cardSubtitle {
+  color: #334155;
 }
 
-/* ============ Responsive ============ */
+/* Cards wrapper */
+.cardsContainer {
+  display: contents;
+}
+
+/* ============ Responsive Styles ============ */
 @media (max-width: 1040px) {
-  .center {
-    width: min(320px, 62%);
+  .section {
+    height: auto;
+    min-height: auto;
+    padding: 90px 20px;
   }
-  .lede {
-    font-size: 13.5px;
+
+  .stage {
+    flex-direction: column;
+    gap: 44px;
+    height: auto;
+  }
+
+  .orbitSvg {
+    display: none;
+  }
+
+  .cardsContainer {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    width: 100%;
+    max-width: 660px;
+    margin: 0 auto;
+    z-index: 5;
+  }
+
+  .card {
+    position: relative;
+    left: auto !important;
+    top: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    transform: none !important;
+    width: 100%;
+  }
+
+  .cardPill {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .card:hover .cardPill {
+    transform: translateY(-2px);
   }
 }
 
-/* the site treats <=1000px as mobile; glassmorphism on 23 continuously
-   orbiting cards is the single heaviest effect on the page */
-@media (max-width: 1000px) {
+@media (max-width: 640px) {
   .section {
-    min-height: 600px;
+    padding: 70px 16px;
   }
-  .center {
-    width: min(220px, 62%);
+
+  .pillars {
+    flex-direction: column;
+    gap: 12px;
   }
-  .lede {
-    font-size: 13px;
-    margin-top: 12px;
-  }
-  .count {
+
+  .pillarDivider {
     display: none;
   }
-  /* logo-only chips: names would be unreadable at this scale */
-  .card {
-    margin-left: -26px;
-    margin-top: -26px;
-    width: 52px;
-  }
-  .face {
-    width: 52px;
-    height: 52px;
-    justify-content: center;
-    padding: 0;
-    gap: 0;
-    border-radius: 16px;
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-  }
-  .name {
-    display: none;
-  }
-  .mark {
-    width: 28px;
-    height: 28px;
+
+  .cardsContainer {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    max-width: 360px;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .face {
-    transition: none;
+  .nodePulse {
+    animation: none !important;
+  }
+  .cardPill,
+  .cardHalo {
+    transition: none !important;
   }
 }

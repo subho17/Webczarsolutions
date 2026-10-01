@@ -2,7 +2,7 @@
 
 /*
  * SECTION 01 — THE OPENING. The live Three.js Gallery Tunnel seen through
- * "GIREESH", stretched into a ~5.5-viewport cinematic journey that hands
+ * "SUBHADEEP", stretched into a ~5.5-viewport cinematic journey that hands
  * over to the real Hero.
  *
  * Journey design:
@@ -50,8 +50,7 @@ const IMAGES = [
 ];
 
 /* ---------- journey design ---------- */
-const JOURNEY_VIEWPORTS = 5.5; /* pinned scroll length */
-const STAGES = 6; /* progress rail: 01 … 06 */
+const STAGES = 4; /* progress rail: 01 … 04 */
 const TRAVEL_UNITS = 1050; /* total tunnel travel across the journey */
 const TRAVEL_CURVE = 1.35; /* ease-in: the journey accelerates toward its climax */
 const IDLE_DRIFT = 5; /* travel units/s while resting — the world never freezes */
@@ -96,7 +95,7 @@ export default function TunnelIntro({ text = "WEBCZAR" }: { text?: string }) {
         powerPreference: "high-performance",
       });
     } catch {
-      setWebglOk(false);
+      queueMicrotask(() => setWebglOk(false));
       document.body.classList.remove("intro-active");
       return;
     }
@@ -408,7 +407,7 @@ export default function TunnelIntro({ text = "WEBCZAR" }: { text?: string }) {
       const rel = gsap.utils.clamp(0, 1, (progress - T_RELEASE) / (1 - T_RELEASE));
       canvas.style.opacity = String(1 - rel);
       if (progressWrap) progressWrap.style.opacity = String(1 - rel);
-      if (hintEl) hintEl.style.opacity = String(Math.max(0, 1 - progress * 6) * (1 - rel));
+      if (hintEl) hintEl.style.opacity = String(Math.max(0, 1 - progress * STAGES) * (1 - rel));
 
       renderer.render(scene, camera);
     };
@@ -484,13 +483,13 @@ export default function TunnelIntro({ text = "WEBCZAR" }: { text?: string }) {
         ) : (
           <span className={styles.fallback}>{text}</span>
         )}
-        <h1 className={styles.srOnly}>{text} — Product Designer &amp; UX Consultant</h1>
+        <h1 className={styles.srOnly}>Subhadeep Chanda — Webczar Solutions</h1>
 
         <p className={styles.hint} aria-hidden="true">
           {t("intro.scroll")}
         </p>
 
-        {/* 01 ━━━━━━ 06 — you're entering the experience */}
+        {/* 01 ━━━━━━ 04 — you're entering the experience */}
         <div className={styles.progress} aria-hidden="true">
           <span className={styles.stageNow}>01</span>
           <span className={styles.progLine}>

@@ -8,17 +8,13 @@
  */
 
 import { useEffect, useRef } from "react";
-import { gsap, ScrollTrigger, prefersReducedMotion, EASE } from "@/lib/gsap";
+import { gsap, ScrollTrigger, EASE } from "@/lib/gsap";
 import { sceneScrub } from "@/lib/scene";
 import { PROJECTS } from "@/content/projects";
 import styles from "./Work.module.css";
 import { useLang, L } from "@/lib/i18n";
 
 const SPREAD = 330; /* px between card centers on the arc */
-/* Scroll px per card. With 14 projects this is the page's longest pin, so
-   the step is kept tight — enough for each card to land at centre, without
-   turning the section into a corridor. */
-const PIN_PER_CARD = 210;
 
 /* two-digit counter — the collection is past nine projects */
 const pad = (n: number) => String(n).padStart(2, "0");
@@ -155,6 +151,9 @@ export default function Work() {
                     <span>▢&nbsp;&nbsp;{p.coverLabel}</span>
                   )}
                   {p.award && <span className={styles.award}>{p.award}</span>}
+                  {p.cover?.mark && p.cover.variant === "photo" && (
+                    <span className={styles.coverBadge}>{p.cover.mark}</span>
+                  )}
                 </div>
                 <div className={styles.meta}>
                   <h3>{L(lang, p, "title")}</h3>

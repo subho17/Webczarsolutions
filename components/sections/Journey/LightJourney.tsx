@@ -33,9 +33,6 @@ import { useLang, L } from "@/lib/i18n";
 /* palette progression across the journey */
 const PALETTE = ["#0072E3", "#FF6A00", "#FF2E0F", "#AB54F7", "#00AA3C"];
 
-/* One viewport of scroll per chapter, so a chapter can actually be read
-   before the tunnel moves on. */
-const JOURNEY_VIEWPORTS = CHAPTERS.length;
 const DEPTH = 30;
 const RADIUS = 1.12;
 const WAVINESS = 0.3;
@@ -97,7 +94,7 @@ export default function LightJourney() {
     if (!rootEl || !frame || !canvas) return;
 
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduced) setStaticMode(true);
+    if (reduced) queueMicrotask(() => setStaticMode(true));
     /* Aligned to the site's real mobile boundary (1000px) and to coarse
        pointers. At 700px a landscape phone or an 8-inch tablet fell through
        to the desktop tier: 20 antialiased cables at DPR 2 in a continuous
@@ -117,7 +114,7 @@ export default function LightJourney() {
         powerPreference: "high-performance",
       });
     } catch {
-      setWebglOk(false);
+      queueMicrotask(() => setWebglOk(false));
       return;
     }
     renderer.setPixelRatio(Math.min(DPR_CAP, window.devicePixelRatio || 1));

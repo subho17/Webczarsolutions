@@ -24,26 +24,26 @@ const caveat = Caveat({
 });
 
 const DESCRIPTION =
-  "Product Designer crafting UX for climate-tech and AI products — where design, data, and business strategy meet. Based in Antibes, France.";
+  "Subhadeep Chanda — Technology & Digital Solutions. Web development, AI systems, cloud architecture, and modern digital transformation with Webczar Solutions.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Gireesh Kumar Reddy — Product Designer",
+    default: "Subhadeep Chanda — Webczar Solutions",
     template: "%s",
   },
   description: DESCRIPTION,
   openGraph: {
-    title: "Gireesh Kumar Reddy — Product Designer",
+    title: "Subhadeep Chanda — Webczar Solutions",
     description: DESCRIPTION,
     url: SITE_URL,
-    siteName: "Gireesh — Portfolio",
+    siteName: "Webczar Solutions",
     type: "website",
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Gireesh Kumar Reddy — Product Designer",
+    title: "Subhadeep Chanda — Webczar Solutions",
     description: DESCRIPTION,
   },
 };
@@ -54,7 +54,7 @@ const personJsonLd = {
   name: PERSON.name,
   jobTitle: PERSON.jobTitle,
   email: `mailto:${PERSON.email}`,
-  address: { "@type": "PostalAddress", addressLocality: "Antibes", addressCountry: "FR" },
+  address: { "@type": "PostalAddress", addressCountry: "IN" },
   url: SITE_URL,
   sameAs: PERSON.sameAs,
 };

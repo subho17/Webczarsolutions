@@ -21,12 +21,12 @@ export async function generateMetadata({
   const project = PROJECTS.find((p) => p.slug === slug);
   if (!project) return {};
   return {
-    title: `${project.title} — Case Study · Gireesh`,
+    title: `${project.title} — Webczar Blog`,
     description: project.oneLiner,
   };
 }
 
-export default async function CaseStudy({ params }: PageProps<"/work/[slug]">) {
+export default async function BlogPost({ params }: PageProps<"/work/[slug]">) {
   const { slug } = await params;
   if (!PROJECTS.some((p) => p.slug === slug)) notFound();
 

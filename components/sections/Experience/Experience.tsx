@@ -25,11 +25,7 @@ import { ROLES } from "@/content/experience";
 import styles from "./Experience.module.css";
 import { useLang, L } from "@/lib/i18n";
 
-/* Scroll length per board. Kept deliberately short: Work, Experience and
-   Credentials are three pinned set-pieces in a row, so each one holds only as
-   long as its own interaction needs — the page reads as cinematic beats
-   rather than one long locked stretch. */
-const STEP_VH = 0.62;
+
 const DEPTH = 3; /* panels rendered behind the active one — depth/context */
 
 /* Stack geometry (px). NOTE: the stage's rotateX turns part of each board's
@@ -66,7 +62,8 @@ export default function Experience() {
         active = idx;
         boards.forEach((b, i) => b.classList.toggle(styles.on, i === idx));
         navItems.forEach((it, i) => it.classList.toggle(styles.navOn, i === idx));
-        if (counter) counter.textContent = `0${idx + 1} / 0${n}`;
+        if (counter)
+          counter.textContent = `${String(idx + 1).padStart(2, "0")} / ${String(n).padStart(2, "0")}`;
         if (tint) tint.style.background = `${ROLES[idx].color}12`;
       };
 
@@ -281,7 +278,7 @@ export default function Experience() {
                   ) : (
                     /* no official file supplied yet — typographic stand-in */
                     <span className={`${styles.logoWrap} ${styles.mono}`}>
-                      <b>{r.company.split(" ")[0]}</b>
+                      <b>{r.mark ?? r.company.split(" ")[0]}</b>
                     </span>
                   )}
                 </div>
@@ -292,7 +289,7 @@ export default function Experience() {
       </div>
 
       <div className={styles.foot}>
-        <span className={styles.count}>01 / 0{ROLES.length}</span>
+        <span className={styles.count}>01 / {String(ROLES.length).padStart(2, "0")}</span>
         <div className={styles.nav} role="list">
           {ROLES.map((r) => (
             <button className={styles.navItem} key={r.company} type="button">

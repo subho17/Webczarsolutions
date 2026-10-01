@@ -10,7 +10,6 @@
 
 import Link from "next/link";
 import { PROJECTS } from "@/content/projects";
-import LanguageToggle from "@/components/layout/LanguageToggle";
 import { useLang, L } from "@/lib/i18n";
 import styles from "./case.module.css";
 
@@ -37,9 +36,12 @@ export default function CaseView({ slug }: { slug: string }) {
             page — a shared case-study link is often a visitor's first screen */}
         <div className={styles.barRight}>
           <Link href="/" className={styles.logo}>
-            GIREESH<i>.</i>
+            <img
+              src="/images/Screenshot_2026-09-16_125328-removebg-preview.png"
+              alt="Webczar Solutions"
+              style={{ height: "26px", width: "auto", display: "block" }}
+            />
           </Link>
-          <LanguageToggle />
         </div>
       </div>
 

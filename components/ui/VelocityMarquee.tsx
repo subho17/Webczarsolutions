@@ -10,7 +10,7 @@
  * · transform-only, one shared gsap ticker, reduced-motion → static rows
  */
 
-import { useEffect, useRef, type ReactNode } from "react";
+import { useEffect, useRef } from "react";
 import { gsap, prefersReducedMotion } from "@/lib/gsap";
 import styles from "./VelocityMarquee.module.css";
 

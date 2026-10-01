@@ -10,6 +10,7 @@ import Experience from "@/components/sections/Experience/Experience";
 import Certifications from "@/components/sections/Certifications/Certifications";
 import Gallery from "@/components/sections/Gallery/Gallery";
 import Connect from "@/components/sections/Connect/Connect";
+import Footer from "@/components/layout/Footer/Footer";
 
 /*
  * THE STACK.
@@ -38,7 +39,7 @@ export default function Home() {
         {/* keepOnMobile: these three fill one screen at any size, so they stay
             cinematic frames on phones too. The rest release into normal flow —
             their mobile layouts are tall and a fixed frame would clip them. */}
-        <Scene order={1} runway={6} id="intro" keepOnMobile>
+        <Scene order={1} runway={4} id="intro" keepOnMobile>
           <TunnelIntro />
         </Scene>
 
@@ -62,7 +63,7 @@ export default function Home() {
           <Work />
         </Scene>
 
-        <Scene order={7} runway={4.4} id="experience">
+        <Scene order={7} runway={6.8} id="experience">
           <Experience />
         </Scene>
 
@@ -74,9 +75,13 @@ export default function Home() {
           <Gallery />
         </Scene>
 
-        {/* the closing frame rises over the gallery, then flows to the footer */}
-        <div className="finalFrame">
+        <Scene order={10} runway={0.8} id="contact">
           <Connect />
+        </Scene>
+
+        {/* the footer frame rises over the connect scene and covers it */}
+        <div className="finalFrame">
+          <Footer />
         </div>
       </main>
     </>

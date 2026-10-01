@@ -16,7 +16,6 @@ import {
   createContext,
   useContext,
   useEffect,
-  useState,
   type ReactNode,
 } from "react";
 
@@ -29,7 +28,7 @@ export const DICT: Record<string, Entry> = {
   "nav.home": { en: "Home", fr: "Accueil" },
   "nav.about": { en: "About", fr: "À propos" },
   "nav.services": { en: "Services", fr: "Services" },
-  "nav.work": { en: "Work", fr: "Projets" },
+  "nav.work": { en: "Blog", fr: "Blog" },
   "nav.contact": { en: "Contact", fr: "Contact" },
   "nav.menu": { en: "Open menu", fr: "Ouvrir le menu" },
   "nav.close": { en: "Close menu", fr: "Fermer le menu" },
@@ -42,7 +41,7 @@ export const DICT: Record<string, Entry> = {
     en: "Technology & Digital Solutions",
     fr: "Solutions technologiques & numériques",
   },
-  "hero.h1a": { en: "Building digital", fr: "Construire des solutions" },
+  "hero.h1a": { en: "Building Digital", fr: "Construire des solutions" },
   "hero.h1aEm": { en: "solutions.", fr: "numériques." },
   "hero.h1b": { en: "That drive", fr: "Qui propulsent" },
   "hero.h1bEm": { en: "growth.", fr: "la croissance." },
@@ -50,8 +49,8 @@ export const DICT: Record<string, Entry> = {
     en: "We combine software development, AI, web & mobile apps, UI/UX design, e-commerce, automation, cloud technologies, and digital marketing to create practical and scalable solutions for modern businesses.",
     fr: "Nous combinons développement logiciel, IA, applications web et mobiles, design UI/UX, e-commerce, automatisation, technologies cloud et marketing numérique pour créer des solutions pratiques et évolutives.",
   },
-  "hero.cta1": { en: "View Our Work", fr: "Voir nos projets" },
-  "hero.cta2": { en: "Our Services", fr: "Nos services" },
+  "hero.cta1": { en: "Connect with sales", fr: "Contacter les ventes" },
+  "hero.cta2": { en: "Chat with us", fr: "Discuter avec nous" },
   "hero.scroll": { en: "Scroll to Explore", fr: "Faites défiler" },
   "stat.projects": { en: "Projects Delivered", fr: "Projets livrés" },
   "stat.years": { en: "Years of Experience", fr: "Ans d'expérience" },
@@ -96,27 +95,46 @@ export const DICT: Record<string, Entry> = {
     fr: "D'une vision à un partenaire technologique de confiance — les jalons qui ont façonné Webczar Solutions en une puissance numérique complète.",
   },
 
-  /* ---------------- design stack ---------------- */
-  "stack.eyebrow": { en: "Our Tech Stack", fr: "Notre pile technologique" },
-  "stack.h2": { en: "Technologies", fr: "Technologies" },
-  "stack.h2Em": { en: "We Use.", fr: "que nous utilisons." },
+  /* ---------------- technology & branding platforms ---------------- */
+  "stack.eyebrow": {
+    en: "OUR TECHNOLOGY & BRANDING PLATFORMS",
+    fr: "NOS PLATEFORMES TECHNOLOGIQUES & DE MARQUE",
+  },
+  "stack.h2": {
+    en: "Powering Growth with",
+    fr: "Accélérer la croissance avec",
+  },
+  "stack.h2Accent": {
+    en: "the Right Technology",
+    fr: "la bonne technologie",
+  },
   "stack.lede": {
-    en: "From AI and cloud to design and development — the tools and platforms we leverage to build secure, high-performance digital experiences.",
-    fr: "De l'IA et du cloud au design et au développement — les outils et plateformes que nous exploitons pour créer des expériences numériques sécurisées et performantes.",
+    en: "We leverage leading platforms and modern technologies to build stronger brands, reach wider audiences and drive measurable results.",
+    fr: "Nous exploitons les meilleures plateformes et technologies modernes pour bâtir des marques plus fortes, toucher un public plus large et générer des résultats mesurables.",
   },
-  "stack.count": { en: "tools", fr: "outils" },
-  "stack.disciplines": { en: "disciplines", fr: "disciplines" },
+  "stack.pillar1": {
+    en: "Branding Platforms",
+    fr: "Plateformes de marque",
+  },
+  "stack.pillar2": {
+    en: "Digital Marketing",
+    fr: "Marketing numérique",
+  },
+  "stack.pillar3": {
+    en: "Software Development",
+    fr: "Développement logiciel",
+  },
 
-  /* ---------------- work ---------------- */
-  "work.eyebrow": { en: "Our Work", fr: "Nos projets" },
-  "work.h2a": { en: "Featured projects,", fr: "Projets sélectionnés," },
-  "work.h2b": { en: "built to", fr: "conçus pour" },
-  "work.h2Em": { en: "deliver.", fr: "livrer." },
+  /* ---------------- work / blog ---------------- */
+  "work.eyebrow": { en: "Our Blog", fr: "Notre Blog" },
+  "work.h2a": { en: "Featured articles,", fr: "Articles en vedette," },
+  "work.h2b": { en: "written to", fr: "écrits pour" },
+  "work.h2Em": { en: "inspire.", fr: "inspirer." },
   "work.lede": {
-    en: "From startups to established enterprises — each project showcases our ability to transform business challenges into digital solutions.",
-    fr: "Des startups aux entreprises établies — chaque projet démontre notre capacité à transformer les défis commerciaux en solutions numériques.",
+    en: "Deep dives into AI, web engineering, digital growth, and modern technology from the Webczar team.",
+    fr: "Analyses approfondies sur l'IA, l'ingénierie web et la croissance numérique par l'équipe Webczar.",
   },
-  "work.open": { en: "View case study", fr: "Voir l'étude de cas" },
+  "work.open": { en: "Read article", fr: "Lire l'article" },
   "work.hint": { en: "SCROLL TO BROWSE", fr: "FAITES DÉFILER" },
 
   /* ---------------- experience ---------------- */
@@ -191,23 +209,23 @@ export const DICT: Record<string, Entry> = {
   "connect.credit": { en: "Built with passion by", fr: "Conçu avec passion par" },
   "connect.top": { en: "Back to top ↑", fr: "Haut de page ↑" },
 
-  /* ---------------- case study (/work/[slug]) ---------------- */
-  "case.back": { en: "← Back to work", fr: "← Retour aux projets" },
-  "case.kicker": { en: "Case Study", fr: "Étude de cas" },
-  "case.role": { en: "Role", fr: "Rôle" },
-  "case.timeline": { en: "Timeline", fr: "Période" },
-  "case.focus": { en: "Focus", fr: "Focus" },
+  /* ---------------- article (/work/[slug]) ---------------- */
+  "case.back": { en: "← Back to blog", fr: "← Retour au blog" },
+  "case.kicker": { en: "Article", fr: "Article" },
+  "case.role": { en: "Topic", fr: "Thématique" },
+  "case.timeline": { en: "Read Time", fr: "Temps de lecture" },
+  "case.focus": { en: "Category", fr: "Catégorie" },
   "case.site": { en: "Live product", fr: "Produit en ligne" },
   "case.repo": { en: "Source", fr: "Code source" },
   "case.cover": { en: "COVER", fr: "VISUEL" },
-  "case.context": { en: "Context", fr: "Contexte" },
-  "case.problem": { en: "The Problem", fr: "Le problème" },
-  "case.process": { en: "Process", fr: "Démarche" },
-  "case.decisions": { en: "Design Decisions", fr: "Décisions de design" },
-  "case.outcome": { en: "Outcome", fr: "Résultats" },
-  "case.reflection": { en: "Reflection", fr: "Ce que j'en retire" },
-  "case.all": { en: "← All projects", fr: "← Tous les projets" },
-  "case.next": { en: "Next project", fr: "Projet suivant" },
+  "case.context": { en: "Overview", fr: "Aperçu" },
+  "case.problem": { en: "The Challenge", fr: "Le défi" },
+  "case.process": { en: "Insights & Deep Dive", fr: "Analyses & Approfondissement" },
+  "case.decisions": { en: "Key Decisions & Strategy", fr: "Décisions clés & Stratégie" },
+  "case.outcome": { en: "Key Takeaways & Impact", fr: "Points clés & Impact" },
+  "case.reflection": { en: "Conclusion", fr: "Conclusion" },
+  "case.all": { en: "← All articles", fr: "← Tous les articles" },
+  "case.next": { en: "Next article", fr: "Article suivant" },
 
   /* ---------------- lab (/tunnel) ---------------- */
   "lab.back": { en: "← WEBCZAR", fr: "← WEBCZAR" },
@@ -232,30 +250,24 @@ const LanguageContext = createContext<Ctx>({
 });
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [lang, setLangState] = useState<Lang>("en");
-
   useEffect(() => {
-    const saved = window.localStorage.getItem("lang") as Lang | null;
-    if (saved === "en" || saved === "fr") {
-      setLangState(saved);
-      document.documentElement.lang = saved;
+    try {
+      window.localStorage.removeItem("lang");
+      window.localStorage.setItem("lang", "en");
+    } catch {
+      /* ignore */
     }
+    document.documentElement.lang = "en";
   }, []);
 
-  const setLang = (l: Lang) => {
-    setLangState(l);
-    try {
-      window.localStorage.setItem("lang", l);
-    } catch {
-      /* private mode — the choice simply won't persist */
-    }
-    document.documentElement.lang = l;
+  const setLang = () => {
+    /* Site is strictly English only */
   };
 
-  const t = (k: string) => DICT[k]?.[lang] ?? DICT[k]?.en ?? k;
+  const t = (k: string) => DICT[k]?.en ?? k;
 
   return (
-    <LanguageContext.Provider value={{ lang, setLang, t }}>
+    <LanguageContext.Provider value={{ lang: "en", setLang, t }}>
       {children}
     </LanguageContext.Provider>
   );
@@ -263,15 +275,11 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
 
 export const useLang = () => useContext(LanguageContext);
 
-/** Pick a translated field off a content record: `L(lang, item, "summary")`
- *  returns `item.fr.summary` when available, else the English original. */
+/** Pick a field off a content record in English only. */
 export function L<T extends { fr?: Record<string, unknown> }>(
-  lang: Lang,
+  _lang: Lang,
   item: T,
   field: keyof T & string
 ): string {
-  if (lang === "fr" && item.fr && typeof item.fr[field] === "string") {
-    return item.fr[field] as string;
-  }
   return item[field] as unknown as string;
 }

@@ -37,11 +37,11 @@ const CHAPTERS: Chapter[] = [
     label: "Introduction",
     title: (
       <>
-        I&rsquo;m Gireesh — I design products people{" "}
+        I&rsquo;m Subhadeep — I build digital solutions businesses{" "}
         <em className={styles.serif}>trust.</em>
       </>
     ),
-    body: "Product Designer & UX Consultant, currently shaping the UX of Heeding Climate Solutions' sustainable-fuel marketplace while completing my MSc at Montpellier Business School.",
+    body: "Technology leader and founder at Webczar Solutions, shaping digital transformations, modern web architecture, and AI-driven systems.",
   },
   {
     label: "My Journey",

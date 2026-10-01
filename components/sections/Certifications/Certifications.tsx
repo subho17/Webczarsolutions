@@ -30,9 +30,7 @@ import { CERTS } from "@/content/certifications";
 import styles from "./Certifications.module.css";
 import { useLang, L } from "@/lib/i18n";
 
-/* scroll length per credential — see the note in Experience.tsx: the pinned
-   sections are kept tight so the page never feels locked */
-const STEP_VH = 0.7;
+
 
 /* ---------- the movement model ----------
  *   RIGHT  →  CENTER  →  BACKGROUND
@@ -314,7 +312,7 @@ export default function Certifications() {
 
       <div className={styles.foot}>
         <span className={styles.brandFoot}>
-          <b>06</b> Gireesh
+          <b>06</b> Subhadeep Chanda
         </span>
         <span className={styles.count}>
           01 / {String(PANELS.length).padStart(2, "0")}
