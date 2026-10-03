@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import styles from "./Footer.module.css";
 
 const SERVICES_LIST = [
@@ -12,15 +13,23 @@ const SERVICES_LIST = [
 ];
 
 const COMPANY_LINKS = [
-  { label: "Home", href: "#home" },
-  { label: "About", href: "#about" },
-  { label: "Services", href: "#experience" },
-  { label: "Blog", href: "#work" },
-  { label: "Portfolio", href: "#gallery" },
-  { label: "Contact Us", href: "#contact" },
+  { label: "Home", href: "/#home" },
+  { label: "About", href: "/#about" },
+  { label: "Services", href: "/#experience" },
+  { label: "Blogs", href: "/blog" },
+  { label: "Contact Us", href: "/contact" },
+  { label: "Career (Join Webczar)", href: "/careers" },
 ];
 
-
+const USEFUL_LINKS = [
+  { label: "Privacy Policy", href: "/privacy" },
+  { label: "Terms of Service", href: "/terms" },
+  { label: "WhatsApp Opt-In Policy", href: "/whatsapp-opt-in" },
+  { label: "WhatsApp Opt-Out Policy", href: "/whatsapp-opt-out" },
+  { label: "RCS Communication Policy", href: "/rcs-policy" },
+  { label: "Security", href: "mailto:info@webczarsolutions.com?subject=Security%20Inquiry%20-%20Webczar" },
+  { label: "XML Sitemap", href: "/sitemap.xml" },
+];
 
 export default function Footer() {
   const [email, setEmail] = useState("");
@@ -56,14 +65,11 @@ export default function Footer() {
             </p>
           </div>
           <div className={styles.ctaActions}>
-            <a
-              href="mailto:info@webczarsolutions.com"
-              className={styles.ctaPrimaryBtn}
-            >
+            <Link href="/contact" className={styles.ctaPrimaryBtn}>
               Get a Free Proposal <span>→</span>
-            </a>
+            </Link>
             <a
-              href="https://api.whatsapp.com/send/?phone=919988221729&text&type=phone_number&app_absent=0"
+              href="https://api.whatsapp.com/send/?phone=919988221729&text=Hello%20Webczar,%20I'd%20like%20to%20discuss%20a%20project."
               target="_blank"
               rel="noreferrer"
               className={styles.ctaSecondaryBtn}
@@ -78,13 +84,13 @@ export default function Footer() {
       <div className={styles.mainGrid}>
         {/* Brand & Overview Column */}
         <div className={styles.brandCol}>
-          <a href="#home" className={styles.logoLink} onClick={scrollToTop}>
+          <Link href="/" className={styles.logoLink} onClick={scrollToTop}>
             <img
               src="/images/logoWebczar-darkTM.png"
               alt="Webczar Solutions"
               className={styles.logoImg}
             />
-          </a>
+          </Link>
           <p className={styles.brandDesc}>
             Webczar Solutions is a premier technology, custom software
             development, and digital marketing agency based in the Tricity tech
@@ -94,7 +100,7 @@ export default function Footer() {
 
           <div className={styles.badges}>
             <span className={styles.badge}>
-              <span className={styles.badgeDot} /> Tricity & Global Delivery
+              <span className={styles.badgeDot} /> Tricity &amp; Global Delivery
             </span>
             <span className={styles.badge}>
               <span className={styles.badgeDot} /> 24/7 Client Support
@@ -116,25 +122,40 @@ export default function Footer() {
           <ul className={styles.linkList}>
             {SERVICES_LIST.map((service) => (
               <li key={service}>
-                <a href="#experience" className={styles.linkItem}>
+                <Link href="/#experience" className={styles.linkItem}>
                   <span className={styles.bulletArrow}>→</span>
                   <span>{service}</span>
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
         </div>
 
-        {/* Quick Links Column */}
+        {/* Company Column */}
         <div className={styles.col}>
           <h4 className={styles.colTitle}>Company</h4>
           <ul className={styles.linkList}>
             {COMPANY_LINKS.map((link) => (
               <li key={link.label}>
-                <a href={link.href} className={styles.linkItem}>
+                <Link href={link.href} className={styles.linkItem}>
                   <span className={styles.bulletArrow}>→</span>
                   <span>{link.label}</span>
-                </a>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Other Useful Links Column */}
+        <div className={styles.col}>
+          <h4 className={styles.colTitle}>Other Useful Links</h4>
+          <ul className={styles.linkList}>
+            {USEFUL_LINKS.map((link) => (
+              <li key={link.label}>
+                <Link href={link.href} className={styles.linkItem}>
+                  <span className={styles.bulletArrow}>→</span>
+                  <span>{link.label}</span>
+                </Link>
               </li>
             ))}
           </ul>
@@ -247,21 +268,37 @@ export default function Footer() {
           <span>Crafted with precision by <b>Subhadeep Chanda</b></span>
         </div>
         <div className={styles.legalLinks}>
-          <a href="#contact" className={styles.legalLink}>
+          <Link href="/privacy" className={styles.legalLink}>
             Privacy Policy
-          </a>
+          </Link>
           <span className={styles.divider}>·</span>
-          <a href="#contact" className={styles.legalLink}>
+          <Link href="/terms" className={styles.legalLink}>
             Terms of Service
-          </a>
+          </Link>
           <span className={styles.divider}>·</span>
-          <a href="#contact" className={styles.legalLink}>
-            Security
-          </a>
+          <Link href="/whatsapp-opt-in" className={styles.legalLink}>
+            WhatsApp Opt-In
+          </Link>
           <span className={styles.divider}>·</span>
-          <a href="#contact" className={styles.legalLink}>
-            Sitemap
-          </a>
+          <Link href="/whatsapp-opt-out" className={styles.legalLink}>
+            WhatsApp Opt-Out
+          </Link>
+          <span className={styles.divider}>·</span>
+          <Link href="/rcs-policy" className={styles.legalLink}>
+            RCS Policy
+          </Link>
+          <span className={styles.divider}>·</span>
+          <Link href="/blog" className={styles.legalLink}>
+            Blogs
+          </Link>
+          <span className={styles.divider}>·</span>
+          <Link href="/contact" className={styles.legalLink}>
+            Contact
+          </Link>
+          <span className={styles.divider}>·</span>
+          <Link href="/careers" className={styles.legalLink}>
+            Careers
+          </Link>
         </div>
       </div>
     </footer>

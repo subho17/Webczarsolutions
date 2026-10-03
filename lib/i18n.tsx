@@ -29,6 +29,7 @@ export const DICT: Record<string, Entry> = {
   "nav.about": { en: "About", fr: "À propos" },
   "nav.services": { en: "Services", fr: "Services" },
   "nav.work": { en: "Blog", fr: "Blog" },
+  "nav.careers": { en: "Careers", fr: "Carrières" },
   "nav.contact": { en: "Contact", fr: "Contact" },
   "nav.menu": { en: "Open menu", fr: "Ouvrir le menu" },
   "nav.close": { en: "Close menu", fr: "Fermer le menu" },
@@ -63,21 +64,29 @@ export const DICT: Record<string, Entry> = {
   "about.h2b": { en: "solve —", fr: "façon de résoudre —" },
   "about.h2Em": { en: "innovate", fr: "innover" },
   "about.h2c": { en: "and grow.", fr: "et croître." },
+  "about.p1": {
+    en: "Webczar Solutions is a creative technology company specializing in Branding, Digital Marketing, and Software Development. We help businesses build strong brands, reach the right audience, and create powerful digital solutions that drive growth.",
+    fr: "Webczar Solutions est une entreprise de technologie créative spécialisée dans le branding, le marketing numérique et le développement de logiciels. Nous aidons les entreprises à bâtir des marques fortes, à toucher le bon public et à créer des solutions numériques performantes qui stimulent la croissance.",
+  },
+  "about.p2": {
+    en: "From creative branding and performance marketing to custom websites and software, we combine creativity, technology, and strategy to deliver solutions that make businesses stand out and succeed in the digital world.",
+    fr: "Du branding créatif et marketing de performance aux sites web et logiciels sur mesure, nous combinons créativité, technologie et stratégie pour offrir des solutions qui permettent aux entreprises de se démarquer et de réussir dans le monde numérique.",
+  },
   "about.m1": {
-    en: "End-to-end digital expertise under one roof",
-    fr: "Expertise numérique de bout en bout",
+    en: "Years of Experience",
+    fr: "Ans d'expérience",
   },
   "about.m2": {
-    en: "Years of delivering digital transformation",
-    fr: "Ans de transformation numérique",
+    en: "Projects Completed",
+    fr: "Projets réalisés",
   },
   "about.m3": {
-    en: "Revenue generated for our clients",
-    fr: "Revenus générés pour nos clients",
+    en: "Professional Team",
+    fr: "Équipe professionnelle",
   },
   "about.m4": {
-    en: "Solutions deployed across industries",
-    fr: "Solutions déployées dans tous les secteurs",
+    en: "Awards",
+    fr: "Prix remportés",
   },
   "about.edu": {
     en: "Software Development · AI & Machine Learning · Cloud Technologies · Digital Marketing · UI/UX Design · E-Commerce",

@@ -1,0 +1,566 @@
+/* ============ CONTACT PAGE STYLING ============ */
+
+.page {
+  min-height: 100svh;
+  background: #ffffff;
+  color: var(--ink, #141414);
+  font-family: var(--font-ui, sans-serif);
+  position: relative;
+  overflow-x: clip;
+}
+
+/* Top Sticky Navigation Bar */
+.topBar {
+  position: sticky;
+  top: 0;
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px clamp(20px, 4vw, 48px);
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--line, #ededef);
+}
+
+.barLeft {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.backBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ink-2, #3c3c42);
+  text-decoration: none;
+  padding: 6px 12px;
+  border-radius: 999px;
+  transition: all 0.2s ease;
+}
+
+.backBtn:hover {
+  background: #f4f4f6;
+  color: var(--ink, #141414);
+}
+
+.logoImg {
+  height: 24px;
+  width: auto;
+  display: block;
+}
+
+.barRight {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.quickChatBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #ffffff;
+  background: #25d366;
+  padding: 7px 14px;
+  border-radius: 999px;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.quickChatBtn:hover {
+  opacity: 0.9;
+}
+
+/* Main Container */
+.mainWrap {
+  max-width: var(--max, 1280px);
+  margin: 0 auto;
+  padding: 0 clamp(20px, 4vw, 48px);
+}
+
+/* Hero Section */
+.hero {
+  padding: clamp(100px, 12vw, 136px) 0 clamp(32px, 4vw, 44px);
+  text-align: center;
+  max-width: 840px;
+  margin: 0 auto;
+}
+
+.kicker {
+  display: inline-block;
+  font-size: 11.5px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent, #ff2e0f);
+  margin-bottom: 12px;
+}
+
+.title {
+  font-size: clamp(34px, 4.5vw, 56px);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  color: var(--ink, #141414);
+  margin-bottom: 16px;
+}
+
+.subtitle {
+  font-size: clamp(16px, 1.8vw, 19px);
+  line-height: 1.6;
+  color: var(--ink-2, #4b5563);
+}
+
+/* Two-Column Contact Layout */
+.contactGrid {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: clamp(32px, 5vw, 64px);
+  padding: 20px 0 80px;
+}
+
+/* Left Column: Direct Info */
+.infoCol {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.infoCard {
+  background: #fafafa;
+  border: 1px solid var(--line, #ededef);
+  border-radius: 20px;
+  padding: 28px;
+}
+
+.infoCardTitle {
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--ink, #141414);
+  margin-bottom: 8px;
+}
+
+.infoCardSubtitle {
+  font-size: 13.5px;
+  color: var(--ink-2, #4b5563);
+  margin-bottom: 24px;
+}
+
+.contactMethods {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.methodItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.methodIcon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: #ffffff;
+  border: 1px solid var(--line, #ededef);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.methodContent b {
+  display: block;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-3, #9ca3af);
+  margin-bottom: 3px;
+}
+
+.methodContent a,
+.methodContent span {
+  font-size: 14.5px;
+  font-weight: 700;
+  color: var(--ink, #141414);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.methodContent a:hover {
+  color: var(--accent, #ff2e0f);
+}
+
+.methodSub {
+  font-size: 12px;
+  color: var(--ink-2, #6b7280);
+  margin-top: 2px;
+}
+
+/* Trust Badges Card */
+.trustCard {
+  background: linear-gradient(135deg, #fef8f7 0%, #fff 100%);
+  border: 1px solid #ffdcd6;
+  border-radius: 18px;
+  padding: 22px;
+}
+
+.trustList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.trustItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--ink, #141414);
+}
+
+.trustCheck {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #ff2e0f;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+
+/* Founder Note Card */
+.founderCard {
+  background: #ffffff;
+  border: 1px solid var(--line, #ededef);
+  border-radius: 18px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.founderAvatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--accent, #ff2e0f);
+}
+
+.founderDetails b {
+  display: block;
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--ink, #141414);
+}
+
+.founderDetails span {
+  font-size: 12px;
+  color: var(--ink-2, #6b7280);
+}
+
+/* Right Column: Inquiry Form */
+.formCol {
+  background: #ffffff;
+  border: 1px solid var(--line, #ededef);
+  border-radius: 24px;
+  padding: clamp(28px, 4vw, 40px);
+  box-shadow: 0 16px 40px -12px rgba(20, 20, 20, 0.05);
+}
+
+.formTitle {
+  font-size: 22px;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  color: var(--ink, #141414);
+  margin-bottom: 6px;
+}
+
+.formDesc {
+  font-size: 13.5px;
+  color: var(--ink-2, #4b5563);
+  margin-bottom: 28px;
+}
+
+.inquiryForm {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.formLabel {
+  font-size: 12.5px;
+  font-weight: 800;
+  color: var(--ink, #141414);
+  letter-spacing: -0.01em;
+}
+
+.formInput,
+.formTextarea,
+.formSelect {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid var(--line, #ededef);
+  background: #f8f9fb;
+  font-size: 14px;
+  font-family: inherit;
+  color: var(--ink, #141414);
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.formInput:focus,
+.formTextarea:focus,
+.formSelect:focus {
+  background: #ffffff;
+  border-color: var(--accent, #ff2e0f);
+  box-shadow: 0 0 0 3px rgba(255, 46, 15, 0.12);
+}
+
+.formRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+/* Service Pills Selector */
+.pillsWrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.servicePill {
+  font-size: 12px;
+  font-weight: 700;
+  padding: 7px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--line, #ededef);
+  background: #f4f5f7;
+  color: var(--ink-2, #4b5563);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.servicePillActive {
+  background: var(--ink, #141414);
+  color: #ffffff;
+  border-color: var(--ink, #141414);
+}
+
+/* Budget Selector */
+.budgetPills {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+
+.budgetPill {
+  text-align: center;
+  font-size: 11.5px;
+  font-weight: 700;
+  padding: 9px 8px;
+  border-radius: 8px;
+  border: 1px solid var(--line, #ededef);
+  background: #f8f9fb;
+  color: var(--ink-2, #4b5563);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.budgetPillActive {
+  background: var(--accent, #ff2e0f);
+  color: #ffffff;
+  border-color: var(--accent, #ff2e0f);
+}
+
+/* Consent Checkbox */
+.consentRow {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 12.5px;
+  color: var(--ink-2, #4b5563);
+  line-height: 1.5;
+  margin-top: 4px;
+}
+
+.consentRow input {
+  margin-top: 3px;
+  accent-color: var(--accent, #ff2e0f);
+}
+
+.consentRow a {
+  color: var(--accent, #ff2e0f);
+  text-decoration: underline;
+}
+
+.submitBtn {
+  background: var(--accent, #ff2e0f);
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 800;
+  padding: 15px 30px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.submitBtn:hover {
+  background: var(--accent-dark, #e02000);
+  transform: translateY(-1px);
+}
+
+.submitBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Success Confirmation Card */
+.successCard {
+  text-align: center;
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.successIcon {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #ecfdf5;
+  border: 2px solid #10b981;
+  color: #10b981;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+}
+
+.successTitle {
+  font-size: 22px;
+  font-weight: 900;
+  color: var(--ink, #141414);
+}
+
+.successText {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--ink-2, #4b5563);
+  max-width: 440px;
+}
+
+.resetBtn {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--accent, #ff2e0f);
+  background: none;
+  border: 1px solid var(--accent, #ff2e0f);
+  padding: 8px 18px;
+  border-radius: 999px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+/* FAQ Section */
+.faqSection {
+  padding: 40px 0 80px;
+  border-top: 1px solid var(--line, #ededef);
+}
+
+.faqHeader {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto 40px;
+}
+
+.faqTitle {
+  font-size: clamp(24px, 3vw, 36px);
+  font-weight: 900;
+  color: var(--ink, #141414);
+  margin-bottom: 8px;
+}
+
+.faqSubtitle {
+  font-size: 14px;
+  color: var(--ink-2, #4b5563);
+}
+
+.faqGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.faqItem {
+  background: #fafafc;
+  border: 1px solid var(--line, #ededef);
+  border-radius: 16px;
+  padding: 22px;
+}
+
+.faqQ {
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--ink, #141414);
+  margin-bottom: 8px;
+}
+
+.faqA {
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--ink-2, #4b5563);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .contactGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .formRow {
+    grid-template-columns: 1fr;
+  }
+
+  .budgetPills {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .faqGrid {
+    grid-template-columns: 1fr;
+  }
+}

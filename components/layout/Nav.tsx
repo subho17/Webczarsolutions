@@ -1,28 +1,26 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { gsap, ScrollTrigger } from "@/lib/gsap";
-
 import { useLang } from "@/lib/i18n";
 import styles from "./Nav.module.css";
 
-/* `#home` resolves to the very top of the document (see lib/lenis.ts), so
-   Home always returns to the true beginning of the portfolio. */
 const LINKS = [
-  { key: "nav.home", href: "#home", watch: null },
-  { key: "nav.about", href: "#about", watch: "about" },
-  { key: "nav.services", href: "#experience", watch: "experience" },
-  { key: "nav.work", href: "#work", watch: "work" },
-  { key: "nav.contact", href: "#contact", watch: "contact" },
+  { key: "nav.home", href: "/#home", path: "/", watch: null },
+  { key: "nav.about", href: "/#about", path: "/#about", watch: "about" },
+  { key: "nav.services", href: "/#experience", path: "/#experience", watch: "experience" },
+  { key: "nav.work", href: "/blog", path: "/blog", watch: null },
+  { key: "nav.careers", href: "/careers", path: "/careers", watch: null },
+  { key: "nav.contact", href: "/contact", path: "/contact", watch: null },
 ];
 
 export default function Nav() {
   const ref = useRef<HTMLElement>(null);
+  const pathname = usePathname();
   const { t } = useLang();
   const [active, setActive] = useState<string | null>(null);
-  /* mobile drawer — the desktop pill can't hold four links plus the toggle
-     at phone widths, so below 900px navigation lives behind a menu button
-     rather than being hidden entirely (which is what it was doing) */
   const [menuOpen, setMenuOpen] = useState(false);
 
   /* close on Escape, and lock the page behind the open drawer */
@@ -48,14 +46,14 @@ export default function Nav() {
     return () => mq.removeEventListener("change", close);
   }, []);
 
+  const isHome = pathname === "/" || pathname === "";
+
   useEffect(() => {
     const nav = ref.current;
     if (!nav) return;
 
     const ctx = gsap.context(() => {
-      /* The header is PERSISTENT: it never hides. It only condenses slightly
-         once the page has been scrolled, which keeps it feeling part of the
-         page rather than a floating panel. */
+      /* Header condenses slightly once page is scrolled */
       ScrollTrigger.create({
         start: "top top-=40",
         onUpdate: (self) => {
@@ -64,47 +62,77 @@ export default function Nav() {
         onLeaveBack: () => nav.classList.remove(styles.scrolled),
       });
 
-      /* scroll-spy: the nav reflects where you actually are, and falls back
-         to Home whenever you are near the top of the document */
-      const spies = LINKS.filter((l) => l.watch).map((l) =>
-        ScrollTrigger.create({
-          trigger: `#${l.watch}`,
-          start: "top 55%",
-          end: "bottom 45%",
+      /* Scroll-spy for homepage sections */
+      if (isHome) {
+        const spies = LINKS.filter((l) => l.watch && document.getElementById(l.watch)).map((l) =>
+          ScrollTrigger.create({
+            trigger: `#${l.watch}`,
+            start: "top 55%",
+            end: "bottom 45%",
+            onToggle: (self) => {
+              if (self.isActive) setActive(l.watch);
+            },
+          })
+        );
+        const top = ScrollTrigger.create({
+          start: 0,
+          end: () => window.innerHeight * 1.2,
           onToggle: (self) => {
-            if (self.isActive) setActive(l.watch);
+            if (self.isActive) setActive(null);
           },
-        })
-      );
-      const top = ScrollTrigger.create({
-        start: 0,
-        end: () => window.innerHeight * 1.2,
-        onToggle: (self) => {
-          if (self.isActive) setActive(null);
-        },
-      });
+        });
 
-      return () => {
-        spies.forEach((s) => s.kill());
-        top.kill();
-      };
+        return () => {
+          spies.forEach((s) => s.kill());
+          top.kill();
+        };
+      }
     }, nav);
 
     return () => ctx.revert();
-  }, []);
+  }, [isHome]);
+
+  const isLinkActive = (l: (typeof LINKS)[0]) => {
+    if (
+      l.path === "/blog" &&
+      (pathname === "/blog" || pathname === "/blogs" || pathname?.startsWith("/work"))
+    ) {
+      return true;
+    }
+    if (
+      l.path === "/careers" &&
+      (pathname === "/careers" || pathname === "/career")
+    ) {
+      return true;
+    }
+    if (l.path === "/contact" && pathname === "/contact") {
+      return true;
+    }
+    if (isHome) {
+      if (l.watch) {
+        return l.watch === active;
+      }
+      return active === null && l.key === "nav.home";
+    }
+    return false;
+  };
 
   return (
     <header className={styles.wrap} ref={ref}>
       <div className={styles.cap}>
-        <a href="#home" className={styles.logo} aria-label={t("nav.home")}>
-          <img src="/images/Screenshot_2026-09-16_125328-removebg-preview.png" alt="Webczar Solutions" style={{ width: "140px", height: "auto", display: "block" }} />
-        </a>
+        <Link href="/" className={styles.logo} aria-label={t("nav.home")}>
+          <img
+            src="/images/Screenshot_2026-09-16_125328-removebg-preview.png"
+            alt="Webczar Solutions"
+            style={{ width: "135px", height: "auto", display: "block" }}
+          />
+        </Link>
 
         <nav className={styles.links} aria-label="Primary">
           {LINKS.map((l) => {
-            const isOn = l.watch === active;
+            const isOn = isLinkActive(l);
             return (
-              <a
+              <Link
                 key={l.key}
                 href={l.href}
                 className={isOn ? styles.on : ""}
@@ -114,13 +142,12 @@ export default function Nav() {
                   <span>{t(l.key)}</span>
                   <span aria-hidden="true">{t(l.key)}</span>
                 </span>
-              </a>
+              </Link>
             );
           })}
         </nav>
 
         <div className={styles.right}>
-
           <button
             type="button"
             className={`${styles.burger} ${menuOpen ? styles.burgerOpen : ""}`}
@@ -142,17 +169,20 @@ export default function Nav() {
         hidden={!menuOpen}
       >
         <nav aria-label="Primary mobile">
-          {LINKS.map((l) => (
-            <a
-              key={l.key}
-              href={l.href}
-              className={l.watch === active ? styles.sheetOn : ""}
-              aria-current={l.watch === active ? "page" : undefined}
-              onClick={() => setMenuOpen(false)}
-            >
-              {t(l.key)}
-            </a>
-          ))}
+          {LINKS.map((l) => {
+            const isOn = isLinkActive(l);
+            return (
+              <Link
+                key={l.key}
+                href={l.href}
+                className={isOn ? styles.sheetOn : ""}
+                aria-current={isOn ? "page" : undefined}
+                onClick={() => setMenuOpen(false)}
+              >
+                {t(l.key)}
+              </Link>
+            );
+          })}
         </nav>
       </div>
       <button

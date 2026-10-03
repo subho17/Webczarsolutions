@@ -20,14 +20,14 @@
   pointer-events: auto;
   display: flex;
   align-items: center;
-  gap: 30px;
-  width: min(860px, 100%);
+  gap: 24px;
+  width: min(940px, 100%);
   background: rgba(255, 255, 255, 0.82);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid var(--line);
   border-radius: 999px;
-  padding: 14px 14px 14px 28px;
+  padding: 12px 14px 12px 24px;
   box-shadow: 0 10px 34px -10px rgba(20, 20, 20, 0.08);
   transition: box-shadow 0.35s ease, padding 0.35s ease, background 0.35s ease;
 }
@@ -44,6 +44,8 @@
   letter-spacing: -0.02em;
   margin-right: auto;
   transition: letter-spacing 0.35s cubic-bezier(0.33, 1, 0.68, 1);
+  display: flex;
+  align-items: center;
 }
 .logo:hover {
   letter-spacing: 0.01em;
@@ -63,19 +65,21 @@
 /* --- links with roll-over micro-interaction --- */
 .links {
   display: flex;
-  gap: 6px;
-  font-size: 14px;
+  align-items: center;
+  gap: 4px;
+  font-size: 13.5px;
   font-weight: 600;
   color: var(--ink-2);
 }
 /* pill links — same interaction standard as Button: circle fill + label roll */
 .links a {
   position: relative;
-  padding: 7px 15px;
+  padding: 7px 13px;
   border-radius: 999px;
   overflow: hidden;
   isolation: isolate;
-  transition: color 0.3s ease;
+  transition: color 0.3s ease, background 0.2s ease;
+  white-space: nowrap;
 }
 .links a::before {
   content: "";
@@ -96,11 +100,11 @@
 .links a:focus-visible::before {
   transform: translate(-50%, -50%) scale(1);
 }
-/* the current section stays a quiet weight change — the black fill is
-   reserved for hover/touch, as requested */
+/* the current section stays a quiet weight change and subtle background */
 .links a.on {
   color: var(--ink);
   font-weight: 700;
+  background: rgba(20, 20, 20, 0.06);
 }
 .roll {
   display: inline-block;

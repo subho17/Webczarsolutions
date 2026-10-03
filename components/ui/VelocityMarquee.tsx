@@ -29,7 +29,7 @@ function RowCopy({ items, outline }: { items: string[]; outline?: boolean }) {
       {items.map((t) => (
         <span key={t} className={styles.item}>
           <span className={outline ? styles.outlineText : styles.solidText}>{t}</span>
-          <span className={styles.sep}>✦</span>
+          <span className={styles.dot} aria-hidden="true" />
         </span>
       ))}
     </span>

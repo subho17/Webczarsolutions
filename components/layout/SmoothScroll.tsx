@@ -28,9 +28,20 @@ export default function SmoothScroll({ children }: { children: ReactNode }) {
         return;
       const link = (e.target as Element)?.closest?.<HTMLAnchorElement>("a[href]");
       const href = link?.getAttribute("href");
-      if (!href || !href.startsWith("#")) return;
+      if (!href) return;
+
+      let targetHash = "";
+      if (href.startsWith("#")) {
+        targetHash = href;
+      } else if (href.startsWith("/#") && (window.location.pathname === "/" || window.location.pathname === "")) {
+        targetHash = href.slice(1);
+      } else if ((href === "/" || href === "/#home") && (window.location.pathname === "/" || window.location.pathname === "")) {
+        targetHash = "#home";
+      }
+
+      if (!targetHash) return;
       e.preventDefault();
-      scrollToHash(href);
+      scrollToHash(targetHash);
     };
     document.addEventListener("click", onClick);
 

@@ -10,27 +10,23 @@ import { useLang } from "@/lib/i18n";
 const MARQUEE_ROWS = [
   {
     items: [
-      "Product Design",
-      "UX Design",
-      "UI Design",
       "Design Systems",
       "User Research",
       "Interaction Design",
       "Design Thinking",
+      "Product Strategy",
+      "UI/UX Architecture",
     ],
-    velocity: 34,
+    velocity: 32,
   },
   {
     items: [
-      "Wireframing",
-      "Prototyping",
-      "Visual Design",
-      "Accessibility",
-      "Motion Design",
-      "Figma",
-      "Framer",
       "AI-Assisted Design",
       "Frontend Development",
+      "Wireframing",
+      "Rapid Prototyping",
+      "Design Engineering",
+      "Motion Design",
     ],
     velocity: -28,
     outline: true,
@@ -38,10 +34,10 @@ const MARQUEE_ROWS = [
 ];
 
 const METRICS = [
-  { value: "1st", count: null, key: "about.m1" },
-  { value: "3+", count: 3, suffix: "+", key: "about.m2" },
-  { value: "$70K+", count: 70, prefix: "$", suffix: "K+", key: "about.m3" },
-  { value: "1B+", count: null, key: "about.m4" },
+  { value: "12+", count: 12, suffix: "+", key: "about.m1" },
+  { value: "850+", count: 850, suffix: "+", key: "about.m2" },
+  { value: "25+", count: 25, suffix: "+", key: "about.m3" },
+  { value: "8+", count: 8, suffix: "+", key: "about.m4" },
 ];
 
 export default function About() {
@@ -66,7 +62,10 @@ export default function About() {
           ...vars,
         });
 
-      reveal([`.${styles.eyebrow}`, `.${styles.h2}`], el.querySelector(`.${styles.header}`)!);
+      reveal(
+        [`.${styles.eyebrow}`, `.${styles.h2}`, `.${styles.aboutP1}`, `.${styles.aboutP2}`],
+        el.querySelector(`.${styles.header}`)!
+      );
 
       /* metrics: reveal + count-up when the band enters */
       const band = el.querySelector(`.${styles.metrics}`);
@@ -113,13 +112,24 @@ export default function About() {
 
       <div className={styles.wrap}>
         <div className={styles.header}>
-          <p className={styles.eyebrow}>
-            <span>01</span> {t("about.eyebrow")}
-          </p>
-          <h2 className={styles.h2}>
-            {t("about.h2a")}<br />
-            {t("about.h2b")} <em className={styles.serif}>{t("about.h2Em")}</em>{t("about.h2c")}
-          </h2>
+          <div className={styles.headerLeft}>
+            <p className={styles.eyebrow}>
+              <span>01</span> {t("about.eyebrow")}
+            </p>
+            <h2 className={styles.h2}>
+              {t("about.h2a")}<br />
+              {t("about.h2b")} <em className={styles.serif}>{t("about.h2Em")}</em>{" "}{t("about.h2c")}
+            </h2>
+          </div>
+
+          <div className={styles.headerRight}>
+            <p className={styles.aboutP1}>
+              {t("about.p1")}
+            </p>
+            <p className={styles.aboutP2}>
+              {t("about.p2")}
+            </p>
+          </div>
         </div>
 
         <div className={styles.metrics}>
