@@ -539,3 +539,17 @@
     display: none;
   }
 }
+
+@media (max-width: 480px) {
+  .stage {
+    padding: 0 16px;
+    gap: 14px;
+  }
+  .board {
+    padding: 18px 16px;
+    border-radius: 14px;
+  }
+  .role {
+    font-size: 19px;
+  }
+}

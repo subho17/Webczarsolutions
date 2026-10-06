@@ -482,3 +482,56 @@
     grid-template-columns: repeat(2, 1fr);
   }
 }
+
+@media (max-width: 520px) {
+  .breadcrumbs {
+    padding-top: 84px;
+    margin-bottom: 16px;
+    font-size: 11.5px;
+  }
+  .title {
+    font-size: clamp(28px, 8.5vw, 38px);
+  }
+  .subtitle {
+    font-size: 15px;
+    margin-bottom: 24px;
+  }
+  .heroActions {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto;
+    gap: 10px;
+  }
+  .primaryCta,
+  .secondaryCta {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+  .metricsGrid {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    padding: 16px 12px;
+    margin: 28px 0 44px;
+  }
+  .metricVal {
+    font-size: 26px;
+  }
+  .metricLbl {
+    font-size: 11px;
+  }
+  .founderBox {
+    padding: 24px 18px;
+    border-radius: 18px;
+    gap: 24px;
+  }
+  .founderName {
+    font-size: 26px;
+  }
+  .founderQuote {
+    font-size: 15px;
+    padding-left: 14px;
+  }
+}

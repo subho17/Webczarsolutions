@@ -16,6 +16,7 @@ const COMPANY_LINKS = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
   { label: "Services", href: "/services" },
+  { label: "Extra Services", href: "/extra-services" },
   { label: "Blogs", href: "/blog" },
   { label: "Contact Us", href: "/contact" },
   { label: "Career (Join Webczar)", href: "/careers" },

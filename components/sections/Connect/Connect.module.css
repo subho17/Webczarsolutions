@@ -295,3 +295,71 @@
     padding: 24px;
   }
 }
+
+@media (max-width: 640px) {
+  .arc {
+    gap: 12px;
+    margin-top: 40px;
+  }
+  /* On phones, hide panels 2 and 5 so only the 2 center panels remain without horizontal overflow */
+  .panel:nth-child(2),
+  .panel:nth-child(5) {
+    display: none;
+  }
+  .panelInner {
+    width: min(42vw, 150px);
+    height: 210px;
+    border-radius: 18px;
+  }
+  .socials {
+    gap: 10px;
+    padding: 0 16px;
+  }
+  .social {
+    padding: 11px 16px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .connect {
+    padding-top: 80px;
+    padding-bottom: 40px;
+  }
+  .head {
+    padding: 0 16px;
+  }
+  .h2 {
+    font-size: clamp(30px, 9vw, 42px);
+  }
+  .lede {
+    font-size: 14px;
+  }
+  .arc {
+    gap: 10px;
+    margin-top: 32px;
+  }
+  .panelInner {
+    width: min(42vw, 136px);
+    height: 190px;
+    border-radius: 16px;
+  }
+  .socials {
+    gap: 8px;
+    padding: 0 12px;
+  }
+  .social {
+    padding: 10px 14px;
+    font-size: 12px;
+    gap: 9px;
+  }
+  .glyph {
+    width: 22px;
+    height: 22px;
+    font-size: 11px;
+  }
+  .glyph svg {
+    width: 13px;
+    height: 13px;
+  }
+}

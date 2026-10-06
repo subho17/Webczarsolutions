@@ -489,3 +489,29 @@
     justify-content: flex-start;
   }
 }
+
+@media (max-width: 520px) {
+  .breadcrumbs {
+    padding-top: 84px;
+    font-size: 11.5px;
+    margin-bottom: 16px;
+  }
+  .title {
+    font-size: clamp(28px, 8.5vw, 38px);
+  }
+  .applyBox {
+    padding: 24px 16px;
+    border-radius: 18px;
+  }
+  .submitAppBtn {
+    width: 100%;
+    align-self: stretch;
+    text-align: center;
+  }
+  .jobCard {
+    padding: 20px 16px;
+  }
+  .jobTitle {
+    font-size: 17px;
+  }
+}

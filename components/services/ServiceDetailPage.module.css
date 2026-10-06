@@ -629,3 +629,67 @@
     grid-template-columns: repeat(2, 1fr);
   }
 }
+
+@media (max-width: 640px) {
+  .breadcrumbs {
+    padding-top: 96px;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 16px;
+  }
+  .heroTitle {
+    font-size: clamp(26px, 7.5vw, 36px);
+  }
+  .heroSub {
+    font-size: 15px;
+    margin-bottom: 24px;
+  }
+  .statsStrip {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    padding: 16px 12px;
+  }
+  .heroActions {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    max-width: 360px;
+    gap: 10px;
+  }
+  .primaryCta,
+  .secondaryCta {
+    justify-content: center;
+    width: 100%;
+    text-align: center;
+  }
+  .inquireBox {
+    padding: 24px 16px;
+    border-radius: 20px;
+  }
+  .inquireForm {
+    padding: 20px 14px;
+    border-radius: 16px;
+  }
+  .whyCard {
+    padding: 16px 14px;
+  }
+  .featureCard {
+    padding: 20px 16px;
+  }
+  .processCard {
+    padding: 20px 16px;
+  }
+}
+
+@media (max-width: 420px) {
+  .statsStrip {
+    gap: 8px;
+    padding: 14px 10px;
+  }
+  .statValue {
+    font-size: 22px;
+  }
+  .statLabel {
+    font-size: 11px;
+  }
+}

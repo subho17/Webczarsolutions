@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, Suspense } from "react";
+import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { SERVICES, SERVICE_CATEGORIES } from "@/content/services";
 import Nav from "@/components/layout/Nav";
@@ -30,8 +31,23 @@ const GENERAL_FAQS = [
   },
 ];
 
-export default function ServicesHubPage() {
-  const [selectedCat, setSelectedCat] = useState<string>("All");
+function ServicesHubContent() {
+  const searchParams = useSearchParams();
+  const catParam = searchParams.get("cat") || searchParams.get("category");
+  const matchedCat = useMemo(() => {
+    if (!catParam) return null;
+    return (
+      SERVICE_CATEGORIES.find(
+        (c) =>
+          c.toLowerCase() === catParam.toLowerCase() ||
+          (catParam.toLowerCase().includes("add") && c.includes("Add-On")) ||
+          (catParam.toLowerCase().includes("extra") && c.includes("Add-On"))
+      ) || null
+    );
+  }, [catParam]);
+
+  const [userCat, setUserCat] = useState<string | null>(null);
+  const selectedCat = userCat ?? matchedCat ?? "All";
   const [searchQuery, setSearchQuery] = useState("");
   const [openFaq, setOpenFaq] = useState<number | null>(0);
 
@@ -115,7 +131,7 @@ export default function ServicesHubPage() {
               <button
                 type="button"
                 key={cat}
-                onClick={() => setSelectedCat(cat)}
+                onClick={() => setUserCat(cat)}
                 className={`${styles.catPill} ${
                   selectedCat === cat ? styles.catPillActive : ""
                 }`}
@@ -186,7 +202,7 @@ export default function ServicesHubPage() {
             <button
               type="button"
               onClick={() => {
-                setSelectedCat("All");
+                setUserCat("All");
                 setSearchQuery("");
               }}
               className={styles.clearBtn}
@@ -442,5 +458,13 @@ export default function ServicesHubPage() {
 
       <Footer />
     </div>
+  );
+}
+
+export default function ServicesHubPage() {
+  return (
+    <Suspense fallback={<div className={styles.page} />}>
+      <ServicesHubContent />
+    </Suspense>
   );
 }

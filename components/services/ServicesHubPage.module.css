@@ -693,3 +693,62 @@
     grid-template-columns: repeat(2, 1fr);
   }
 }
+
+@media (max-width: 640px) {
+  .hero {
+    padding-top: 96px;
+  }
+  .title {
+    font-size: clamp(28px, 8vw, 38px);
+  }
+  .subtitle {
+    font-size: 15px;
+  }
+  .metricsGrid {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    padding: 16px 12px;
+  }
+  .categoryPills {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    width: 100%;
+    padding-bottom: 8px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .categoryPills::-webkit-scrollbar {
+    display: none;
+  }
+  .catPill {
+    flex-shrink: 0;
+  }
+  .searchWrap {
+    width: 100%;
+    min-width: 100%;
+  }
+  .serviceCard {
+    padding: 24px 18px;
+    border-radius: 18px;
+  }
+  .inquiryBox {
+    padding: 24px 16px;
+    border-radius: 20px;
+  }
+  .inquiryForm {
+    padding: 20px 14px;
+    border-radius: 16px;
+  }
+}
+
+@media (max-width: 420px) {
+  .metricVal {
+    font-size: 24px;
+  }
+  .metricLbl {
+    font-size: 11px;
+  }
+  .cardTitle {
+    font-size: 18px;
+  }
+}

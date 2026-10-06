@@ -11,7 +11,8 @@ const LINKS = [
   { key: "nav.home", href: "/", path: "/" },
   { key: "nav.about", href: "/about", path: "/about" },
   { key: "nav.services", href: "/services", path: "/services" },
-  { key: "nav.work", href: "/blog", path: "/blog" },
+  { key: "nav.extraServices", href: "/extra-services", path: "/extra-services" },
+  { key: "nav.blog", href: "/blog", path: "/blog" },
   { key: "nav.careers", href: "/careers", path: "/careers" },
   { key: "nav.contact", href: "/contact", path: "/contact" },
 ];
@@ -71,11 +72,14 @@ export default function Nav() {
       return pathname === "/about" || pathname?.startsWith("/about/");
     }
     if (l.path === "/services") {
-      return pathname === "/services" || pathname?.startsWith("/services/");
+      return pathname === "/services" || (pathname?.startsWith("/services/") && !pathname?.includes("podcast") && !pathname?.includes("online-pr") && !pathname?.includes("ivr") && !pathname?.includes("drone"));
+    }
+    if (l.path === "/extra-services") {
+      return pathname === "/extra-services" || pathname?.includes("podcast") || pathname?.includes("online-pr") || pathname?.includes("ivr") || pathname?.includes("drone");
     }
     if (
       l.path === "/blog" &&
-      (pathname === "/blog" || pathname === "/blogs" || pathname?.startsWith("/work"))
+      (pathname === "/blog" || pathname === "/blogs" || pathname?.startsWith("/work") || pathname?.startsWith("/blog/"))
     ) {
       return true;
     }

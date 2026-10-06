@@ -29,7 +29,7 @@ export default function CaseView({ slug }: { slug: string }) {
   return (
     <main className={styles.page}>
       <div className={styles.bar}>
-        <Link href="/#work" className={styles.back}>
+        <Link href="/blog" className={styles.back}>
           {t("case.back")}
         </Link>
         {/* the toggle is repeated here because Nav only exists on the home
@@ -199,10 +199,10 @@ export default function CaseView({ slug }: { slug: string }) {
 
         {/* ---- next ---- */}
         <nav className={styles.footNav}>
-          <Link href="/#work" className={styles.back}>
+          <Link href="/blog" className={styles.back}>
             {t("case.all")}
           </Link>
-          <Link href={`/work/${next.slug}`} className={styles.nextLink}>
+          <Link href={`/blog/${next.slug}`} className={styles.nextLink}>
             <small>{t("case.next")}</small>
             <span>
               {L(lang, next, "title")} <i>→</i>

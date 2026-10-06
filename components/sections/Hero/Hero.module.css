@@ -426,17 +426,63 @@
 
 @media (max-width: 560px) {
   .h1 {
-    font-size: clamp(36px, 10.5vw, 50px);
+    font-size: clamp(34px, 10vw, 48px);
   }
   .ctas {
     flex-wrap: wrap;
   }
   .statCard {
-    width: calc(50% - 12px);
-    min-width: 148px;
+    width: calc(50% - 10px);
+    min-width: 130px;
+    padding: 14px 12px;
   }
   .glow {
     width: 320px;
     height: 320px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    padding-top: 88px;
+    gap: 20px;
+  }
+  .head {
+    padding: 10px 16px 0;
+  }
+  .sub {
+    font-size: 14px;
+    margin-top: 12px;
+  }
+  .stageRow {
+    padding: 0 16px;
+    gap: 20px;
+  }
+  .statCard {
+    width: calc(50% - 6px);
+    min-width: 0;
+    padding: 12px 10px;
+    border-radius: 12px;
+  }
+  .statNum {
+    font-size: 24px;
+  }
+  .statLabel {
+    font-size: 11px;
+    margin-top: 4px;
+  }
+  .ctas {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    max-width: 320px;
+    margin-left: auto;
+    margin-right: auto;
+    gap: 8px;
+  }
+  .ctas > * {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
   }
 }

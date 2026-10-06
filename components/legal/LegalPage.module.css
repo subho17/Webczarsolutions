@@ -781,6 +781,34 @@
   }
 }
 
+@media (max-width: 520px) {
+  .hero {
+    padding: 88px 0 24px;
+  }
+  .docTitle {
+    font-size: clamp(26px, 8vw, 36px);
+  }
+  .supportBanner {
+    padding: 24px 18px;
+    border-radius: 16px;
+  }
+  .supportActions {
+    flex-direction: column;
+    width: 100%;
+    align-items: stretch;
+  }
+  .supportBtnPrimary,
+  .supportBtnSecondary {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+  }
+  .sectionBlock {
+    scroll-margin-top: 80px;
+    padding-bottom: 28px;
+  }
+}
+
 /* ---------- Print Styles ---------- */
 @media print {
   .topBar,

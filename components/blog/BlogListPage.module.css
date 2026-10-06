@@ -417,6 +417,14 @@
 }
 
 @media (max-width: 640px) {
+  .hero {
+    padding-top: 92px;
+  }
+
+  .title {
+    font-size: clamp(28px, 7.5vw, 40px);
+  }
+
   .articlesGrid {
     grid-template-columns: 1fr;
   }
@@ -424,9 +432,58 @@
   .toolbar {
     flex-direction: column;
     align-items: stretch;
+    gap: 16px;
+    padding: 18px 0 24px;
+  }
+
+  .categoryPills {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    width: 100%;
+    padding-bottom: 8px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .categoryPills::-webkit-scrollbar {
+    display: none;
+  }
+
+  .catPill {
+    white-space: nowrap;
+    flex-shrink: 0;
   }
 
   .searchBox {
     min-width: 100%;
+  }
+
+  .featuredCard {
+    margin: 20px 0 32px;
+    border-radius: 18px;
+  }
+
+  .featuredContent {
+    padding: 22px 18px;
+  }
+
+  .cardBody {
+    padding: 20px 16px;
+  }
+}
+
+@media (max-width: 420px) {
+  .hero {
+    padding-top: 84px;
+  }
+  .featuredTitle {
+    font-size: 20px;
+  }
+  .cardTitle {
+    font-size: 17px;
+  }
+  .cardBody {
+    padding: 16px 14px;
   }
 }

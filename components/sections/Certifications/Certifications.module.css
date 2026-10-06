@@ -486,3 +486,37 @@
     display: none;
   }
 }
+
+@media (max-width: 520px) {
+  .certs {
+    padding: 60px 0;
+  }
+  .stage {
+    padding: 0 16px;
+    gap: 14px;
+  }
+  .panel {
+    padding: 0 16px 20px;
+    border-radius: 12px;
+  }
+  .title {
+    font-size: clamp(20px, 6vw, 28px);
+  }
+  .record {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+  }
+  .record dd {
+    white-space: normal;
+    word-break: break-all;
+    font-size: 11px;
+  }
+  .head {
+    padding: 0 16px;
+  }
+  .h2 {
+    font-size: clamp(30px, 8.5vw, 44px);
+  }
+}

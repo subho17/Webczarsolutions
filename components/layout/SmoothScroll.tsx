@@ -1,14 +1,44 @@
 "use client";
 
 import { useEffect, type ReactNode } from "react";
+import { usePathname } from "next/navigation";
 import Lenis from "lenis";
 import { gsap, ScrollTrigger, prefersReducedMotion } from "@/lib/gsap";
-import { setLenis, scrollToHash } from "@/lib/lenis";
+import { setLenis, scrollToHash, getLenis } from "@/lib/lenis";
 
 /* Single rAF loop: Lenis drives ScrollTrigger — 00 §7.3.
    Also owns in-page anchor scrolling for the whole site, so every link
    (nav, hero CTAs, footer, and anything we add later) lands below the header. */
 export default function SmoothScroll({ children }: { children: ReactNode }) {
+  const pathname = usePathname();
+
+  /* Reset scroll to top on page navigation */
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    if ("scrollRestoration" in window.history) {
+      window.history.scrollRestoration = "manual";
+    }
+    if (!window.location.hash) {
+      const reset = () => {
+        window.scrollTo(0, 0);
+        const lenis = getLenis();
+        lenis?.scrollTo(0, { immediate: true });
+        ScrollTrigger.refresh();
+      };
+
+      reset();
+      const rafId = requestAnimationFrame(reset);
+      const timer1 = setTimeout(reset, 60);
+      const timer2 = setTimeout(reset, 180);
+
+      return () => {
+        cancelAnimationFrame(rafId);
+        clearTimeout(timer1);
+        clearTimeout(timer2);
+      };
+    }
+  }, [pathname]);
+
   useEffect(() => {
     let lenis: Lenis | null = null;
     let raf: ((time: number) => void) | null = null;

@@ -89,7 +89,7 @@ export default function BlogListPage() {
 
         {/* Featured Article (When no active search filter is applied) */}
         {!searchQuery && selectedCat === "All" && featured && (
-          <Link href={`/work/${featured.slug}`} className={styles.featuredCard}>
+          <Link href={`/blog/${featured.slug}`} className={styles.featuredCard}>
             <div
               className={styles.featuredMedia}
               style={{ background: featured.cover?.bg || "#141414" }}
@@ -131,7 +131,7 @@ export default function BlogListPage() {
             {filteredPosts.map((post: Project) => (
               <Link
                 key={post.slug}
-                href={`/work/${post.slug}`}
+                href={`/blog/${post.slug}`}
                 className={styles.card}
               >
                 <div
