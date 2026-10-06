@@ -26,7 +26,7 @@ export type Chapter = {
 export const CHAPTERS: Chapter[] = [
   {
     id: "founding",
-    year: "2020",
+    year: "2014",
     title: "The Vision Takes Shape",
     place: "India",
     story:
@@ -42,7 +42,7 @@ export const CHAPTERS: Chapter[] = [
   },
   {
     id: "growth",
-    year: "2022",
+    year: "2019",
     title: "Expanding Our Horizons",
     place: "India",
     story:

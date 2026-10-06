@@ -1,5 +1,5 @@
 /* Professional services & capabilities — Webczar Solutions.
- * Single source of truth for the Services stacked deck section.
+ * Single source of truth for the Services stacked deck section ("What we deliver.").
  */
 
 export type Role = {
@@ -13,7 +13,6 @@ export type Role = {
   outcome: string;
   skills: string[];
   mark?: string;
-  /* panel color — intentional, one vibrant per role (Experience deck) */
   color: string;
   fg: "light" | "dark";
   logo?: {
@@ -22,517 +21,440 @@ export type Role = {
     aspect: number;
     placement?: "right" | "below";
   };
-  /* French copy for the translatable fields (see lib/i18n.tsx → L()) */
   fr?: { role?: string; summary?: string; outcome?: string; achievements?: string[] };
 };
 
 export const ROLES: Role[] = [
-  /* ─────────────── 1 · WEBSITE DESIGN & DEVELOPMENT ─────────────── */
+  /* ─────────────── 1 · TEXT MESSAGING API & MARKETING ─────────────── */
   {
-    company: "Website Design & Development",
-    role: "Next-Gen Web Experiences",
-    mark: "WEB",
+    company: "Text Messaging API & Marketing",
+    role: "Text Messaging API & Marketing",
+    mark: "SMS",
     type: "Full-time",
     location: "India & Global",
-    period: "Core Service",
+    period: "Messaging Platform",
     summary:
-      "High-performance, visually stunning custom websites and web applications engineered for speed, conversion, and effortless brand scalability.",
+      "Send high-speed promotional and transactional SMS to thousands of customers instantly with guaranteed delivery and DLT compliance.",
     achievements: [
-      "Custom full-stack web applications built with Next.js, React, Node.js, and modern CSS",
-      "Ultra-responsive, mobile-first architectures with 95+ Google Lighthouse speed scores",
-      "Seamless CMS integration, headless architectures, and robust REST/GraphQL APIs",
+      "Instant delivery for OTPs, alerts, order updates, and promotional offers",
+      "Full DLT registration guidance and pre-approved messaging templates",
+      "Real-time delivery receipts, short links, and click-tracking analytics",
     ],
-    outcome:
-      "High-converting web platforms that elevate brand authority and drive organic customer acquisition",
-    skills: ["React", "Next.js", "TypeScript", "Node.js", "TailwindCSS", "WordPress"],
-    color: "#0072E3",
+    outcome: "99% instant message delivery straight to your customers' mobile inboxes",
+    skills: ["Transactional SMS", "Promotional SMS", "DLT Compliance", "SMS Gateway", "Click Tracking"],
+    color: "#0284C7",
     fg: "light",
     fr: {
-      role: "Expériences Web Nouvelle Génération",
-      summary:
-        "Sites web et applications sur mesure haute performance, conçus pour la vitesse, la conversion et l'évolutivité.",
-      outcome:
-        "Plateformes web à fort taux de conversion renforçant l'autorité de votre marque.",
+      role: "API SMS & Marketing Textuel",
+      summary: "Envoi rapide de SMS transactionnels et promotionnels avec délivrabilité garantie.",
+      outcome: "99% de délivrabilité directe dans la boîte de réception mobile.",
       achievements: [
-        "Applications web full-stack avec Next.js, React et Node.js",
-        "Architectures mobile-first réactives avec d'excellents scores Lighthouse",
-        "Intégration CMS fluide et APIs performantes",
+        "Délivrance instantanée d'OTP et d'alertes",
+        "Conformité et modèles pré-approuvés",
+        "Rapports de distribution en temps réel",
       ],
     },
   },
 
-  /* ─────────────── 2 · SOFTWARE DEVELOPMENT ─────────────── */
+  /* ─────────────── 2 · RCS MESSAGING SERVICES ─────────────── */
   {
-    company: "Software Development",
-    role: "Custom Enterprise Software",
-    mark: "DEV",
-    type: "Full-time",
-    location: "India & Global",
-    period: "Core Service",
-    summary:
-      "Scalable, secure, and resilient custom software solutions, enterprise SaaS platforms, and automated business workflows built to scale.",
-    achievements: [
-      "End-to-end bespoke software tailored to complex enterprise operational workflows",
-      "Microservices architecture, automated CI/CD pipelines, and high-concurrency database design",
-      "Strict security standards, role-based access control, and 99.99% system uptime",
-    ],
-    outcome:
-      "Enterprise-grade software that automates operations and slashes operational costs by up to 60%",
-    skills: ["Python", "Java", "Node.js", "PostgreSQL", "Docker", "Kubernetes"],
-    color: "#141414",
-    fg: "light",
-    fr: {
-      role: "Logiciels d'Entreprise sur Mesure",
-      summary:
-        "Solutions logicielles sur mesure, plateformes SaaS et flux opérationnels automatisés.",
-      outcome:
-        "Logiciels d'entreprise réduisant les coûts opérationnels jusqu'à 60%.",
-      achievements: [
-        "Logiciels adaptés aux flux de travail complexes",
-        "Architecture microservices et bases de données haute performance",
-        "Normes de sécurité strictes et haute disponibilité",
-      ],
-    },
-  },
-
-  /* ─────────────── 3 · MOBILE APP DEVELOPMENT ─────────────── */
-  {
-    company: "Mobile App Development",
-    role: "iOS & Android Applications",
-    mark: "APP",
-    type: "Full-time",
-    location: "India & Global",
-    period: "Core Service",
-    summary:
-      "Fluid, native-quality iOS and Android mobile applications engineered with modern cross-platform frameworks for peak performance.",
-    achievements: [
-      "Cross-platform mobile apps built with React Native and Flutter using a unified codebase",
-      "Native hardware integration including biometric auth, push notifications, and GPS tracking",
-      "Complete App Store & Google Play publishing, rating optimization, and post-launch support",
-    ],
-    outcome:
-      "User-centric mobile apps with smooth 60fps performance and high daily active user retention",
-    skills: ["React Native", "Flutter", "iOS Swift", "Android Kotlin", "Firebase", "REST APIs"],
-    color: "#FF2E0F",
-    fg: "light",
-    fr: {
-      role: "Applications Mobiles iOS & Android",
-      summary:
-        "Applications mobiles fluides et performantes développées avec React Native et Flutter.",
-      outcome:
-        "Expérience mobile ultra-fluide avec une excellente rétention utilisateur.",
-      achievements: [
-        "Applications multiplateformes à base de code unifiée",
-        "Intégration biométrique, notifications push et géolocalisation",
-        "Publication complète sur App Store et Google Play",
-      ],
-    },
-  },
-
-  /* ─────────────── 4 · DIGITAL MARKETING ─────────────── */
-  {
-    company: "Digital Marketing",
-    role: "Omnichannel Growth & Performance",
-    mark: "DM",
-    type: "Freelance",
-    location: "India & Global",
-    period: "Growth & Strategy",
-    summary:
-      "Comprehensive, data-driven digital marketing campaigns that align organic and paid channels to maximize your brand's market reach.",
-    achievements: [
-      "Full-funnel marketing strategies connecting organic search, paid ads, and email nurture funnels",
-      "Advanced audience segmentation, competitive benchmarking, and demographic targeting",
-      "Real-time ROI dashboarding, attribution modeling, and continuous conversion rate optimization",
-    ],
-    outcome:
-      "Accelerated brand visibility with consistent 3x to 5x return on ad spend (ROAS)",
-    skills: ["Strategy", "SEO", "Google Ads", "Meta Ads", "Analytics", "Funnel CRO"],
-    color: "#6D3BF5",
-    fg: "light",
-    fr: {
-      role: "Croissance & Performance Omnicanale",
-      summary:
-        "Campagnes de marketing numérique axées sur les données pour maximiser la visibilité de votre marque.",
-      outcome:
-        "Visibilité accrue et retour sur investissement publicitaire (ROAS) de 3x à 5x.",
-      achievements: [
-        "Stratégies marketing complètes pour l'acquisition et la conversion",
-        "Ciblage d'audience avancé et analyse concurrentielle",
-        "Tableaux de bord ROI en temps réel",
-      ],
-    },
-  },
-
-  /* ─────────────── 5 · SEO (SEARCH ENGINE OPTIMIZATION) ─────────────── */
-  {
-    company: "SEO",
-    role: "Search Dominance & Organic Growth",
-    mark: "SEO",
-    type: "Full-time",
-    location: "India & Global",
-    period: "Organic Traffic",
-    summary:
-      "Proven organic SEO strategies that rank your business on Google's Page 1 for high-intent transactional search terms.",
-    achievements: [
-      "Deep technical SEO audits, Core Web Vitals optimization, and structured data schemas",
-      "Comprehensive keyword research, search intent mapping, and topical authority clusters",
-      "High-domain-authority white-hat link acquisition, local citation building, and Google Maps optimization",
-    ],
-    outcome:
-      "Over 250% average increase in organic search traffic and sustainable inbound lead flow",
-    skills: ["Technical SEO", "Ahrefs", "SEMrush", "On-Page SEO", "Link Building", "Core Web Vitals"],
-    color: "#00AA3C",
-    fg: "light",
-    fr: {
-      role: "Domination sur les Moteurs de Recherche",
-      summary:
-        "Stratégies SEO éprouvées pour positionner votre entreprise en première page de Google.",
-      outcome:
-        "Augmentation moyenne de 250% du trafic organique et des prospects qualifiés.",
-      achievements: [
-        "Audits techniques approfondis et optimisation Core Web Vitals",
-        "Recherche de mots-clés stratégiques et cocons sémantiques",
-        "Netlinking de haute qualité et référencement local",
-      ],
-    },
-  },
-
-  /* ─────────────── 6 · GOOGLE ADS & PPC ─────────────── */
-  {
-    company: "Google Ads & PPC",
-    role: "High-ROI Paid Advertising",
-    mark: "PPC",
-    type: "Full-time",
-    location: "India & Global",
-    period: "Paid Acquisition",
-    summary:
-      "Laser-focused Search, Display, Shopping, and Performance Max campaigns that capture active buyers at the exact moment of intent.",
-    achievements: [
-      "Granular keyword match-type structuring and aggressive negative keyword filtering to eliminate ad waste",
-      "High-converting dedicated landing page design paired with relentless A/B copy testing",
-      "Smart bidding automation, conversion value maximization, and remarketing audiences",
-    ],
-    outcome:
-      "40% reduction in Cost Per Acquisition (CPA) with maximum qualified inbound leads",
-    skills: ["Google Ads", "Search Ads", "Display Ads", "PMax", "Remarketing", "Conversion Tracking"],
-    color: "#FF6A00",
-    fg: "light",
-    fr: {
-      role: "Publicité Payante à Fort ROI",
-      summary:
-        "Campagnes Google Ads chirurgicales pour capter les acheteurs actifs au moment précis de leur recherche.",
-      outcome:
-        "Réduction de 40% du coût d'acquisition client avec un volume accru de leads.",
-      achievements: [
-        "Structuration précise des mots-clés et exclusion des clics inutiles",
-        "Landing pages à fort taux de conversion avec tests A/B continus",
-        "Enchères intelligentes et reciblage publicitaire",
-      ],
-    },
-  },
-
-  /* ─────────────── 7 · SOCIAL MEDIA MARKETING ─────────────── */
-  {
-    company: "Social Media Marketing",
-    role: "Viral Reach & Brand Engagement",
-    mark: "SMM",
-    type: "Freelance",
-    location: "India & Global",
-    period: "Brand Presence",
-    summary:
-      "Creative storytelling, viral short-form content, and targeted Meta & LinkedIn ad campaigns that transform followers into brand advocates.",
-    achievements: [
-      "High-engagement Instagram Reels, YouTube Shorts, and LinkedIn thought-leadership campaigns",
-      "Targeted Meta (Facebook & Instagram) paid ad funnels built for immediate conversion",
-      "Active community management, customer sentiment monitoring, and direct-response DM funnels",
-    ],
-    outcome:
-      "10x amplification in social impressions, community engagement, and direct referral sales",
-    skills: ["Instagram", "Facebook", "LinkedIn", "Meta Ads Manager", "Canva", "Social Analytics"],
-    color: "#E1306C",
-    fg: "light",
-    fr: {
-      role: "Portée Virale & Engagement de Marque",
-      summary:
-        "Création de contenu percutant et campagnes sponsorisées Meta et LinkedIn pour fidéliser votre communauté.",
-      outcome:
-        "Multiplication par 10 des impressions et de l'engagement communautaire.",
-      achievements: [
-        "Formats courts viraux (Reels, Shorts) et publications expertes",
-        "Tunnels publicitaires ciblés sur Facebook et Instagram",
-        "Gestion active de communauté et modération",
-      ],
-    },
-  },
-
-  /* ─────────────── 8 · GRAPHIC DESIGN & BRANDING ─────────────── */
-  {
-    company: "Graphic Design & Branding",
-    role: "Visual Identity & Brand Strategy",
-    mark: "BRAND",
-    type: "Freelance",
-    location: "India & Global",
-    period: "Creative Studio",
-    summary:
-      "Iconic visual identities, logo marks, corporate design systems, and marketing collateral that leave an unforgettable impression.",
-    achievements: [
-      "Comprehensive brand guidelines: color palettes, typography scales, iconography, and voice standards",
-      "High-impact marketing collateral, brochures, pitch decks, and digital banner packages",
-      "Packaging design, merchandise branding, and print-ready production files",
-    ],
-    outcome:
-      "Distinctive, premium brand perception that commands industry respect and customer trust",
-    skills: ["Figma", "Illustrator", "Photoshop", "Brand Guidelines", "Typography", "Print & Digital"],
-    color: "#7928CA",
-    fg: "light",
-    fr: {
-      role: "Identité Visuelle & Stratégie de Marque",
-      summary:
-        "Identités visuelles emblématiques, logos et chartes graphiques complètes pour marquer les esprits.",
-      outcome:
-        "Une image de marque haut de gamme qui inspire immédiatement confiance.",
-      achievements: [
-        "Chartes graphiques complètes : typographies, palettes et iconographie",
-        "Supports marketing, brochures, présentations et bannières",
-        "Packaging et fichiers d'impression haute définition",
-      ],
-    },
-  },
-
-  /* ─────────────── 9 · YOUTUBE ADVERTISING ─────────────── */
-  {
-    company: "YouTube Advertising",
-    role: "Video Marketing & High-Impact Ads",
-    mark: "YT",
+    company: "RCS Messaging Services",
+    role: "RCS Messaging Services",
+    mark: "RCS",
     type: "Hackathon",
     location: "India & Global",
-    period: "Video Ads",
+    period: "Next-Gen Messaging",
     summary:
-      "Engaging video ad formats—Skippable in-stream, Non-skippable, and In-feed ads—that capture viewer attention and drive action.",
+      "Upgrade standard SMS into interactive, rich media experiences with verified sender checkmarks, images, carousels, and action buttons.",
     achievements: [
-      "Audience interest, intent, and placement-level targeting on high-performing YouTube channels",
-      "Scriptwriting guidance, hook optimization in the first 5 seconds, and strong CTA overlays",
-      "Full campaign setup, retargeting website visitors, and video conversion analytics",
+      "Verified business profile with official trust mark and brand logo",
+      "Interactive product carousels and instant one-tap response buttons",
+      "Rich media delivery directly inside native messaging apps with no download required",
     ],
-    outcome:
-      "Massive regional and nationwide brand awareness combined with cost-effective view rates",
-    skills: ["YouTube Ads", "Google Ads Video", "Video Scripting", "Placement Targeting", "Remarketing"],
-    color: "#CC0000",
+    outcome: "3x higher customer engagement compared to traditional plain text SMS",
+    skills: ["Rich Media Messaging", "Verified Sender", "Action Buttons", "Carousels", "Google Messages"],
+    color: "#6366F1",
     fg: "light",
     fr: {
-      role: "Marketing Vidéo & Publicité YouTube",
-      summary:
-        "Campagnes publicitaires vidéo percutantes pour capter l'attention des utilisateurs et stimuler l'action.",
-      outcome:
-        "Notoriété de marque démultipliée avec des coûts par vue très avantageux.",
+      role: "Services de Messagerie RCS",
+      summary: "Messagerie riche et interactive avec profils vérifiés et boutons d'action.",
+      outcome: "Engagement 3 fois supérieur aux SMS traditionnels.",
       achievements: [
-        "Ciblage précis par centres d'intérêt et chaînes spécifiques",
-        "Accroches optimisées dès les premières secondes de vidéo",
-        "Reciblage des visiteurs web et analyse des conversions",
+        "Profil d'entreprise vérifié avec badge de confiance",
+        "Carrousels de produits interactifs et boutons rapides",
+        "Médias riches dans l'application native de messagerie",
       ],
     },
   },
 
-  /* ─────────────── 10 · WHATSAPP MARKETING ─────────────── */
+  /* ─────────────── 3 · WHATSAPP API & MARKETING ─────────────── */
   {
-    company: "WhatsApp Marketing",
-    role: "Official WhatsApp Business API",
+    company: "WhatsApp Api & Marketing",
+    role: "WhatsApp Api & Marketing",
     mark: "WA",
     type: "Full-time",
     location: "India & Global",
     period: "Direct Messaging",
     summary:
-      "Official green-tick WhatsApp Business API integration, broadcast automations, and interactive chatbots with 98% open rates.",
+      "Connect directly with customers on WhatsApp using official verified API, automated broadcast campaigns, and 24/7 smart chatbots.",
     achievements: [
-      "Verified Green Tick WhatsApp Business API onboarding and template approval management",
-      "Automated abandoned cart recovery, order confirmations, and dispatch notifications via WhatsApp",
-      "Interactive conversational chatbots with automated catalog browsing and instant customer support",
+      "Official Green Tick verification and broadcast messaging campaigns",
+      "Automated order updates, payment reminders, and abandoned cart recovery",
+      "Interactive conversational chatbots for automated support and catalog orders",
     ],
-    outcome:
-      "98% message open rates, 45% click-through rates, and instant customer engagement",
-    skills: ["WhatsApp Business API", "Chatbots", "Broadcast Campaigns", "CRM Webhooks", "Automation"],
+    outcome: "98% message open rates and instant two-way customer communication",
+    skills: ["WhatsApp Business API", "Green Tick Verified", "Automated Chatbots", "Broadcasts", "CRM Sync"],
     color: "#25D366",
     fg: "light",
     fr: {
-      role: "API Officielle WhatsApp Business",
-      summary:
-        "Intégration de l'API WhatsApp Business, broadcasts automatisés et chatbots interactifs avec 98% de taux d'ouverture.",
-      outcome:
-        "Taux d'ouverture de 98% et interaction client immédiate.",
+      role: "API WhatsApp & Marketing",
+      summary: "Connexion directe avec vos clients sur WhatsApp avec API officielle et chatbots.",
+      outcome: "Taux d'ouverture de 98% et interaction client immédiate.",
       achievements: [
-        "Vérification officielle avec badge vert WhatsApp",
-        "Relances de paniers abandonnés et confirmations de commande automatisées",
-        "Chatbots interactifs avec navigation dans le catalogue produit",
+        "Vérification officielle avec badge vert",
+        "Mises à jour de commande et relances automatisées",
+        "Chatbots interactifs pour le support et la vente",
       ],
     },
   },
 
-  /* ─────────────── 11 · BULK SMS MARKETING ─────────────── */
+  /* ─────────────── 4 · AI AGENT INBOUND CALL SOLUTIONS ─────────────── */
   {
-    company: "Bulk SMS Marketing",
-    role: "High-Throughput SMS Broadcasts",
-    mark: "SMS",
+    company: "AI Agent Inbound Call Solutions",
+    role: "AI Agent Inbound Call Solutions",
+    mark: "VOICE",
     type: "Hackathon",
     location: "India & Global",
-    period: "Messaging Platform",
+    period: "Voice AI",
     summary:
-      "Reliable, DLT-compliant transactional and promotional SMS routing with instant delivery, short URLs, and detailed tracking.",
+      "Intelligent voice AI agents that answer incoming phone calls 24/7, understand spoken questions, and book appointments automatically.",
     achievements: [
-      "Full DLT registration guidance, sender ID creation, and compliant template approvals",
-      "High-capacity SMS gateway pipelines delivering millions of messages within seconds",
-      "Real-time delivery receipts, click-tracking analytics, and opt-out management",
+      "Human-like conversational voice AI that never keeps callers waiting on hold",
+      "Automatic customer qualification, appointment booking, and instant FAQ answers",
+      "Real-time call transcripts, audio recordings, and instant CRM synchronization",
     ],
-    outcome:
-      "Instant direct-to-consumer reach across India with 99.8% gateway delivery rates",
-    skills: ["DLT Compliance", "Transactional SMS", "Promotional SMS", "SMS Gateways", "Click Tracking"],
-    color: "#0284C7",
-    fg: "light",
-    fr: {
-      role: "Campagnes SMS de Masse",
-      summary:
-        "Routage SMS promotionnel et transactionnel ultra-rapide avec suivi des clics et conformité totale.",
-      outcome:
-        "Portée instantanée auprès des consommateurs avec un taux de délivrabilité de 99,8%.",
-      achievements: [
-        "Enregistrement et validation des identifiants d'expédition",
-        "Routage haute capacité délivrant des milliers de messages par seconde",
-        "Accusés de réception et suivi des clics en temps réel",
-      ],
-    },
-  },
-
-  /* ─────────────── 12 · IVR SOLUTIONS ─────────────── */
-  {
-    company: "IVR Solutions",
-    role: "Cloud Telephony & Smart Routing",
-    mark: "IVR",
-    type: "Hackathon",
-    location: "India & Global",
-    period: "Telephony",
-    summary:
-      "Intelligent cloud-based interactive voice response (IVR) systems, automated call routing, virtual numbers, and CRM recording.",
-    achievements: [
-      "Multi-level interactive voice menus with multi-lingual audio prompts tailored for Indian callers",
-      "Virtual toll-free and 10-digit number integration with automatic agent rollover and call queuing",
-      "Call recording, live dashboard analytics, and CRM webhook integration for instant lead creation",
-    ],
-    outcome:
-      "Zero missed customer calls and 24/7 automated professional enterprise phone presence",
-    skills: ["Cloud Telephony", "Virtual Numbers", "Call Routing", "Toll-Free Integration", "Voice Prompts"],
-    color: "#D97706",
-    fg: "light",
-    fr: {
-      role: "Téléphonie Cloud & Routage Intelligent",
-      summary:
-        "Systèmes de réponse vocale interactive (SVI), routage d'appels intelligent et numéros virtuels pour entreprises.",
-      outcome:
-        "Zéro appel manqué et une présence téléphonique professionnelle automatisée 24/7.",
-      achievements: [
-        "Menus vocaux interactifs multiniveaux personnalisés",
-        "Numéros virtuels gratuits avec file d'attente intelligente",
-        "Enregistrement des appels et synchronisation directe avec votre CRM",
-      ],
-    },
-  },
-
-  /* ─────────────── 13 · LEAD GENERATION ─────────────── */
-  {
-    company: "Lead Generation",
-    role: "High-Intent Inbound Sales Funnels",
-    mark: "LEADS",
-    type: "Full-time",
-    location: "India & Global",
-    period: "Performance",
-    summary:
-      "Predictable B2B and B2C lead pipelines combining targeted advertising, high-converting squeeze pages, and automated qualification.",
-    achievements: [
-      "Hyper-targeted ad campaigns on LinkedIn, Google, and Meta filtering for verified decision-makers",
-      "Frictionless lead capture mechanisms: interactive calculators, multi-step quiz funnels, and CRM sync",
-      "Automated lead scoring, instant SMS/WhatsApp alerts for sales teams, and follow-up sequences",
-    ],
-    outcome:
-      "Continuous pipeline of sales-qualified leads (SQLs) ready to close",
-    skills: ["Lead Gen Funnels", "Landing Pages", "CRM Integration", "B2B Outreach", "Lead Scoring"],
-    color: "#4F46E5",
-    fg: "light",
-    fr: {
-      role: "Génération de Prospects Qualifiés",
-      summary:
-        "Tunnels d'acquisition automatisés pour alimenter vos équipes commerciales en leads qualifiés.",
-      outcome:
-        "Flux régulier et prévisible de prospects prêts à passer à l'achat.",
-      achievements: [
-        "Campagnes publicitaires ciblant directement les décideurs",
-        "Pages de capture optimisées et formulaires intelligents",
-        "Alertes WhatsApp/SMS instantanées pour votre équipe commerciale",
-      ],
-    },
-  },
-
-  /* ─────────────── 14 · AI & MACHINE LEARNING ─────────────── */
-  {
-    company: "AI & Machine Learning",
-    role: "Intelligent Automation & Custom AI",
-    mark: "AI",
-    type: "Hackathon",
-    location: "India & Global",
-    period: "Advanced Tech",
-    summary:
-      "Cutting-edge artificial intelligence, custom LLM fine-tuning, RAG enterprise search, and predictive analytics models.",
-    achievements: [
-      "Custom autonomous AI agents trained on proprietary client knowledge bases and operational manuals",
-      "Retrieval-Augmented Generation (RAG) pipelines for instant, hallucination-free enterprise search",
-      "Predictive machine learning models for customer churn, demand forecasting, and automated data entry",
-    ],
-    outcome:
-      "Over 70% reduction in repetitive manual tasks and real-time intelligent business insights",
-    skills: ["Python", "OpenAI / Claude", "LangChain", "RAG Architecture", "PyTorch", "Vector DBs"],
+    outcome: "Zero missed customer calls and 24/7 automated telephone support",
+    skills: ["Voice AI", "Inbound Call Routing", "24/7 Attendant", "Speech Recognition", "CRM Integration"],
     color: "#8B5CF6",
     fg: "light",
     fr: {
-      role: "Automatisation Intelligente & IA sur Mesure",
-      summary:
-        "Intégration d'intelligence artificielle avancée, agents autonomes et modèles prédictifs.",
-      outcome:
-        "Réduction de 70% des tâches manuelles répétitives grâce à l'automatisation par l'IA.",
+      role: "Solutions d'Appels Entrants par Agent IA",
+      summary: "Agents vocaux intelligents qui répondent aux appels 24/7 et gèrent les rendez-vous.",
+      outcome: "Zéro appel manqué et assistance téléphonique automatisée en continu.",
       achievements: [
-        "Agents IA formés sur vos bases de données internes",
-        "Recherche d'entreprise intelligente par architecture RAG",
-        "Modèles prédictifs pour l'anticipation des tendances commerciales",
+        "IA vocale naturelle sans attente pour l'appelant",
+        "Prise de rendez-vous et qualification automatique",
+        "Transcriptions d'appels et synchronisation CRM",
       ],
     },
   },
 
-  /* ─────────────── 15 · BLOCKCHAIN DEVELOPMENT ─────────────── */
+  /* ─────────────── 5 · GOOGLE MY BUSINESS LISTING & SEO ─────────────── */
   {
-    company: "Blockchain Development",
-    role: "Decentralized Web3 & Smart Contracts",
-    mark: "WEB3",
-    type: "Hackathon",
+    company: "Google My Business Listing & SEO",
+    role: "Google My Business Listing & SEO",
+    mark: "GMB",
+    type: "Full-time",
     location: "India & Global",
-    period: "Web3 & Security",
+    period: "Local Growth",
     summary:
-      "Secure smart contracts, decentralized applications (dApps), tokenomics, and enterprise private blockchain architectures.",
+      "Optimize your Google Business Profile to rank at the top of Google Maps and local search results when nearby customers search for your services.",
     achievements: [
-      "Formally verified Solidity and Rust smart contracts audited for high security and reentrancy protection",
-      "Full-stack Web3 dApps with multi-wallet integration (MetaMask, WalletConnect, Phantom)",
-      "Tokenomics design, NFT marketplace backends, and enterprise supply-chain ledger architectures",
+      "Complete Google Business Profile setup, verification, and optimization",
+      "Top 3 Google Maps pack ranking for high-intent local search keywords",
+      "Customer review generation, geotagged photos, and verified local citations",
     ],
-    outcome:
-      "Zero-vulnerability smart contract deployments and trustless decentralized digital infrastructure",
-    skills: ["Solidity", "Ethereum", "Polygon", "Solana", "Web3.js", "Hardhat"],
-    color: "#0F172A",
+    outcome: "5x more phone calls, direction requests, and walk-in customers from Google Maps",
+    skills: ["Google Maps Ranking", "Local SEO", "Profile Optimization", "Review Management", "Local Citations"],
+    color: "#4285F4",
     fg: "light",
     fr: {
-      role: "Web3 Décentralisé & Smart Contracts",
-      summary:
-        "Développement de smart contracts sécurisés, applications décentralisées (dApps) et architectures blockchain.",
-      outcome:
-        "Déploiements sans vulnérabilité et infrastructures numériques décentralisées.",
+      role: "Fiche Google My Business & Référencement Local",
+      summary: "Optimisation de votre profil Google Business pour dominer Google Maps.",
+      outcome: "5x plus d'appels et de visites locales depuis Google Maps.",
       achievements: [
-        "Smart contracts audités sur Solidity et Rust",
-        "Applications dApps avec connexion multi-wallets",
-        "Conception de tokenomique et registres d'entreprise sécurisés",
+        "Configuration complète et validation de fiche Google",
+        "Top 3 sur les recherches locales ciblées",
+        "Gestion des avis et photos géolocalisées",
+      ],
+    },
+  },
+
+  /* ─────────────── 6 · WEBSITE DESIGN & DEVELOPMENT ─────────────── */
+  {
+    company: "Website Design & Development",
+    role: "Website Design & Development",
+    mark: "WEB",
+    type: "Full-time",
+    location: "India & Global",
+    period: "Core Service",
+    summary:
+      "Custom, mobile-friendly websites built for speed, clean design, and high conversions that help your business look professional and credible.",
+    achievements: [
+      "Modern responsive design that looks great on mobile, tablet, and desktop screens",
+      "Fast page loading speeds with clean, modern code and security standards",
+      "Easy-to-use content management so your team can update content effortlessly",
+    ],
+    outcome: "A modern, high-converting digital storefront that turns visitors into paying clients",
+    skills: ["Next.js", "React", "WordPress", "Custom Design", "Mobile-First", "Fast Loading"],
+    color: "#0072E3",
+    fg: "light",
+    fr: {
+      role: "Conception & Développement de Sites Web",
+      summary: "Sites web modernes, réactifs et rapides conçus pour maximiser vos conversions.",
+      outcome: "Une vitrine digitale professionnelle qui génère des clients qualifiés.",
+      achievements: [
+        "Design réactif optimisé pour tous les écrans",
+        "Vitesse de chargement ultra-rapide et sécurité",
+        "Gestion de contenu facile et intuitive",
+      ],
+    },
+  },
+
+  /* ─────────────── 7 · E-COMMERCE SOLUTIONS ─────────────── */
+  {
+    company: "E-commerce Solutions",
+    role: "E-commerce Solutions",
+    mark: "SHOP",
+    type: "Full-time",
+    location: "India & Global",
+    period: "Online Store",
+    summary:
+      "Launch and scale your online store with secure payment gateways, smooth checkout flows, and automated inventory management.",
+    achievements: [
+      "Custom Shopify, WooCommerce, and tailored online store implementations",
+      "Secure payment gateway integration (UPI, Cards, NetBanking, PayPal, Stripe)",
+      "Automated order tracking, inventory alerts, and abandoned cart recovery",
+    ],
+    outcome: "Seamless shopping experience that boosts online sales and repeat customer orders",
+    skills: ["Shopify", "WooCommerce", "Payment Gateways", "Inventory Sync", "Mobile Checkout"],
+    color: "#F59E0B",
+    fg: "dark",
+    fr: {
+      role: "Solutions E-commerce",
+      summary: "Création et gestion de boutiques en ligne performantes avec paiements sécurisés.",
+      outcome: "Expérience d'achat fluide augmentant les ventes et la fidélité client.",
+      achievements: [
+        "Boutiques Shopify et WooCommerce sur mesure",
+        "Intégration de passerelles de paiement sécurisées",
+        "Suivi des commandes et alertes de stock automatisées",
+      ],
+    },
+  },
+
+  /* ─────────────── 8 · CRM, SOFTWARE & APP DEVELOPMENT ─────────────── */
+  {
+    company: "CRM, Software & App Development",
+    role: "CRM, Software & App Development",
+    mark: "APPS",
+    type: "Full-time",
+    location: "India & Global",
+    period: "Custom Software",
+    summary:
+      "Custom business software, custom CRM portals, and iOS/Android mobile apps designed to automate operations and scale your team.",
+    achievements: [
+      "Tailored CRM systems and client portals built for your company's exact workflow",
+      "Cross-platform iOS and Android mobile apps published on Google Play and App Store",
+      "Automated data syncing, role-based access control, and secure cloud databases",
+    ],
+    outcome: "Streamlined business operations that eliminate repetitive manual spreadsheets",
+    skills: ["Custom CRM", "React Native", "Flutter", "Node.js", "Cloud Databases", "API Integrations"],
+    color: "#1E293B",
+    fg: "light",
+    fr: {
+      role: "CRM, Logiciels & Applications Mobiles",
+      summary: "Logiciels d'entreprise sur mesure, CRM et applications iOS/Android.",
+      outcome: "Opérations rationalisées et gain de temps considérable pour vos équipes.",
+      achievements: [
+        "Systèmes CRM adaptés à vos processus métiers",
+        "Applications mobiles publiées sur les stores",
+        "Synchronisation cloud et bases de données sécurisées",
+      ],
+    },
+  },
+
+  /* ─────────────── 9 · WEBSITE SEO ─────────────── */
+  {
+    company: "Website SEO",
+    role: "Website SEO",
+    mark: "SEO",
+    type: "Full-time",
+    location: "India & Global",
+    period: "Organic Traffic",
+    summary:
+      "Rank on Page 1 of Google for the search terms your potential customers are actively searching for every day.",
+    achievements: [
+      "Comprehensive technical SEO fixes, fast loading optimization, and schema markup",
+      "High-intent keyword research and content optimization that attracts active buyers",
+      "High-authority backlink building to grow your website's trust and search dominance",
+    ],
+    outcome: "Consistent organic Google traffic and qualified inbound leads without paying for ad clicks",
+    skills: ["Google Page 1 Ranking", "Keyword Research", "Technical SEO", "On-Page SEO", "Backlink Building"],
+    color: "#059669",
+    fg: "light",
+    fr: {
+      role: "Référencement Naturel de Site Web",
+      summary: "Positionnement en 1ère page de Google pour vos mots-clés stratégiques.",
+      outcome: "Trafic qualifié continu et prospects réguliers sans budget publicitaire par clic.",
+      achievements: [
+        "Optimisation technique et vitesse de chargement",
+        "Recherche de mots-clés à fort potentiel d'achat",
+        "Netlinking de qualité et autorité de domaine",
+      ],
+    },
+  },
+
+  /* ─────────────── 10 · LOGO DESIGN & BRAND MANUAL ─────────────── */
+  {
+    company: "Logo Design & Brand Manual",
+    role: "Logo Design & Brand Manual",
+    mark: "LOGO",
+    type: "Freelance",
+    location: "India & Global",
+    period: "Brand Identity",
+    summary:
+      "Memorable logo design and comprehensive brand style guidelines that give your business a distinctive, premium, and trustworthy look.",
+    achievements: [
+      "Unique custom logo design with full copyright ownership and vector master files",
+      "Complete Brand Manual: official color palette, font styles, and brand usage rules",
+      "Business cards, letterheads, social media profile kits, and favicon assets",
+    ],
+    outcome: "A standout visual brand identity that builds instant trust and industry recognition",
+    skills: ["Custom Logo", "Brand Guidelines", "Typography Rules", "Color Palette", "Stationery Design"],
+    color: "#EC4899",
+    fg: "light",
+    fr: {
+      role: "Création de Logo & Charte Graphique",
+      summary: "Logo mémorable et guide de style complet pour une image de marque forte.",
+      outcome: "Une identité visuelle remarquable qui inspire immédiatement confiance.",
+      achievements: [
+        "Création de logo sur mesure avec fichiers sources",
+        "Charte graphique complète (couleurs, polices, règles d'usage)",
+        "Papeterie professionnelle et déclinaisons réseaux sociaux",
+      ],
+    },
+  },
+
+  /* ─────────────── 11 · BROCHURE DESIGN SERVICES ─────────────── */
+  {
+    company: "Brochure Design Services",
+    role: "Brochure Design Services",
+    mark: "PRINT",
+    type: "Freelance",
+    location: "India & Global",
+    period: "Marketing Collateral",
+    summary:
+      "Professionally designed company brochures, product catalogs, and pitch decks crafted to impress clients and close high-value deals.",
+    achievements: [
+      "Stunning bi-fold, tri-fold, and multi-page corporate brochure layouts",
+      "Interactive digital PDF brochures with clickable links and direct contact buttons",
+      "Print-ready high-resolution files with CMYK color and bleed setup for local printers",
+    ],
+    outcome: "High-impact sales collateral that clearly explains your value and closes deals",
+    skills: ["Corporate Brochures", "Product Catalogs", "Interactive PDF", "Print Ready", "Sales Presentations"],
+    color: "#EA580C",
+    fg: "light",
+    fr: {
+      role: "Services de Création de Brochures",
+      summary: "Brochures d'entreprise, catalogues et présentations commerciales percutantes.",
+      outcome: "Supports de vente percutants qui valorisent vos offres et facilitent la signature.",
+      achievements: [
+        "Mises en page de brochures corporatives soignées",
+        "PDF interactifs avec liens cliquables pour vos prospects",
+        "Fichiers haute définition prêts pour l'impression",
+      ],
+    },
+  },
+
+  /* ─────────────── 12 · META ADS ─────────────── */
+  {
+    company: "Meta Ads",
+    role: "Meta Ads",
+    mark: "META",
+    type: "Full-time",
+    location: "India & Global",
+    period: "Paid Social",
+    summary:
+      "Targeted Facebook and Instagram advertising campaigns engineered to reach your ideal audience and generate leads at the lowest cost.",
+    achievements: [
+      "Laser-targeted audience demographics, interests, and competitor targeting setup",
+      "High-converting visual ad creatives, eye-catching motion graphics, and sales copy",
+      "Smart retargeting funnels that convert past visitors and profile engagers into buyers",
+    ],
+    outcome: "Predictable stream of qualified customer leads and healthy return on advertising spend",
+    skills: ["Facebook Ads", "Instagram Ads", "Audience Targeting", "Retargeting", "Ad Creatives"],
+    color: "#0668E1",
+    fg: "light",
+    fr: {
+      role: "Publicité Meta (Facebook & Instagram)",
+      summary: "Campagnes sponsorisées ciblées pour capter des clients qualifiés au meilleur coût.",
+      outcome: "Flux prévisible de prospects et excellent retour sur investissement publicitaire.",
+      achievements: [
+        "Ciblage précis par démographie et centres d'intérêt",
+        "Visuels et textes publicitaires à fort impact",
+        "Tunnels de reciblage pour convertir les visiteurs indécis",
+      ],
+    },
+  },
+
+  /* ─────────────── 13 · SOCIAL MEDIA OPTIMIZATION ─────────────── */
+  {
+    company: "Social Media Optimization",
+    role: "Social Media Optimization",
+    mark: "SMO",
+    type: "Freelance",
+    location: "India & Global",
+    period: "Profile Growth",
+    summary:
+      "Optimize your business social profiles across Instagram, LinkedIn, and Facebook to attract organic followers and project professional credibility.",
+    achievements: [
+      "Complete profile makeover: bio copy, highlight covers, banner graphics, and link trees",
+      "Hashtag research and profile keyword SEO for higher organic search discovery",
+      "Cohesive brand theme structuring and aesthetic visual grid layout",
+    ],
+    outcome: "A polished, professional social media presence that converts visitors into active followers",
+    skills: ["Profile Optimization", "Bio Strategy", "Instagram Highlights", "LinkedIn Page", "Social SEO"],
+    color: "#9333EA",
+    fg: "light",
+    fr: {
+      role: "Optimisation des Profils Sociaux (SMO)",
+      summary: "Optimisation de vos pages professionnelles sur Instagram, LinkedIn et Facebook.",
+      outcome: "Profils attractifs qui inspirent confiance et maximisent l'acquisition naturelle.",
+      achievements: [
+        "Refonte complète de biographie, bannières et couvertures",
+        "Recherche de hashtags et mots-clés de découvrabilité",
+        "Grille visuelle harmonieuse et cohérente avec votre marque",
+      ],
+    },
+  },
+
+  /* ─────────────── 14 · SOCIAL MEDIA MARKETING ─────────────── */
+  {
+    company: "Social Media Marketing",
+    role: "Social Media Marketing",
+    mark: "SMM",
+    type: "Full-time",
+    location: "India & Global",
+    period: "Content & Reach",
+    summary:
+      "Consistent social media management, daily creative posts, trending reels, and community engagement that keep your brand top-of-mind.",
+    achievements: [
+      "Monthly content calendar with custom graphics, captions, and automated scheduling",
+      "Trending short reels and educational posts that expand your brand's organic reach",
+      "Active community management, comments response, and incoming message handling",
+    ],
+    outcome: "Growing community of engaged followers and continuous brand visibility",
+    skills: ["Content Calendar", "Reels & Posts", "Community Management", "Copywriting", "Monthly Analytics"],
+    color: "#E1306C",
+    fg: "light",
+    fr: {
+      role: "Marketing sur les Réseaux Sociaux (SMM)",
+      summary: "Gestion complète de vos réseaux sociaux, création de contenu régulier et engagement.",
+      outcome: "Communauté engagée et notoriété de marque démultipliée au quotidien.",
+      achievements: [
+        "Calendrier mensuel de publications et de visuels",
+        "Création de Reels viraux et contenus éducatifs",
+        "Modération et interaction active avec votre communauté",
       ],
     },
   },

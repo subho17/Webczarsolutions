@@ -8,12 +8,12 @@ import styles from "./Hero.module.css";
 import { useLang } from "@/lib/i18n";
 
 const STATS_LEFT = [
-  { n: 20, suffix: "+", key: "stat.projects", icon: "/images/icons/projects.png" },
-  { n: 5, suffix: "+", key: "stat.years", icon: "/images/icons/years.png" },
+  { n: 850, suffix: "+", key: "stat.projects", icon: "/images/icons/projects.png" },
+  { n: 12, suffix: "+", key: "stat.years", icon: "/images/icons/years.png" },
 ];
 const STATS_RIGHT = [
-  { n: 10, suffix: "+", key: "stat.countries", icon: "/images/icons/countries.png" },
-  { n: 100, suffix: "%", key: "stat.satisfaction", icon: "/images/icons/satisfaction.png" },
+  { n: 25, suffix: "+", key: "stat.countries", icon: "/images/icons/countries.png" },
+  { n: 99.4, suffix: "%", key: "stat.satisfaction", icon: "/images/icons/satisfaction.png" },
 ];
 
 /* ambient particles — position (vw/vh %), size px, tone */
@@ -31,7 +31,7 @@ function StatCard({ n, suffix, label, icon }: { n: number; suffix: string; label
     <div className={styles.statCard}>
       <img className={styles.statIcon} src={icon} alt="" aria-hidden="true" />
       <div className={styles.statNum} data-count={n}>
-        <span>0</span>
+        <span>{n}</span>
         <i>{suffix}</i>
       </div>
       <div className={styles.statLabel}>{label}</div>
@@ -90,13 +90,16 @@ export default function Hero() {
         () => {
           gsap.utils.toArray<HTMLElement>(`.${styles.statNum}`).forEach((numEl) => {
             const target = Number(numEl.dataset.count || 0);
+            const isDecimal = !Number.isInteger(target);
             const obj = { v: 0 };
             gsap.to(obj, {
               v: target,
               duration: 1.3,
               ease: "power2.out",
               onUpdate: () => {
-                numEl.firstChild!.textContent = String(Math.round(obj.v));
+                numEl.firstChild!.textContent = isDecimal
+                  ? obj.v.toFixed(1)
+                  : String(Math.round(obj.v));
               },
             });
           });

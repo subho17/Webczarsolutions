@@ -5,17 +5,17 @@ import Link from "next/link";
 import styles from "./Footer.module.css";
 
 const SERVICES_LIST = [
-  "Lead Generation Company",
-  "Real Estate Marketing Agency",
-  "Best Digital Marketing Agency",
-  "Social Media Marketing Agency",
-  "Bulk SMS Agency",
+  { label: "Lead Generation Company", href: "/services/lead-generation" },
+  { label: "Real Estate Marketing Agency", href: "/services/real-estate-marketing" },
+  { label: "Best Digital Marketing Agency", href: "/services/digital-marketing" },
+  { label: "Social Media Marketing Agency", href: "/services/social-media-marketing" },
+  { label: "Bulk SMS Agency", href: "/services/bulk-sms" },
 ];
 
 const COMPANY_LINKS = [
-  { label: "Home", href: "/#home" },
-  { label: "About", href: "/#about" },
-  { label: "Services", href: "/#experience" },
+  { label: "Home", href: "/" },
+  { label: "About", href: "/about" },
+  { label: "Services", href: "/services" },
   { label: "Blogs", href: "/blog" },
   { label: "Contact Us", href: "/contact" },
   { label: "Career (Join Webczar)", href: "/careers" },
@@ -121,10 +121,10 @@ export default function Footer() {
           <h4 className={styles.colTitle}>Our Services</h4>
           <ul className={styles.linkList}>
             {SERVICES_LIST.map((service) => (
-              <li key={service}>
-                <Link href="/#experience" className={styles.linkItem}>
+              <li key={service.label}>
+                <Link href={service.href} className={styles.linkItem}>
                   <span className={styles.bulletArrow}>→</span>
-                  <span>{service}</span>
+                  <span>{service.label}</span>
                 </Link>
               </li>
             ))}
@@ -221,12 +221,12 @@ export default function Footer() {
           <span className={styles.socialPrompt}>Connect with Webczar:</span>
           <div className={styles.socialLinks}>
             <a
-              href="https://www.linkedin.com/company/webczar-solutions"
+              href="https://www.facebook.com/webczarsolutions"
               target="_blank"
               rel="noreferrer"
               className={styles.socialChip}
             >
-              LinkedIn ↗
+              Facebook ↗
             </a>
             <a
               href="https://www.instagram.com/webczarsolutions"
@@ -237,12 +237,36 @@ export default function Footer() {
               Instagram ↗
             </a>
             <a
-              href="https://github.com/webczar-solutions"
+              href="https://www.youtube.com/@webczarsolutions"
               target="_blank"
               rel="noreferrer"
               className={styles.socialChip}
             >
-              GitHub ↗
+              YouTube ↗
+            </a>
+            <a
+              href="https://x.com/webczarsolutions"
+              target="_blank"
+              rel="noreferrer"
+              className={styles.socialChip}
+            >
+              X ↗
+            </a>
+            <a
+              href="https://www.linkedin.com/company/webczarsolutions"
+              target="_blank"
+              rel="noreferrer"
+              className={styles.socialChip}
+            >
+              LinkedIn ↗
+            </a>
+            <a
+              href="https://www.pinterest.com/webczarsolutions"
+              target="_blank"
+              rel="noreferrer"
+              className={styles.socialChip}
+            >
+              Pinterest ↗
             </a>
             <a
               href="https://api.whatsapp.com/send/?phone=919988221729&text&type=phone_number&app_absent=0"

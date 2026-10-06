@@ -1,15 +1,15 @@
-/* Credentials — Webczar Solutions capabilities and expertise areas.
+/* Credentials / Add-On Services — Webczar Solutions specialized offerings.
  *
- * Our team's capabilities across software development, AI, cloud, design,
- * and marketing — everything modern businesses need under one roof. */
+ * High-impact add-on services:
+ * - Podcast Shoot, Short Reels design
+ * - Online PR Article Publish Services
+ * - IVR - Interactive Voice Response for Incoming call Solutions
+ * - Aerial Drone Videography & Project Showcase Videos
+ */
 
 export type Cert = {
   no: string; /* deck-style section number */
-  /* the awarding organisation, exactly as it issued the credential */
   issuer: string | null;
-  /* official issuer mark, supplied by Webczar Solutions. Always rendered on a light
-     plate so brand colours stay true on dark and light panels alike.
-     `aspect` is the file's real ratio — the mark is never distorted. */
   logo?: { src: string; aspect: number };
   title: string;
   year: string | null;
@@ -23,117 +23,99 @@ export type Cert = {
 
 export const CERTS: Cert[] = [
   {
-    no: "2.1",
-    issuer: "Web Development",
-    title: "Full-Stack Web Development",
-    year: null,
-    credentialId: null,
+    no: "01",
+    issuer: "Media & Studio",
+    title: "Podcast Shoot, Short Reels Design",
+    year: "Fast Turnaround",
+    credentialId: "SRV-PODCAST-REELS",
+    credentialUrl: "/services/podcast-reels-production",
     verified: true,
     skills: [
-      "React, Next.js, Vue.js",
-      "Node.js, Express, FastAPI",
-      "TypeScript, JavaScript ES6+",
+      "Multi-camera studio & on-location podcast production",
+      "Viral short reels, TikTok & YouTube Shorts design",
+      "Dynamic animated captions, audio mastering & color grading",
     ],
-    metric: { value: "100+", label: "Projects delivered" },
+    metric: { value: "4K", label: "Studio & Reels" },
     fr: {
+      title: "Tournage de podcast, création de Reels courts",
       skills: [
-        "React, Next.js, Vue.js",
-        "Node.js, Express, FastAPI",
-        "TypeScript, JavaScript ES6+",
+        "Production podcast multi-caméras en studio et sur site",
+        "Conception de Reels courts viraux, TikTok et Shorts",
+        "Sous-titres animés dynamiques, mastering audio et étalonnage",
       ],
-      metricLabel: "Projets livrés",
+      metricLabel: "Studio & Reels",
     },
   },
   {
-    no: "2.2",
-    issuer: "AI & ML",
-    title: "Artificial Intelligence & Machine Learning",
-    year: null,
-    credentialId: null,
+    no: "02",
+    issuer: "Digital PR & Media",
+    title: "Online PR Article Publish Services",
+    year: "Guaranteed Placement",
+    credentialId: "SRV-ONLINE-PR",
+    credentialUrl: "/services/online-pr-article-publishing",
     verified: true,
     skills: [
-      "Custom AI model development",
-      "Natural Language Processing",
-      "Computer Vision & ML Pipelines",
+      "Tier-1 digital media & news publication features",
+      "High-authority brand storytelling & executive press releases",
+      "Google News indexing, digital reputation & SEO backlinks",
     ],
-    metric: { value: "AI", label: "First approach" },
+    metric: { value: "100+", label: "Media Publications" },
     fr: {
-      title: "Intelligence artificielle & apprentissage automatique",
+      title: "Services de publication d'articles RP en ligne",
       skills: [
-        "Développement de modèles IA personnalisés",
-        "Traitement du langage naturel",
-        "Vision par ordinateur et pipelines ML",
+        "Articles dans les grands médias et portails d'actualités",
+        "Storytelling de marque d'autorité et communiqués de presse",
+        "Indexation Google News, réputation en ligne et backlinks SEO",
       ],
-      metricLabel: "Approche IA-first",
+      metricLabel: "Publications médias",
     },
   },
   {
-    no: "2.3",
-    issuer: "Mobile",
-    title: "Mobile App Development",
-    year: null,
-    credentialId: null,
+    no: "03",
+    issuer: "Telephony & Voice",
+    title: "IVR - Interactive Voice Response for Incoming Call Solutions",
+    year: "24/7 Automation",
+    credentialId: "SRV-IVR-SOLUTIONS",
+    credentialUrl: "/services/ivr-incoming-call-solutions",
     verified: true,
     skills: [
-      "React Native & Flutter",
-      "iOS & Android native",
-      "Cross-platform solutions",
+      "Custom multi-level IVR call routing & auto-attendant menus",
+      "Seamless CRM, WhatsApp & VoIP telephony integration",
+      "Professional studio voiceovers, call tracking & analytics",
     ],
-    metric: { value: "iOS", label: "& Android" },
+    metric: { value: "24/7", label: "Automated Call Handling" },
     fr: {
-      title: "Développement d'applications mobiles",
+      title: "SVI - Réponse vocale interactive pour appels entrants",
       skills: [
-        "React Native & Flutter",
-        "iOS & Android natif",
-        "Solutions multiplateformes",
+        "Routage d'appels SVI multi-niveaux et menus automatisés",
+        "Intégration téléphonie VoIP, WhatsApp et CRM fluide",
+        "Voix off professionnelles en studio et suivi des appels",
       ],
-      metricLabel: "& Android",
+      metricLabel: "Gestion automatisée 24/7",
     },
   },
   {
-    no: "2.4",
-    issuer: "Cloud",
-    title: "Cloud Infrastructure & DevOps",
-    year: null,
-    credentialId: null,
+    no: "04",
+    issuer: "Aerial Cinematography",
+    title: "Aerial Drone Videography",
+    year: "Licensed Pilots",
+    credentialId: "SRV-DRONE-AERIAL",
+    credentialUrl: "/services/aerial-drone-videography",
     verified: true,
     skills: [
-      "AWS, Azure, GCP",
-      "Docker & Kubernetes",
-      "CI/CD & Infrastructure as Code",
+      "Professional aerial video footage of property/project from above",
+      "Cinematic project showcase videos & walkthrough films",
+      "4K / 6K HDR aerial cinematography & high-impact editing",
     ],
-    metric: { value: "99.9%", label: "Uptime guaranteed" },
+    metric: { value: "4K/6K", label: "Aerial Video Footage" },
     fr: {
-      title: "Infrastructure cloud & DevOps",
+      title: "Vidéographie aérienne par drone",
       skills: [
-        "AWS, Azure, GCP",
-        "Docker & Kubernetes",
-        "CI/CD et Infrastructure as Code",
+        "Prises de vue vidéo aériennes professionnelles de votre projet",
+        "Vidéos cinématographiques de présentation et de valorisation",
+        "Cinématographie aérienne HDR 4K / 6K et montage percutant",
       ],
-      metricLabel: "Temps d'activité garanti",
-    },
-  },
-  {
-    no: "2.5",
-    issuer: "Design",
-    title: "UI/UX Design & Design Systems",
-    year: null,
-    credentialId: null,
-    verified: true,
-    skills: [
-      "User Research & Prototyping",
-      "Design Systems & Components",
-      "Accessibility & Responsive Design",
-    ],
-    metric: { value: "UX", label: "First approach" },
-    fr: {
-      title: "Design UI/UX & systèmes de design",
-      skills: [
-        "Recherche utilisateur & prototypage",
-        "Systèmes de design & composants",
-        "Accessibilité & design responsive",
-      ],
-      metricLabel: "Approche UX-first",
+      metricLabel: "Prises de vue aériennes",
     },
   },
 ];

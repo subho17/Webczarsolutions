@@ -14,19 +14,29 @@ export const COMPANY = {
   description:
     "Webczar Solutions is a technology and digital solutions company focused on helping businesses build, transform, and grow in the digital world.",
   sameAs: [
-    "https://www.linkedin.com/company/webczar-solutions",
-    "https://github.com/webczar-solutions",
+    "https://www.facebook.com/webczarsolutions",
     "https://www.instagram.com/webczarsolutions",
+    "https://www.youtube.com/@webczarsolutions",
+    "https://x.com/webczarsolutions",
+    "https://www.linkedin.com/company/webczarsolutions",
+    "https://www.pinterest.com/webczarsolutions",
   ],
 };
+
+export const SOCIAL_LINKS = [
+  { name: "Facebook", short: "FB", key: "facebook", href: "https://www.facebook.com/webczarsolutions" },
+  { name: "Instagram", short: "Insta", key: "instagram", href: "https://www.instagram.com/webczarsolutions" },
+  { name: "YouTube", short: "YouTube", key: "youtube", href: "https://www.youtube.com/@webczarsolutions" },
+  { name: "X", short: "X", key: "x", href: "https://x.com/webczarsolutions" },
+  { name: "LinkedIn", short: "LinkedIn", key: "linkedin", href: "https://www.linkedin.com/company/webczarsolutions" },
+  { name: "Pinterest", short: "Pin", key: "pinterest", href: "https://www.pinterest.com/webczarsolutions" },
+];
 
 export const PERSON = {
   name: "Subhadeep Chanda",
   jobTitle: "Founder & Technology Director",
   email: "subhadeep@webczarsolutions.com",
   location: "India",
-  sameAs: [
-    "https://www.linkedin.com/",
-    "https://github.com/",
-  ],
+  /* Optional: add real profile URLs here and they flow into the JSON-LD. */
+  sameAs: [] as string[],
 };

@@ -28,8 +28,7 @@ const MARQUEE_ROWS = [
       "Design Engineering",
       "Motion Design",
     ],
-    velocity: -28,
-    outline: true,
+    velocity: 32,
   },
 ];
 
@@ -159,7 +158,7 @@ export default function About() {
         </p>
 
         <div className={styles.next}>
-          <Button href="#work" variant="dark" size="sm" arrow>
+          <Button href="/services" variant="dark" size="sm" arrow>
             {t("about.cta")}
           </Button>
         </div>

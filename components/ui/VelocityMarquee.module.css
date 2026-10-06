@@ -4,18 +4,19 @@
   position: relative;
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
-  padding: clamp(32px, 3.8vw, 54px) 0;
+  padding: clamp(10px, 1.4vh, 22px) 0;
   display: flex;
   flex-direction: column;
-  gap: clamp(14px, 2vw, 24px);
+  gap: clamp(6px, 0.9vh, 12px);
   overflow: hidden;
   background: #fff;
+  flex-shrink: 0;
 }
 
 .row {
   overflow: hidden;
   white-space: nowrap;
-  padding: 4px 0;
+  padding: 2px 0;
 }
 
 .track {
@@ -36,9 +37,9 @@
 .solidText,
 .outlineText {
   font-weight: 900;
-  font-size: clamp(38px, 5.2vw, 76px);
+  font-size: clamp(24px, min(3.8vw, 4.8vh), 48px);
   letter-spacing: -0.035em;
-  line-height: 1.15;
+  line-height: 1.1;
   text-transform: none;
 }
 .solidText {

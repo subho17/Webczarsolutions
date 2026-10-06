@@ -98,6 +98,7 @@
 }
 .row {
   display: block;
+  text-transform: capitalize;
 }
 .serif {
   font-family: var(--font-serif), Georgia, serif;

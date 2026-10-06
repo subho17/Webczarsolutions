@@ -1,23 +1,18 @@
 "use client";
 
 /*
- * EXPERIENCE — centred stacked panel composition.
+ * EXPERIENCE — What we deliver (14 Core & Specialized Services).
  *
- * Corrections applied from review:
- *   · The stack is the HERO VISUAL and sits in the CENTRE of the viewport —
- *     not small cards on the right, not a timeline, not a carousel.
- *   · Panels are WIDE, SHORT boards (≈72vw × 150–170px), sharp-edged and
- *     perspective-distorted — physical sheets, not rounded app cards.
- *   · Depth stack recedes up-and-back on a diagonal; the active board is
- *     closest, largest, sharpest. Exit travels down + back + blur + fade.
- *   · TEXT NEVER COLLIDES: waiting boards render identity only (year · role ·
- *     company). Description and skills exist ONLY on the active board.
- *   · Scroll physics: scroll → target progress → rAF interpolation →
- *     transforms. Never bound directly to raw scroll position.
- *   · One curated colour per board; white gallery background.
+ * Smooth, elegant 3D card deck presentation:
+ * - Active service card is centered, crisp, and high-impact.
+ * - Previous card glides away to the left and fades cleanly.
+ * - Next card glides in from the right, smoothly scaling into focus.
+ * - Maximum 2 cards visible during transitions — zero overlapping shadow clutter.
+ * - Single-row interactive footer scrubber with colored dots and active title pill.
+ * - Direct click-to-jump on any dot or card.
  */
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { gsap, ScrollTrigger, EASE } from "@/lib/gsap";
 import { getLenis } from "@/lib/lenis";
 import { sceneScrub } from "@/lib/scene";
@@ -25,21 +20,27 @@ import { ROLES } from "@/content/experience";
 import styles from "./Experience.module.css";
 import { useLang, L } from "@/lib/i18n";
 
-
-const DEPTH = 3; /* panels rendered behind the active one — depth/context */
-
-/* Stack geometry (px). NOTE: the stage's rotateX turns part of each board's
-   negative Z into DOWNWARD screen movement, which cancels much of the upward
-   offset. UP is therefore sized so the RENDERED gap still exceeds the 46px
-   identity strip — that is what keeps text from ever colliding. */
-const UP = 74; /* each waiting panel sits this much higher */
-const RIGHT = 26; /* …and this much further right → diagonal */
-const BACK = 96; /* …and this much deeper in Z */
-const TILT = 6; /* rotateX on the stage: the trapezoid read */
-
 export default function Experience() {
   const root = useRef<HTMLElement>(null);
   const { t, lang } = useLang();
+  const [activeIdx, setActiveIdx] = useState(0);
+
+  const jumpToCard = (idx: number) => {
+    const hold = root.current?.closest("[data-scene]");
+    const next = hold?.nextElementSibling;
+    if (next instanceof HTMLElement && next.hasAttribute("data-runway")) {
+      const rect = next.getBoundingClientRect();
+      const runwayTop = window.scrollY + rect.top - window.innerHeight;
+      const runwayHeight = rect.height;
+      const targetY = runwayTop + (idx / (ROLES.length - 1)) * runwayHeight;
+      const lenis = getLenis();
+      if (lenis) {
+        lenis.scrollTo(targetY, { duration: 0.8 });
+      } else {
+        window.scrollTo({ top: targetY, behavior: "smooth" });
+      }
+    }
+  };
 
   useEffect(() => {
     const el = root.current;
@@ -49,7 +50,6 @@ export default function Experience() {
 
     mm.add("(min-width: 1001px) and (prefers-reduced-motion: no-preference)", () => {
       const boards = gsap.utils.toArray<HTMLElement>(`.${styles.board}`);
-      const navItems = gsap.utils.toArray<HTMLElement>(`.${styles.navItem}`);
       const counter = el.querySelector<HTMLElement>(`.${styles.count}`);
       const tint = el.querySelector<HTMLElement>(`.${styles.tint}`);
       const n = boards.length;
@@ -60,111 +60,114 @@ export default function Experience() {
       const setActive = (idx: number) => {
         if (idx === active) return;
         active = idx;
+        setActiveIdx(idx);
         boards.forEach((b, i) => b.classList.toggle(styles.on, i === idx));
-        navItems.forEach((it, i) => it.classList.toggle(styles.navOn, i === idx));
-        if (counter)
+        if (counter) {
           counter.textContent = `${String(idx + 1).padStart(2, "0")} / ${String(n).padStart(2, "0")}`;
-        if (tint) tint.style.background = `${ROLES[idx].color}12`;
+        }
+        if (tint && ROLES[idx]) {
+          tint.style.background = `${ROLES[idx].color}16`;
+        }
       };
 
       const place = (p: number) => {
+        const roundedIdx = Math.round(gsap.utils.clamp(0, n - 1, p));
+        setActive(roundedIdx);
+
         for (let i = 0; i < n; i++) {
-          const d = i - p; /* >0 waiting · 0 active · <0 leaving */
+          const d = i - p;
+          const ad = Math.abs(d);
           const b = boards[i];
 
-          if (d > DEPTH + 0.6 || d < -1.1) {
+          // Only keep cards close to the viewport visible to eliminate shadow buildup
+          if (ad > 1.5) {
             b.style.visibility = "hidden";
+            b.style.opacity = "0";
+            b.style.pointerEvents = "none";
             continue;
           }
+
           b.style.visibility = "visible";
+          b.style.pointerEvents = ad < 0.4 ? "auto" : "none";
+
+          let xPercent = 0;
+          let zPx = 0;
+          let rotY = 0;
+          let sc = 1;
+          let op = 1;
 
           if (d >= 0) {
-            /* waiting: up + right + back, progressively compressed */
-            const k = Math.min(d, DEPTH);
-            b.style.transform =
-              `translate3d(${(k * RIGHT).toFixed(1)}px, ${(-k * UP).toFixed(1)}px, ${(-k * BACK).toFixed(1)}px)` +
-              ` scale(${(1 - k * 0.028).toFixed(3)})`;
-            b.style.opacity = String(Math.max(0, 1 - k * 0.16));
-            b.style.filter = k > 1.2 ? `blur(${Math.min(3, (k - 1.2) * 1.2).toFixed(2)}px)` : "";
-            b.style.zIndex = String(200 - Math.round(k * 10));
+            // Active card (d=0) and incoming card from right (d>0)
+            const k = d;
+            xPercent = k * 78;
+            zPx = -k * 110;
+            rotY = -k * 6;
+            sc = 1 - k * 0.05;
+            op = k < 0.15 ? 1 : Math.max(0, 1 - (k - 0.15) * 0.85);
           } else {
-            /* leaving: down + back, dissolving */
-            const t = Math.min(1, -d / 1.1);
-            b.style.transform =
-              `translate3d(${(-t * 40).toFixed(1)}px, ${(t * 230).toFixed(1)}px, ${(-t * 320).toFixed(1)}px)` +
-              ` scale(${(1 - t * 0.06).toFixed(3)})`;
-            b.style.opacity = String(Math.max(0, 1 - t * 1.35));
-            b.style.filter = t > 0.25 ? `blur(${((t - 0.25) * 5).toFixed(2)}px)` : "";
-            b.style.zIndex = "210";
+            // Exiting card to the left (d<0)
+            const k = -d;
+            xPercent = -k * 82;
+            zPx = -k * 130;
+            rotY = k * 6.5;
+            sc = 1 - k * 0.05;
+            op = Math.max(0, 1 - k * 1.15);
           }
+
+          b.style.transform = `translate3d(${xPercent.toFixed(1)}%, 0px, ${zPx.toFixed(0)}px) rotateY(${rotY.toFixed(1)}deg) scale(${sc.toFixed(3)})`;
+          b.style.opacity = op.toFixed(3);
+          b.style.zIndex = String(Math.round(200 - ad * 25));
         }
-        setActive(Math.round(gsap.utils.clamp(0, n - 1, p)));
       };
 
-      /* ---- scroll → target → interpolation → transforms ---- */
-      let target = 0;
-      let current = 0;
-      const tick = (_t: number, dt: number) => {
-        const f = Math.min(dt / 1000, 0.05);
-        current += (target - current) * Math.min(f * 9, 1);
-        place(current);
-      };
-      gsap.ticker.add(tick);
-      place(0);
-
-      /* the Scene's sticky hold does the pinning; this only reads progress */
+      // Native GSAP ScrollTrigger scrub — responsive, hardware-accelerated, zero lag
       const st = ScrollTrigger.create({
         ...sceneScrub(el),
-        scrub: 0.5,
+        scrub: 0.35,
         invalidateOnRefresh: true,
         onUpdate: (self) => {
-          target = self.progress * (n - 1);
+          place(self.progress * (n - 1));
         },
       });
 
-      const jump = (idx: number) => {
-        const y = st.start + (idx / (n - 1)) * (st.end - st.start);
-        const lenis = getLenis();
-        if (lenis) lenis.scrollTo(y, { duration: 1 });
-        else window.scrollTo({ top: y, behavior: "smooth" });
-      };
+      place(0);
+
+      // Card click handlers
       const handlers: Array<[HTMLElement, () => void]> = [];
-      [...boards, ...navItems].forEach((elm, idx) => {
-        const i = idx % n;
-        const h = () => jump(i);
-        elm.addEventListener("click", h);
-        handlers.push([elm, h]);
+      boards.forEach((b, i) => {
+        const h = () => jumpToCard(i);
+        b.addEventListener("click", h);
+        handlers.push([b, h]);
       });
 
-      /* very small perspective response to the pointer */
+      // Subtle responsive 3D tilt on pointer move
       const stage = el.querySelector<HTMLElement>(`.${styles.stage}`);
       let rx: ReturnType<typeof gsap.quickTo> | null = null;
       let ry: ReturnType<typeof gsap.quickTo> | null = null;
       if (stage) {
-        rx = gsap.quickTo(stage, "rotationX", { duration: 1, ease: "power3.out" });
-        ry = gsap.quickTo(stage, "rotationY", { duration: 1, ease: "power3.out" });
+        rx = gsap.quickTo(stage, "rotationX", { duration: 0.8, ease: "power3.out" });
+        ry = gsap.quickTo(stage, "rotationY", { duration: 0.8, ease: "power3.out" });
       }
       const onMove = (e: PointerEvent) => {
         const r = el.getBoundingClientRect();
         const cx = ((e.clientX - r.left) / r.width - 0.5) * 2;
         const cy = ((e.clientY - r.top) / r.height - 0.5) * 2;
-        rx?.(TILT - cy * 2.2);
-        ry?.(cx * 2.6);
+        rx?.(-cy * 1.8);
+        ry?.(cx * 2.2);
       };
       el.addEventListener("pointermove", onMove);
 
       gsap.from(`.${styles.header} > *`, {
-        y: 34,
+        y: 28,
         autoAlpha: 0,
-        duration: 0.9,
+        duration: 0.8,
         ease: EASE.outExpo,
-        stagger: 0.09,
+        stagger: 0.08,
         immediateRender: false,
-        scrollTrigger: { trigger: el, start: "top 72%" },
+        scrollTrigger: { trigger: el, start: "top 75%" },
       });
 
       return () => {
-        gsap.ticker.remove(tick);
         st.kill();
         el.removeEventListener("pointermove", onMove);
         handlers.forEach(([elm, h]) => elm.removeEventListener("click", h));
@@ -176,9 +179,9 @@ export default function Experience() {
       if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
       gsap.utils.toArray<HTMLElement>(`.${styles.board}`).forEach((b) => {
         gsap.from(b, {
-          y: 40,
+          y: 35,
           autoAlpha: 0,
-          duration: 0.85,
+          duration: 0.8,
           ease: EASE.outExpo,
           immediateRender: false,
           scrollTrigger: { trigger: b, start: "top 88%" },
@@ -202,7 +205,7 @@ export default function Experience() {
         </h2>
       </div>
 
-      {/* the stack — centred, large, the hero visual of this section */}
+      {/* Centred horizontal 3D card stage */}
       <div className={styles.stageWrap}>
         <div className={styles.stage}>
           {ROLES.map((r, i) => (
@@ -211,25 +214,20 @@ export default function Experience() {
               key={r.company}
               style={{ background: r.color, zIndex: 200 - i }}
             >
-              {/* IDENTITY STRIP — sits inside the exposed top band of every
-                  panel, so a waiting panel's text can never be covered by,
-                  or collide with, the panel in front of it */}
+              {/* TOP STRIP */}
               <div className={styles.strip}>
                 <span className={styles.year}>{r.period}</span>
                 <span className={styles.company}>{r.company}</span>
                 <span className={styles.type}>{t(`type.${r.type}`)}</span>
               </div>
 
-              {/* FULL CONTENT — the active panel only, which nothing sits
-                  in front of. This is the large, readable experience card. */}
-              <div
-                className={`${styles.detailCol} ${
-                  r.logo?.placement === "below" ? styles.logoBelow : ""
-                }`}
-              >
+              {/* CARD DETAIL */}
+              <div className={styles.detailCol}>
                 <div className={styles.contentCol}>
-                  <h3 className={styles.role}>{L(lang, r, "role")}</h3>
-                  <p className={styles.loc}>{r.location}</p>
+                  <div className={styles.roleHead}>
+                    <h3 className={styles.role}>{L(lang, r, "role")}</h3>
+                    <p className={styles.loc}>{r.location}</p>
+                  </div>
 
                   <div className={styles.body}>
                     <div className={styles.bodyMain}>
@@ -258,8 +256,7 @@ export default function Experience() {
                   </div>
                 </div>
 
-                {/* right-hand visual anchor — the company mark. Sits forward
-                    in Z so it parallaxes with the panel's own 3D movement. */}
+                {/* VISUAL BADGE / MARK */}
                 <div className={styles.logoCol}>
                   {r.logo ? (
                     <span
@@ -270,13 +267,9 @@ export default function Experience() {
                           : undefined
                       }
                     >
-                      {/* not lazy: five marks totalling ~17KB, and lazy
-                          loading never triggers reliably inside a
-                          3D-transformed panel — it just risks pop-in */}
                       <img src={r.logo.src} alt={`${r.company} logo`} />
                     </span>
                   ) : (
-                    /* no official file supplied yet — typographic stand-in */
                     <span className={`${styles.logoWrap} ${styles.mono}`}>
                       <b>{r.mark ?? r.company.split(" ")[0]}</b>
                     </span>
@@ -288,13 +281,23 @@ export default function Experience() {
         </div>
       </div>
 
+      {/* FOOTER: Single-row interactive scrubber */}
       <div className={styles.foot}>
-        <span className={styles.count}>01 / {String(ROLES.length).padStart(2, "0")}</span>
-        <div className={styles.nav} role="list">
-          {ROLES.map((r) => (
-            <button className={styles.navItem} key={r.company} type="button">
+        <span className={styles.count}>
+          {String(activeIdx + 1).padStart(2, "0")} / {String(ROLES.length).padStart(2, "0")}
+        </span>
+        <div className={styles.nav} role="tablist">
+          {ROLES.map((r, i) => (
+            <button
+              className={`${styles.navItem} ${activeIdx === i ? styles.navOn : ""}`}
+              key={r.company}
+              type="button"
+              onClick={() => jumpToCard(i)}
+              aria-label={r.company}
+              title={r.company}
+            >
               <i style={{ background: r.color }} />
-              {r.company}
+              {activeIdx === i && <span className={styles.activeTitle}>{r.company}</span>}
             </button>
           ))}
         </div>

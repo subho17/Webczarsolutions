@@ -56,7 +56,7 @@ const personJsonLd = {
   email: `mailto:${PERSON.email}`,
   address: { "@type": "PostalAddress", addressCountry: "IN" },
   url: SITE_URL,
-  sameAs: PERSON.sameAs,
+  ...(PERSON.sameAs.length ? { sameAs: PERSON.sameAs } : {}),
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

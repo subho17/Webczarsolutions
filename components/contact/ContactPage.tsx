@@ -173,7 +173,7 @@ export default function ContactPage() {
                 className={styles.founderAvatar}
               />
               <div className={styles.founderDetails}>
-                <b>Subhadeep Chanda</b>
+                <b>Gagan kalra </b>
                 <span>Founder &amp; Technology Director</span>
                 <p style={{ fontSize: "12px", color: "var(--ink-2)", marginTop: "4px" }}>
                   &ldquo;Every project proposal is personally architected to deliver measurable

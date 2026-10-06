@@ -23,6 +23,7 @@
  */
 
 import { useEffect, useRef } from "react";
+import Link from "next/link";
 import { gsap, ScrollTrigger, EASE } from "@/lib/gsap";
 import { getLenis } from "@/lib/lenis";
 import { sceneScrub } from "@/lib/scene";
@@ -293,14 +294,12 @@ export default function Certifications() {
                     </ul>
 
                     {c.credentialUrl && (
-                      <a
+                      <Link
                         className={styles.verifyLink}
                         href={c.credentialUrl}
-                        target="_blank"
-                        rel="noreferrer"
                       >
                         {t("cert.verify")}
-                      </a>
+                      </Link>
                     )}
                   </div>
                 </div>

@@ -51,11 +51,11 @@ const IMAGES = [
 
 /* ---------- journey design ---------- */
 const STAGES = 4; /* progress rail: 01 … 04 */
-const TRAVEL_UNITS = 1050; /* total tunnel travel across the journey */
+const TRAVEL_UNITS = 580; /* tuned for swift, responsive travel across shorter runway */
 const TRAVEL_CURVE = 1.35; /* ease-in: the journey accelerates toward its climax */
 const IDLE_DRIFT = 5; /* travel units/s while resting — the world never freezes */
-const T_START = 0.78; /* transition begins (brighten) */
-const T_RELEASE = 0.9; /* canvas begins to release (fade) */
+const T_START = 0.76; /* transition begins (brighten) */
+const T_RELEASE = 0.88; /* canvas begins to release (fade) */
 const MOUSE_X = 0.11;
 const MOUSE_Y = 0.07;
 
@@ -429,7 +429,7 @@ export default function TunnelIntro({ text = "WEBCZAR" }: { text?: string }) {
        trigger only reads progress across the scene's runway. */
     const st = ScrollTrigger.create({
       ...sceneScrub(rootEl),
-      scrub: 0.6,
+      scrub: 0.35,
       invalidateOnRefresh: true,
       onUpdate: (self) => {
         progress = self.progress;

@@ -8,19 +8,18 @@ import { useLang } from "@/lib/i18n";
 import styles from "./Nav.module.css";
 
 const LINKS = [
-  { key: "nav.home", href: "/#home", path: "/", watch: null },
-  { key: "nav.about", href: "/#about", path: "/#about", watch: "about" },
-  { key: "nav.services", href: "/#experience", path: "/#experience", watch: "experience" },
-  { key: "nav.work", href: "/blog", path: "/blog", watch: null },
-  { key: "nav.careers", href: "/careers", path: "/careers", watch: null },
-  { key: "nav.contact", href: "/contact", path: "/contact", watch: null },
+  { key: "nav.home", href: "/", path: "/" },
+  { key: "nav.about", href: "/about", path: "/about" },
+  { key: "nav.services", href: "/services", path: "/services" },
+  { key: "nav.work", href: "/blog", path: "/blog" },
+  { key: "nav.careers", href: "/careers", path: "/careers" },
+  { key: "nav.contact", href: "/contact", path: "/contact" },
 ];
 
 export default function Nav() {
   const ref = useRef<HTMLElement>(null);
   const pathname = usePathname();
   const { t } = useLang();
-  const [active, setActive] = useState<string | null>(null);
   const [menuOpen, setMenuOpen] = useState(false);
 
   /* close on Escape, and lock the page behind the open drawer */
@@ -46,8 +45,6 @@ export default function Nav() {
     return () => mq.removeEventListener("change", close);
   }, []);
 
-  const isHome = pathname === "/" || pathname === "";
-
   useEffect(() => {
     const nav = ref.current;
     if (!nav) return;
@@ -61,38 +58,21 @@ export default function Nav() {
         },
         onLeaveBack: () => nav.classList.remove(styles.scrolled),
       });
-
-      /* Scroll-spy for homepage sections */
-      if (isHome) {
-        const spies = LINKS.filter((l) => l.watch && document.getElementById(l.watch)).map((l) =>
-          ScrollTrigger.create({
-            trigger: `#${l.watch}`,
-            start: "top 55%",
-            end: "bottom 45%",
-            onToggle: (self) => {
-              if (self.isActive) setActive(l.watch);
-            },
-          })
-        );
-        const top = ScrollTrigger.create({
-          start: 0,
-          end: () => window.innerHeight * 1.2,
-          onToggle: (self) => {
-            if (self.isActive) setActive(null);
-          },
-        });
-
-        return () => {
-          spies.forEach((s) => s.kill());
-          top.kill();
-        };
-      }
     }, nav);
 
     return () => ctx.revert();
-  }, [isHome]);
+  }, []);
 
   const isLinkActive = (l: (typeof LINKS)[0]) => {
+    if (l.path === "/") {
+      return pathname === "/" || pathname === "";
+    }
+    if (l.path === "/about") {
+      return pathname === "/about" || pathname?.startsWith("/about/");
+    }
+    if (l.path === "/services") {
+      return pathname === "/services" || pathname?.startsWith("/services/");
+    }
     if (
       l.path === "/blog" &&
       (pathname === "/blog" || pathname === "/blogs" || pathname?.startsWith("/work"))
@@ -107,12 +87,6 @@ export default function Nav() {
     }
     if (l.path === "/contact" && pathname === "/contact") {
       return true;
-    }
-    if (isHome) {
-      if (l.watch) {
-        return l.watch === active;
-      }
-      return active === null && l.key === "nav.home";
     }
     return false;
   };
