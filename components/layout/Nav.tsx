@@ -11,7 +11,7 @@ const LINKS = [
   { key: "nav.home", href: "/", path: "/" },
   { key: "nav.about", href: "/about", path: "/about" },
   { key: "nav.services", href: "/services", path: "/services" },
-  { key: "nav.extraServices", href: "/extra-services", path: "/extra-services" },
+  { key: "nav.addonServices", href: "/add-on-services", path: "/add-on-services" },
   { key: "nav.blog", href: "/blog", path: "/blog" },
   { key: "nav.careers", href: "/careers", path: "/careers" },
   { key: "nav.contact", href: "/contact", path: "/contact" },
@@ -74,8 +74,8 @@ export default function Nav() {
     if (l.path === "/services") {
       return pathname === "/services" || (pathname?.startsWith("/services/") && !pathname?.includes("podcast") && !pathname?.includes("online-pr") && !pathname?.includes("ivr") && !pathname?.includes("drone"));
     }
-    if (l.path === "/extra-services") {
-      return pathname === "/extra-services" || pathname?.includes("podcast") || pathname?.includes("online-pr") || pathname?.includes("ivr") || pathname?.includes("drone");
+    if (l.path === "/add-on-services" || l.path === "/extra-services") {
+      return pathname === "/add-on-services" || pathname === "/extra-services" || pathname?.includes("podcast") || pathname?.includes("online-pr") || pathname?.includes("ivr") || pathname?.includes("drone");
     }
     if (
       l.path === "/blog" &&

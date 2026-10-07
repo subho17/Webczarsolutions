@@ -19,6 +19,6 @@ export const metadata: Metadata = {
   },
 };
 
-export default function ExtraServicesRoute() {
+export default function AddOnServicesRoute() {
   return <AddOnServicesPage />;
 }
