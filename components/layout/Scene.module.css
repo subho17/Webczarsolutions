@@ -33,16 +33,24 @@
    stacked boards, Credentials five panels), and a 100svh frame with
    overflow:hidden simply destroys everything below the fold.
 
-   So below the desktop breakpoint a scene releases: the hold goes static and
-   grows to its content, and its runway collapses. The page becomes an
-   ordinary, complete, scrollable document — which is the correct responsive
-   answer, not a scaled-down stack.
+   So below the desktop breakpoint a scene releases: the hold goes back to
+   the flow and grows to its content, and its runway collapses. The page
+   becomes an ordinary, complete, scrollable document — which is the correct
+   responsive answer, not a scaled-down stack. (It stays `relative`, not
+   `static`, so the inline z-index keeps ordering the stack against the
+   sticky keepFrame scenes — see the rule below.)
 
    Scenes that genuinely ARE one screen on a phone (the tunnel, the journey,
    the drift wall) opt out with `.keepFrame` and keep the cinematic hold. */
 @media (max-width: 1000px) {
   .hold {
-    position: static;
+    /* relative, NOT static: a static box drops its inline z-index, so the
+       sticky keepFrame scenes (intro/journey/gallery) would keep theirs and
+       paint over every released section that follows — hiding whole blocks
+       (e.g. the Experience card stage, z 3 < journey's 4). Relative keeps
+       each hold in normal flow while its z-index still orders the stack. */
+    position: relative;
+    top: auto;
     height: auto;
     min-height: auto;
     overflow: visible;

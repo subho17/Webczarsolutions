@@ -403,21 +403,39 @@
 .consentRow {
   display: flex;
   align-items: flex-start;
-  gap: 10px;
-  font-size: 12.5px;
+  gap: 12px;
+  font-size: 12px;
   color: var(--ink-2, #4b5563);
-  line-height: 1.5;
-  margin-top: 4px;
+  line-height: 1.55;
+  margin-top: 8px;
+  margin-bottom: 4px;
 }
 
 .consentRow input {
   margin-top: 3px;
   accent-color: var(--accent, #ff2e0f);
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.consentRow label {
+  cursor: pointer;
+  font-size: 12px;
+  line-height: 1.55;
+  color: var(--ink-2, #4b5563);
 }
 
 .consentRow a {
   color: var(--accent, #ff2e0f);
   text-decoration: underline;
+  font-weight: 600;
+  transition: color 0.15s ease;
+}
+
+.consentRow a:hover {
+  color: var(--ink, #141414);
 }
 
 .submitBtn {

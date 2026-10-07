@@ -52,7 +52,7 @@ export default function ContactPage() {
   const [phone, setPhone] = useState("");
   const [company, setCompany] = useState("");
   const [message, setMessage] = useState("");
-  const [agreed, setAgreed] = useState(true);
+  const [agreed, setAgreed] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
@@ -329,7 +329,7 @@ export default function ContactPage() {
                     />
                   </div>
 
-                  {/* Consent Checkbox */}
+                  {/* Marketing & RCS Consent Checkbox */}
                   <div className={styles.consentRow}>
                     <input
                       type="checkbox"
@@ -339,9 +339,19 @@ export default function ContactPage() {
                       required
                     />
                     <label htmlFor="consent-check">
-                      I agree to receive communications regarding this inquiry in accordance with
-                      Webczar&apos;s <Link href="/privacy">Privacy Policy</Link> and{" "}
-                      <Link href="/whatsapp-opt-in">WhatsApp Opt-In Policy</Link>.
+                      Yes, I would like to receive marketing updates and offers from Webczar Solutions via: Email, WhatsApp, SMS (Text Messages), RCS (Rich Communication Services - enhanced messages with images and interactive features). By checking this box, you agree to our{" "}
+                      <Link href="/privacy" target="_blank">
+                        Privacy Policy
+                      </Link>{" "}
+                      and{" "}
+                      <Link href="/terms" target="_blank">
+                        Terms of Service
+                      </Link>
+                      . You can opt out at any time by replying &apos;STOP&apos; to RCS messages or through the methods outlined in our{" "}
+                      <Link href="/privacy" target="_blank">
+                        Privacy Policy
+                      </Link>
+                      .
                     </label>
                   </div>
 

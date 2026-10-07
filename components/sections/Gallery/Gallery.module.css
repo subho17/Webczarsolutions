@@ -159,7 +159,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 32%; /* faces sit high in these photographs */
+  object-position: center center;
   display: block;
   /* no filter, no grayscale, no dim — true to the original */
 }

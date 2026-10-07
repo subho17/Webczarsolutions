@@ -203,6 +203,7 @@ export default function Gallery() {
                         loading={ci < 2 && i < 2 ? "eager" : "lazy"}
                         decoding="async"
                         draggable={false}
+                        style={f.objectPosition ? { objectPosition: f.objectPosition } : undefined}
                       />
                     </figure>
                   ))}

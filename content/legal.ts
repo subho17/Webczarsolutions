@@ -157,8 +157,24 @@ export const TERMS_DATA: LegalDocument = {
       ],
     },
     {
-      id: "pricing-payment",
+      id: "notification-communication-consent",
       num: "06",
+      title: "Notification and Communication Consent",
+      content: [
+        "By accepting these Terms or commissioning services from Webczar Solutions, you acknowledge and consent to receive notifications, operational advisories, project milestone alerts, and promotional communications from us through various communication channels, including but not limited to email, mobile push notifications, SMS, RCS (Rich Communication Services), WhatsApp, or any other digital communication platforms.",
+        "These communication channels are utilized to deliver Statement of Work (SOW) milestone approvals, engineering sprint progress, deployment schedules, scheduled consultation alerts, commercial invoices, and relevant technology and growth insights.",
+        "If you prefer not to receive marketing or promotional updates, you may opt out at any time by contacting us directly at info@webczarsolutions.com, replying 'STOP' to any SMS or RCS transmission, utilizing the one-click unsubscribe mechanism in our marketing emails, or contacting your designated project manager.",
+        "Please note that essential operational notices, milestone sign-offs, security advisories, and contractual billing statements pertaining to active client engagements cannot be opted out of while services are underway.",
+      ],
+      bullets: [
+        "Multi-Channel Engagement: Transparent communications across Email, Phone, SMS, RCS, and WhatsApp for verified business and project operations.",
+        "Simple Opt-Out: Immediate marketing opt-out available by emailing info@webczarsolutions.com or replying 'STOP' to text/RCS communications.",
+        "Essential Project Notices: Critical service delivery and invoicing communications remain active for ongoing client engagements.",
+      ],
+    },
+    {
+      id: "pricing-payment",
+      num: "07",
       title: "Pricing, Quotations, Invoicing & Payment Terms",
       content: [
         "All project quotations, milestone figures, and hourly rates are stipulated in the relevant SOW and are denominated in Indian Rupees (INR) for domestic clients or United States Dollars (USD) / Euros (EUR) for international engagements.",
@@ -169,7 +185,7 @@ export const TERMS_DATA: LegalDocument = {
     },
     {
       id: "scope-changes",
-      num: "07",
+      num: "08",
       title: "Revisions, Scope Adjustments & Change Orders",
       content: [
         "Each project phase includes up to two (2) rounds of iterative design and functional revisions, provided that requested revisions fall strictly within the scope detailed in the original SOW.",
@@ -178,7 +194,7 @@ export const TERMS_DATA: LegalDocument = {
     },
     {
       id: "warranty-maintenance",
-      num: "08",
+      num: "09",
       title: "Post-Launch Warranty, Maintenance & Service Level Agreements",
       content: [
         "30-Day Stabilization Warranty: Webczar provides a 30-calendar-day warranty commencing on the official production deployment date. During this period, Webczar shall rectify, at zero additional charge, any verifiable reproducible software bugs, coding defects, or broken functionality resulting directly from our original code.",
@@ -188,7 +204,7 @@ export const TERMS_DATA: LegalDocument = {
     },
     {
       id: "third-party-integrations",
-      num: "09",
+      num: "10",
       title: "Third-Party Integrations, Platforms & External Dependencies",
       content: [
         "Modern digital solutions often rely on third-party services, including but not limited to payment gateways (Razorpay, Stripe), cloud providers (AWS, Vercel, Supabase), AI APIs (OpenAI, Anthropic), ad networks (Google Ads, Meta), and telecommunications providers (Bulk SMS gateways).",
@@ -198,7 +214,7 @@ export const TERMS_DATA: LegalDocument = {
     },
     {
       id: "confidentiality-nda",
-      num: "10",
+      num: "11",
       title: "Confidentiality, Trade Secrets & Non-Disclosure",
       content: [
         "Both parties agree that during the course of the engagement, each party may disclose to the other confidential and proprietary business information (\"Confidential Information\"), including technical architectures, source codes, customer databases, strategic marketing plans, financial metrics, and operational credentials.",
@@ -208,7 +224,7 @@ export const TERMS_DATA: LegalDocument = {
     },
     {
       id: "cancellation-refunds",
-      num: "11",
+      num: "12",
       title: "Cancellation, Termination & Fair Refund Policy",
       content: [
         "Termination for Convenience: Either party may terminate an ongoing engagement by providing fifteen (15) calendar days' written notice to the other party.",
@@ -219,7 +235,7 @@ export const TERMS_DATA: LegalDocument = {
     },
     {
       id: "liability-indemnity",
-      num: "12",
+      num: "13",
       title: "Limitation of Liability & Indemnification",
       content: [
         "Limitation of Consequential Damages: To the maximum extent permitted by applicable Indian and international law, Webczar Solutions, its founder, employees, officers, and contractors shall not be liable for any indirect, incidental, special, punitive, exemplary, or consequential damages whatsoever, including without limitation damages for loss of profits, loss of data, loss of business goodwill, server downtime, or commercial disruption, arising out of or related to our services or website.",
@@ -229,7 +245,7 @@ export const TERMS_DATA: LegalDocument = {
     },
     {
       id: "governing-law",
-      num: "13",
+      num: "14",
       title: "Governing Law, Jurisdiction & Dispute Resolution",
       content: [
         "Governing Law: This Agreement and any dispute, controversy, or claim arising out of or relating to it shall be governed by and construed in accordance with the substantive laws of the Republic of India, without regard to conflict of law principles.",
@@ -239,7 +255,7 @@ export const TERMS_DATA: LegalDocument = {
     },
     {
       id: "contact-notices",
-      num: "14",
+      num: "15",
       title: "Modifications, Notices & Official Contact Channels",
       content: [
         "Modifications: Webczar Solutions reserves the right to revise, update, or amend these Terms at our discretion. Updated terms take effect immediately upon being posted on this website, marked with the \"Last Updated\" revision date. Your continued utilization of our services or website following any update signifies your acceptance of the revised Terms.",
@@ -363,8 +379,24 @@ export const PRIVACY_DATA: LegalDocument = {
       ],
     },
     {
-      id: "data-sharing",
+      id: "notification-communication-consent",
       num: "06",
+      title: "Notification and Communication Consent",
+      content: [
+        "By accepting this Policy or interacting with our digital properties, you acknowledge and consent to receive notifications, project status updates, service advisories, and promotional communications from Webczar Solutions through various channels, including but not limited to email, mobile push notifications, SMS, RCS (Rich Communication Services), WhatsApp, or any other digital communication platforms.",
+        "We utilize these channels to deliver project proposal estimates, service alerts, milestone deliverables, technical advisories, and curated insights regarding modern software engineering, AI innovations, and digital growth strategies.",
+        "If you prefer not to receive promotional updates or marketing communications, you may opt out at any time by contacting us directly at info@webczarsolutions.com, replying 'STOP' to any SMS or RCS message, using the one-click unsubscribe link provided in our email broadcasts, or following the procedures outlined in our WhatsApp Communication Opt-Out Policy.",
+      ],
+      bullets: [
+        "Email Notifications: Service proposals, invoices, project milestones, and company updates (one-click unsubscribe available in all non-transactional emails).",
+        "SMS & RCS Messaging: Automated verification codes, urgent project alerts, and rich interactive announcements (reply 'STOP' at any time to immediately cancel).",
+        "WhatsApp Business: Real-time client collaboration, strategy consultations, and approved notifications in accordance with our WhatsApp Opt-In Policy.",
+        "Opt-Out Processing: Requests are processed within 24 to 48 hours across all marketing platforms without charge.",
+      ],
+    },
+    {
+      id: "data-sharing",
+      num: "07",
       title: "Data Sharing, Sub-Processors & Third-Party Disclosures",
       content: [
         "Webczar Solutions adheres to a strict non-monetization policy: We DO NOT sell, lease, trade, or monetize your personal or business data under any circumstances.",
@@ -379,7 +411,7 @@ export const PRIVACY_DATA: LegalDocument = {
     },
     {
       id: "international-transfers",
-      num: "07",
+      num: "08",
       title: "International & Cross-Border Data Transfers",
       content: [
         "Webczar Solutions serves clients across India, North America, Europe, the Middle East, and the Asia-Pacific region. Consequently, data may be transferred to and maintained on cloud servers situated outside your home country or jurisdiction.",
@@ -388,7 +420,7 @@ export const PRIVACY_DATA: LegalDocument = {
     },
     {
       id: "security-measures",
-      num: "08",
+      num: "09",
       title: "Information Security Protocols & Storage Architecture",
       content: [
         "We implement rigorous technical, operational, and organizational security measures to protect your data against unauthorized access, loss, alteration, or disclosure:",
@@ -407,7 +439,7 @@ export const PRIVACY_DATA: LegalDocument = {
     },
     {
       id: "retention-schedule",
-      num: "09",
+      num: "10",
       title: "Data Retention Schedule & Erasure Standards",
       content: [
         "We retain personal data only for as long as necessary to fulfill the commercial purposes for which it was gathered, satisfy legal obligations, or resolve commercial disputes.",
@@ -418,7 +450,7 @@ export const PRIVACY_DATA: LegalDocument = {
     },
     {
       id: "user-rights",
-      num: "10",
+      num: "11",
       title: "Your Data Protection Rights (GDPR, CCPA & Indian DPDPA)",
       content: [
         "Depending on your geographical location and applicable laws, you hold fundamental rights regarding your personal information:",
@@ -434,7 +466,7 @@ export const PRIVACY_DATA: LegalDocument = {
     },
     {
       id: "minors-policy",
-      num: "11",
+      num: "12",
       title: "Children's Privacy Protection",
       content: [
         "Our digital platforms, consulting services, and software solutions are strictly targeted at businesses, commercial enterprises, and adults aged 18 and older.",
@@ -443,7 +475,7 @@ export const PRIVACY_DATA: LegalDocument = {
     },
     {
       id: "policy-updates",
-      num: "12",
+      num: "13",
       title: "Policy Revisions & Transparency Updates",
       content: [
         "Webczar Solutions reserves the right to periodically update this Privacy Policy to reflect evolving industry practices, technology advancements, or regulatory modifications.",
@@ -453,7 +485,7 @@ export const PRIVACY_DATA: LegalDocument = {
     },
     {
       id: "grievance-contact",
-      num: "13",
+      num: "14",
       title: "Grievance Officer & Official Privacy Contact",
       content: [
         "In accordance with the Indian Information Technology Act, 2000 and the Digital Personal Data Protection Act, 2023, as well as global GDPR provisions, our designated Grievance & Data Protection Officer is:",

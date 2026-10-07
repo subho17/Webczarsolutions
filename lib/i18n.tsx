@@ -28,7 +28,7 @@ export const DICT: Record<string, Entry> = {
   "nav.home": { en: "Home", fr: "Accueil" },
   "nav.about": { en: "About", fr: "À propos" },
   "nav.services": { en: "Services", fr: "Services" },
-  "nav.extraServices": { en: "Extra Services", fr: "Services complémentaires" },
+  "nav.extraServices": { en: "Add-On Services", fr: "Services complémentaires" },
   "nav.work": { en: "Blog", fr: "Blog" },
   "nav.blog": { en: "Blog", fr: "Blog" },
   "nav.careers": { en: "Careers", fr: "Carrières" },
@@ -193,20 +193,20 @@ export const DICT: Record<string, Entry> = {
   "cert.verify": { en: "Explore Service ↗", fr: "Découvrir le service ↗" },
   "cert.foot": { en: "Add-On Services", fr: "Services complémentaires" },
 
-  /* ---------------- gallery — the people behind the work ---------------- */
-  "gallery.eyebrow": { en: "Our Team", fr: "Notre équipe" },
-  "gallery.h2a": { en: "The People Behind", fr: "Les personnes derrière" },
-  "gallery.h2Em": { en: "The Work.", fr: "Nos projets." },
+  /* ---------------- gallery — our workspace ---------------- */
+  "gallery.eyebrow": { en: "Our Workspace", fr: "Notre espace" },
+  "gallery.h2a": { en: "Where Innovation", fr: "Là où l'innovation" },
+  "gallery.h2Em": { en: "Happens.", fr: "Prend vie." },
   "gallery.lede": {
-    en: "Meet the passionate creators, engineers, and digital specialists driving innovation at Webczar Solutions.",
-    fr: "Rencontrez les créateurs, ingénieurs et spécialistes numériques passionnés qui stimulent l'innovation chez Webczar Solutions.",
+    en: "Explore the modern engineering hubs, collaborative breakout zones, and creative spaces where Webczar Solutions builds and scales digital products.",
+    fr: "Découvrez les hubs d'ingénierie modernes, les espaces de détente collaboratifs et les zones créatives où Webczar Solutions conçoit et développe des produits numériques.",
   },
   "gallery.alt": {
-    en: "Webczar Solutions team member",
-    fr: "Membre de l'équipe Webczar Solutions",
+    en: "Webczar Solutions office workspace",
+    fr: "Espace de travail Webczar Solutions",
   },
-  "gallery.frames": { en: "Team Members", fr: "Membres de l'équipe" },
-  "gallery.hint": { en: "Scroll to explore our team", fr: "Faites défiler pour explorer notre équipe" },
+  "gallery.frames": { en: "Office Views", fr: "Vues des bureaux" },
+  "gallery.hint": { en: "Scroll to explore our workspace", fr: "Faites défiler pour explorer notre espace" },
 
   /* ---------------- connect ---------------- */
   "connect.eyebrow": { en: "Get In Touch", fr: "Contactez-nous" },
