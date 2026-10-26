@@ -14,18 +14,90 @@ import Button from "@/components/ui/Button";
 import styles from "./Connect.module.css";
 import { useLang } from "@/lib/i18n";
 
-/* Subhadeep Chanda's photographs, in sequence (IMAGE 1–5).
-   `focus` is object-position only: the frames are portrait and two of the
-   photos are landscape, so this keeps him in frame — the images are cropped,
-   never scaled non-uniformly, and their colour is left untouched. */
-const PANELS = [
-  { src: "/images/team/team-1.jpg", focus: "center 15%", rotate: 20, z: -70, y: -16 },
-  { src: "/images/team/team-2.jpg", focus: "center 22%", rotate: 12, z: -30, y: -8 },
-  { src: "/images/team/team-3.jpg", focus: "center 20%", rotate: 4, z: -5, y: 0 },
-  { src: "/images/team/team-4.jpg", focus: "center 20%", rotate: -4, z: -5, y: 0 },
-  { src: "/images/team/team-5.jpg", focus: "44% 20%", rotate: -12, z: -30, y: -8 },
-  { src: "/images/team/team-6.jpg", focus: "center 22%", rotate: -20, z: -70, y: -16 },
+export interface TeamMember {
+  name: string;
+  role: string;
+  src: string;
+  focus?: string;
+  rotate?: number;
+  z?: number;
+  y?: number;
+}
+
+/* Webczar Solutions Core Leadership & Team Members.
+   `focus` controls the crop position within the portrait frame.
+   Angles and depth (rotate, z, y) can be custom or computed dynamically. */
+export const TEAM_MEMBERS: TeamMember[] = [
+  {
+    name: "Gurpreet Singh",
+    role: "Senior Consultant",
+    src: "/images/team/team-1.jpg",
+    focus: "center 15%",
+    rotate: 20,
+    z: -70,
+    y: -16,
+  },
+  {
+    name: "Priya Sharma",
+    role: "UI/UX & Creative Lead",
+    src: "/images/team/team-2.jpg",
+    focus: "center 22%",
+    rotate: 12,
+    z: -30,
+    y: -8,
+  },
+  {
+    name: "Subhadeep Chanda",
+    role: "Founder & Tech Director",
+    src: "/images/team/team-3.jpg",
+    focus: "center 20%",
+    rotate: 4,
+    z: -5,
+    y: 0,
+  },
+  {
+    name: "Ritu Verma",
+    role: "Operations & HR Lead",
+    src: "/images/team/team-4.jpg",
+    focus: "center 20%",
+    rotate: -4,
+    z: -5,
+    y: 0,
+  },
+  {
+    name: "Neha Gupta",
+    role: "Client Success Manager",
+    src: "/images/team/team-5.jpg",
+    focus: "44% 20%",
+    rotate: -12,
+    z: -30,
+    y: -8,
+  },
+  {
+    name: "Aman Sharma",
+    role: "Full-Stack Engineer",
+    src: "/images/team/team-6.jpg",
+    focus: "center 22%",
+    rotate: -20,
+    z: -70,
+    y: -16,
+  },
 ];
+
+/* Helper to compute symmetrical 3D arc perspective for any number of cards */
+function getPanelTransform(index: number, total: number, custom?: Partial<TeamMember>) {
+  if (custom?.rotate !== undefined && custom?.z !== undefined && custom?.y !== undefined) {
+    return { rotate: custom.rotate, z: custom.z, y: custom.y };
+  }
+  if (total <= 1) return { rotate: 0, z: 0, y: 0 };
+  const mid = (total - 1) / 2;
+  const norm = (index - mid) / (mid || 1);
+  return {
+    rotate: -Math.round(norm * 22),
+    z: -Math.round(Math.abs(norm) * 70),
+    y: -Math.round(Math.abs(norm) * 16),
+  };
+}
 
 /* Official brand marks, inlined so they inherit size and need no requests. */
 const MARKS: Record<string, ReactNode> = {
@@ -124,11 +196,14 @@ export default function Connect() {
 
       /* cursor: the whole arc leans, each panel adds its own micro-tilt */
       const panels = gsap.utils.toArray<HTMLElement>(`.${styles.panel}`);
-      const setters = panels.map((p, i) => ({
-        rx: gsap.quickTo(p, "rotationX", { duration: 0.9, ease: "power3.out" }),
-        add: gsap.quickTo(p, "rotationY", { duration: 0.9, ease: "power3.out" }),
-        base: PANELS[i].rotate,
-      }));
+      const setters = panels.map((p, i) => {
+        const trans = getPanelTransform(i, TEAM_MEMBERS.length, TEAM_MEMBERS[i]);
+        return {
+          rx: gsap.quickTo(p, "rotationX", { duration: 0.9, ease: "power3.out" }),
+          add: gsap.quickTo(p, "rotationY", { duration: 0.9, ease: "power3.out" }),
+          base: trans.rotate,
+        };
+      });
       const onMove = (e: PointerEvent) => {
         const r = el.getBoundingClientRect();
         const cx = ((e.clientX - r.left) / r.width - 0.5) * 2;
@@ -175,30 +250,37 @@ export default function Connect() {
       </div>
 
       {/* curved memory arc */}
-      <div className={styles.arc} aria-hidden="true">
-        {PANELS.map((p) => (
-          <div
-            className={styles.panel}
-            key={p.src}
-            style={
-              {
-                transform: `translate3d(0, ${p.y}px, ${p.z}px) rotateY(${p.rotate}deg)`,
-              } as React.CSSProperties
-            }
-          >
-            <div className={`${styles.panelInner} ${styles.hasPhoto}`}>
-              <img
-                className={styles.photo}
-                src={p.src}
-                alt=""
-                style={{ objectPosition: p.focus }}
-                loading="lazy"
-                decoding="async"
-                aria-hidden="true"
-              />
+      <div className={styles.arc} aria-label="Webczar Solutions Leadership & Team">
+        {TEAM_MEMBERS.map((p, i) => {
+          const trans = getPanelTransform(i, TEAM_MEMBERS.length, p);
+          return (
+            <div
+              className={styles.panel}
+              key={p.src + i}
+              style={
+                {
+                  transform: `translate3d(0, ${trans.y}px, ${trans.z}px) rotateY(${trans.rotate}deg)`,
+                } as React.CSSProperties
+              }
+            >
+              <div className={`${styles.panelInner} ${styles.hasPhoto}`}>
+                <img
+                  className={styles.photo}
+                  src={p.src}
+                  alt={p.name}
+                  style={{ objectPosition: p.focus || "center 20%" }}
+                  loading="lazy"
+                  decoding="async"
+                />
+                <div className={styles.panelScrim} aria-hidden="true" />
+                <div className={styles.memberMeta}>
+                  <span className={styles.memberName}>{p.name}</span>
+                  <span className={styles.memberRole}>{p.role}</span>
+                </div>
+              </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
 
       {/* social cards */}

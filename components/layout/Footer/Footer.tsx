@@ -324,6 +324,10 @@ export default function Footer() {
           <Link href="/careers" className={styles.legalLink}>
             Careers
           </Link>
+          <span className={styles.divider}>·</span>
+          <Link href="/admin" className={styles.legalLink} title="Blog Admin Panel">
+            Admin
+          </Link>
         </div>
       </div>
     </footer>

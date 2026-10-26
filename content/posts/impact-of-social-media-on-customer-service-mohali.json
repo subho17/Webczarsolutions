@@ -1,0 +1,81 @@
+{
+  "order": 3,
+  "slug": "impact-of-social-media-on-customer-service-mohali",
+  "title": "The Impact of Social Media on Customer Service — Best Social Media Marketing Agency in Mohali",
+  "tags": [
+    "Social Media",
+    "Customer Service",
+    "Reputation",
+    "SMM"
+  ],
+  "year": "2026",
+  "oneLiner": "Why modern customers turn to social platforms for instant support, and how Webczar Solutions transforms social channels into brand loyalty engines.",
+  "contribution": "Social customer service playbooks, proactive engagement strategies, and brand reputation management from Mohali's best SMM agency.",
+  "coverLabel": "SOCIAL MEDIA MARKETING",
+  "cover": {
+    "bg": "#FF2E0F",
+    "ink": "light",
+    "src": "/images/blog/social-media.jpg",
+    "variant": "photo",
+    "mark": "SM"
+  },
+  "study": {
+    "role": "Social Media & Community Experience",
+    "timeline": "4 min read · 2026",
+    "context": "Social media is no longer just a broadcast channel for promotional posters; it is the front line of modern customer care. In Mohali and beyond, consumers expect real-time resolution on Instagram, WhatsApp, X (Twitter), and LinkedIn. Webczar Solutions designs social customer care workflows that turn frustrated prospects into brand evangelists.",
+    "problem": "Slow response times, impersonal automated replies, and ignored public complaints on social media silently destroy brand credibility and drive customers directly to competitors.",
+    "process": [
+      {
+        "title": "Omnichannel Social Listening",
+        "body": "Deploying 24/7 monitoring tools to catch brand mentions, queries, and sentiment shifts in real time across platforms."
+      },
+      {
+        "title": "Rapid-Response Protocols",
+        "body": "Establishing clear escalation workflows that guarantee sub-15-minute response times for critical customer inquiries."
+      },
+      {
+        "title": "Human-First Tone & Empathy",
+        "body": "Crafting communication playbooks that empower support agents to resolve issues with warmth, speed, and genuine ownership."
+      },
+      {
+        "title": "Closing the Feedback Loop",
+        "body": "Turning recurring customer questions and concerns into educational social posts, FAQs, and product improvements."
+      }
+    ],
+    "decisions": [
+      {
+        "title": "Public acknowledgment, private resolution",
+        "why": "Quickly acknowledging complaints publicly demonstrates transparency and reliability, while resolving account specifics securely in direct messages."
+      },
+      {
+        "title": "Integrating social support with central CRM",
+        "why": "Connecting Instagram and WhatsApp inquiries directly into ticketing systems ensures seamless customer context across team handoffs."
+      }
+    ],
+    "outcomes": [
+      "90% faster customer response time across active social platforms",
+      "40% increase in positive brand sentiment and public customer reviews",
+      "Recognized as the best social media marketing agency in Mohali"
+    ],
+    "reflection": "Great customer service is the most effective social media marketing a business can possibly run.",
+    "note": "Webczar Solutions empowers brands with comprehensive social media marketing and customer engagement solutions."
+  },
+  "fr": {
+    "title": "L'impact des réseaux sociaux sur le service client — Meilleure agence de marketing des réseaux sociaux à Mohali",
+    "oneLiner": "Pourquoi les clients se tournent vers les réseaux sociaux pour obtenir une assistance immédiate et comment en faire un atout de fidélisation.",
+    "contribution": "Gestion de réputation, protocoles d'assistance sur les réseaux sociaux et engagement communautaire proactif.",
+    "tags": [
+      "Réseaux Sociaux",
+      "Service Client",
+      "E-Réputation",
+      "SMM"
+    ],
+    "study": {
+      "role": "Réseaux Sociaux & Expérience Client",
+      "timeline": "Lecture 4 min · 2026",
+      "context": "Les réseaux sociaux sont devenus le premier point de contact pour le support client moderne.",
+      "problem": "Des réponses lentes ou robotisées nuisent gravement à l'image de marque et incitent les clients à partir chez la concurrence.",
+      "reflection": "Un service client exemplaire sur les réseaux sociaux constitue la meilleure publicité pour une entreprise."
+    }
+  }
+}

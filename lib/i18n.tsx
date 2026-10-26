@@ -34,6 +34,9 @@ export const DICT: Record<string, Entry> = {
   "nav.blog": { en: "Blog", fr: "Blog" },
   "nav.careers": { en: "Careers", fr: "Carrières" },
   "nav.contact": { en: "Contact", fr: "Contact" },
+  "nav.login": { en: "Portal Login", fr: "Portail Connexion" },
+  "nav.portalLogin": { en: "Portal Login", fr: "Portail Connexion" },
+  "nav.loginPortals": { en: "Client Portals", fr: "Portails clients" },
   "nav.menu": { en: "Open menu", fr: "Ouvrir le menu" },
   "nav.close": { en: "Close menu", fr: "Fermer le menu" },
 
@@ -231,6 +234,7 @@ export const DICT: Record<string, Entry> = {
   "case.repo": { en: "Source", fr: "Code source" },
   "case.cover": { en: "COVER", fr: "VISUEL" },
   "case.context": { en: "Overview", fr: "Aperçu" },
+  "case.body": { en: "Full Article", fr: "Article complet" },
   "case.problem": { en: "The Challenge", fr: "Le défi" },
   "case.process": { en: "Insights & Deep Dive", fr: "Analyses & Approfondissement" },
   "case.decisions": { en: "Key Decisions & Strategy", fr: "Décisions clés & Stratégie" },

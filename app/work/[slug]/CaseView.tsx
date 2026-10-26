@@ -11,6 +11,7 @@
 import Link from "next/link";
 import { PROJECTS } from "@/content/projects";
 import { useLang, L } from "@/lib/i18n";
+import { renderMarkdown } from "@/lib/markdown";
 import styles from "./case.module.css";
 
 export default function CaseView({ slug }: { slug: string }) {
@@ -133,6 +134,17 @@ export default function CaseView({ slug }: { slug: string }) {
             </div>
           )}
         </header>
+
+        {/* ---- long-form body (Markdown, optional) ---- */}
+        {study.body && (
+          <section className={styles.section}>
+            <p className={styles.secLabel}>{t("case.body")}</p>
+            <div
+              className={styles.markdown}
+              dangerouslySetInnerHTML={{ __html: renderMarkdown(study.body) }}
+            />
+          </section>
+        )}
 
         {/* ---- context ---- */}
         <section className={styles.section}>

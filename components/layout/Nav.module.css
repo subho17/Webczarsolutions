@@ -13,28 +13,25 @@
   transition: opacity 0.5s ease, transform 0.7s var(--ease-out-expo);
 }
 
-/* CORRECTION 01 — the header is now present from the very first viewport,
-   including over the opening tunnel. It is never hidden or duplicated. */
-
 .cap {
   pointer-events: auto;
   display: flex;
   align-items: center;
-  gap: 24px;
-  width: min(940px, 100%);
-  background: rgba(255, 255, 255, 0.82);
+  gap: 18px;
+  width: min(1080px, 100%);
+  background: rgba(255, 255, 255, 0.84);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid var(--line);
   border-radius: 999px;
   padding: 12px 14px 12px 24px;
   box-shadow: 0 10px 34px -10px rgba(20, 20, 20, 0.08);
-  transition: box-shadow 0.35s ease, padding 0.35s ease, background 0.35s ease;
+  transition: box-shadow 0.35s ease, padding 0.35s ease, background 0.35s ease, width 0.35s ease;
 }
 .scrolled .cap {
   padding-top: 10px;
   padding-bottom: 10px;
-  background: rgba(255, 255, 255, 0.94);
+  background: rgba(255, 255, 255, 0.95);
   box-shadow: 0 16px 44px -12px rgba(20, 20, 20, 0.14);
 }
 
@@ -46,12 +43,11 @@
   transition: letter-spacing 0.35s cubic-bezier(0.33, 1, 0.68, 1);
   display: flex;
   align-items: center;
+  flex-shrink: 0;
 }
 .logo:hover {
   letter-spacing: 0.01em;
 }
-/* the red period is the brand mark — it does the PillNav logo-spin's job:
-   a small, springy acknowledgement on hover */
 .logo i {
   font-style: normal;
   color: var(--accent);
@@ -72,7 +68,9 @@
   color: var(--ink-2);
 }
 /* pill links — same interaction standard as Button: circle fill + label roll */
-.links a {
+.navLink,
+.links > a,
+.linkBtn {
   position: relative;
   padding: 7px 13px;
   border-radius: 999px;
@@ -81,13 +79,13 @@
   transition: color 0.3s ease, background 0.2s ease;
   white-space: nowrap;
 }
-.links a::before {
+.navLink::before,
+.links > a::before,
+.linkBtn::before {
   content: "";
   position: absolute;
   left: 50%;
   top: 100%;
-  /* geometry and timing matched to the Connect social buttons, so the
-     header speaks exactly the same interaction language */
   width: 240%;
   aspect-ratio: 1;
   border-radius: 50%;
@@ -96,12 +94,18 @@
   transition: transform 0.5s cubic-bezier(0.33, 1, 0.68, 1);
   z-index: -1;
 }
-.links a:hover::before,
-.links a:focus-visible::before {
+.navLink:hover::before,
+.navLink:focus-visible::before,
+.links > a:hover::before,
+.links > a:focus-visible::before,
+.linkBtn:hover::before,
+.linkBtn:focus-visible::before {
   transform: translate(-50%, -50%) scale(1);
 }
 /* the current section stays a quiet weight change and subtle background */
-.links a.on {
+.navLink.on,
+.links > a.on,
+.linkBtn.on {
   color: var(--ink);
   font-weight: 700;
   background: rgba(20, 20, 20, 0.06);
@@ -116,22 +120,624 @@
   display: block;
   transition: transform 0.4s cubic-bezier(0.33, 1, 0.68, 1);
 }
-.links a:hover .roll span,
-.links a:focus-visible .roll span {
+.navLink:hover .roll span,
+.navLink:focus-visible .roll span,
+.links > a:hover .roll span,
+.links > a:focus-visible .roll span,
+.loginTrigger:hover .roll span,
+.servicesTrigger:hover .roll span {
   transform: translateY(-100%);
 }
 .roll span:last-child {
   color: #fff;
 }
-/* Touch devices never fire :hover, so the fill is driven by the tap itself
-   instead of being switched off — same animation, same timing. */
 @media (hover: none) {
-  .links a:active::before {
+  .navLink:active::before,
+  .links > a:active::before,
+  .linkBtn:active::before {
     transform: translate(-50%, -50%) scale(1);
   }
-  .links a:active .roll span {
+  .navLink:active .roll span,
+  .links > a:active .roll span,
+  .linkBtn:active .roll span {
     transform: translateY(-100%);
   }
+}
+
+/* Ensure nested dropdown links never inherit the pill ::before pseudo-element */
+.subItem::before,
+.portalCard::before,
+.allServicesLink::before,
+.supportLink::before {
+  display: none !important;
+  content: none !important;
+  transform: none !important;
+}
+
+
+/* ============ SERVICES DROPDOWN FLYOUT ============ */
+.servicesDropdownWrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.servicesTrigger {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 7px 13px;
+  border-radius: 999px;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--ink-2);
+  background: transparent;
+  cursor: pointer;
+  transition: color 0.25s ease, background 0.25s ease;
+  white-space: nowrap;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.servicesTrigger::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  width: 240%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--ink);
+  transform: translate(-50%, 0) scale(0);
+  transition: transform 0.5s cubic-bezier(0.33, 1, 0.68, 1);
+  z-index: -1;
+}
+
+.servicesTrigger:hover::before,
+.servicesTrigger:focus-visible::before {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.servicesTrigger:hover,
+.servicesTriggerActive {
+  color: var(--ink);
+}
+
+.servicesTriggerActive {
+  background: rgba(20, 20, 20, 0.08);
+  font-weight: 700;
+}
+
+.servicesTrigger:hover .chevron,
+.loginTrigger:hover .chevron {
+  stroke: #fff;
+}
+
+.servicesDropdownMenu {
+  position: absolute;
+  top: calc(100% + 14px);
+  left: 50%;
+  transform: translateX(-40%) translateY(-8px) scale(0.98);
+  transform-origin: top center;
+  width: 640px;
+  background: rgba(255, 255, 255, 0.97);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(20, 20, 20, 0.09);
+  border-radius: 20px;
+  box-shadow: 0 28px 65px -14px rgba(20, 20, 20, 0.18), 0 8px 24px rgba(0, 0, 0, 0.05);
+  display: flex;
+  overflow: hidden;
+  z-index: 100;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              visibility 0.25s ease;
+}
+
+/* Invisible bridge so mouse hovering from trigger into menu doesn't lose hover */
+.servicesDropdownMenu::before {
+  content: "";
+  position: absolute;
+  top: -14px;
+  left: 0;
+  right: 0;
+  height: 14px;
+}
+
+.servicesDropdownMenuOpen {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateX(-40%) translateY(0) scale(1);
+}
+
+/* Left Column: Primary Services / Verticals */
+.servicesLeftCol {
+  width: 250px;
+  background: rgba(20, 20, 20, 0.025);
+  border-right: 1px solid var(--line);
+  padding: 14px 10px;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+
+.leftColHeading {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--ink-3);
+  padding: 2px 10px 10px 10px;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 8px;
+}
+
+.groupList {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  flex: 1;
+}
+
+.groupItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  border-radius: 10px;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--ink-2);
+  background: transparent;
+  border: none;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.groupItem:hover,
+.groupItemActive {
+  background: rgba(13, 148, 136, 0.08);
+  color: #0d9488;
+  font-weight: 700;
+}
+
+.groupArrow {
+  font-size: 12px;
+  color: #0d9488;
+  transition: transform 0.2s ease;
+}
+
+.groupItem:hover .groupArrow {
+  transform: translateX(3px);
+}
+
+.allServicesLink {
+  margin-top: 10px;
+  padding: 10px 12px;
+  border-top: 1px solid var(--line);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.allServicesLink:hover {
+  color: var(--accent-dark);
+  text-decoration: underline;
+}
+
+/* Right Column: Submenu Verticals & Services */
+.servicesRightCol {
+  flex: 1;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  max-height: 440px;
+  overflow-y: auto !important;
+  overscroll-behavior: contain !important;
+  scrollbar-width: thin !important;
+  scrollbar-color: rgba(20, 20, 20, 0.28) rgba(20, 20, 20, 0.04) !important;
+}
+
+.servicesRightCol::-webkit-scrollbar {
+  display: block !important;
+  width: 6px !important;
+}
+
+.servicesRightCol::-webkit-scrollbar-track {
+  background: rgba(20, 20, 20, 0.04) !important;
+  border-radius: 999px !important;
+  margin: 4px 0 !important;
+}
+
+.servicesRightCol::-webkit-scrollbar-thumb {
+  background: rgba(20, 20, 20, 0.25) !important;
+  border-radius: 999px !important;
+  transition: background 0.2s ease !important;
+}
+
+.servicesRightCol::-webkit-scrollbar-thumb:hover {
+  background: #0d9488 !important;
+}
+
+.rightHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--ink-3);
+  padding: 2px 6px 10px 6px;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 8px;
+}
+
+.countBadge {
+  font-size: 11px;
+  font-weight: 700;
+  background: var(--ph);
+  color: var(--ink-3);
+  padding: 2px 7px;
+  border-radius: 999px;
+}
+
+.subGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.subItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 9px 12px;
+  border-radius: 12px;
+  text-decoration: none;
+  background: transparent !important;
+  border: 1px solid transparent;
+  transition: background 0.18s ease, border-color 0.18s ease, transform 0.18s ease;
+  position: relative;
+  cursor: pointer;
+}
+
+.subItem:hover {
+  background: rgba(13, 148, 136, 0.08) !important;
+  border-color: rgba(13, 148, 136, 0.16) !important;
+  transform: translateX(4px);
+}
+
+.subItemLeft {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.subItemName {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.3;
+  transition: color 0.18s ease;
+}
+
+.subItem:hover .subItemName {
+  color: #0f766e !important;
+}
+
+.subItemDesc {
+  font-size: 11px;
+  color: var(--ink-3);
+  line-height: 1.35;
+  margin-top: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: color 0.18s ease;
+}
+
+.subItem:hover .subItemDesc {
+  color: #334155 !important;
+}
+
+.subItemArrow {
+  font-size: 13px;
+  color: var(--ink-3);
+  opacity: 0.35;
+  transition: all 0.2s ease;
+  margin-left: 8px;
+  flex-shrink: 0;
+}
+
+.subItem:hover .subItemArrow {
+  opacity: 1;
+  color: #0d9488 !important;
+  transform: translateX(3px);
+}
+
+/* ============ DROPDOWN MENU (PORTAL LOGIN) ============ */
+.dropdownWrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.loginTrigger {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 7px 13px;
+  border-radius: 999px;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--ink-2);
+  background: transparent;
+  cursor: pointer;
+  transition: color 0.25s ease, background 0.25s ease;
+  white-space: nowrap;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.loginTrigger::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  width: 240%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--ink);
+  transform: translate(-50%, 0) scale(0);
+  transition: transform 0.5s cubic-bezier(0.33, 1, 0.68, 1);
+  z-index: -1;
+}
+
+.loginTrigger:hover::before,
+.loginTrigger:focus-visible::before {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.loginTrigger:hover,
+.loginTriggerActive {
+  color: var(--ink);
+}
+
+.loginTriggerActive {
+  background: rgba(20, 20, 20, 0.08);
+  font-weight: 700;
+}
+
+.chevron {
+  transition: transform 0.3s cubic-bezier(0.33, 1, 0.68, 1), stroke 0.25s ease;
+  display: inline-block;
+  margin-top: 1px;
+}
+
+.chevronOpen {
+  transform: rotate(180deg);
+}
+
+.dropdownMenu {
+  position: absolute;
+  top: calc(100% + 14px);
+  right: 0;
+  width: 530px;
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(20, 20, 20, 0.09);
+  border-radius: 20px;
+  box-shadow: 0 24px 60px -12px rgba(20, 20, 20, 0.16), 0 8px 24px rgba(0, 0, 0, 0.05);
+  padding: 16px;
+  z-index: 100;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(-8px) scale(0.98);
+  transform-origin: top right;
+  transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              visibility 0.25s ease;
+}
+
+/* Invisible bridge */
+.dropdownMenu::before {
+  content: "";
+  position: absolute;
+  top: -14px;
+  left: 0;
+  right: 0;
+  height: 14px;
+}
+
+.dropdownMenuOpen {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
+}
+
+.dropdownHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2px 6px 12px 6px;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 12px;
+}
+
+.headerTitle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.pulseDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.6);
+  animation: pulseDotAnim 2s infinite cubic-bezier(0.4, 0, 0.6, 1);
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+@keyframes pulseDotAnim {
+  0% {
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.6);
+  }
+  70% {
+    box-shadow: 0 0 0 6px rgba(16, 185, 129, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+  }
+}
+
+.headerBadge {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--ink-3);
+  background: var(--ph);
+  padding: 3px 8px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 6px;
+}
+
+.portalCard {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 11px;
+  border-radius: 12px;
+  background: transparent !important;
+  border: 1px solid transparent;
+  text-decoration: none;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+  position: relative;
+  cursor: pointer;
+}
+
+.portalCard:hover {
+  background: rgba(255, 46, 15, 0.05) !important;
+  border-color: rgba(255, 46, 15, 0.15) !important;
+  transform: translateY(-1px);
+}
+
+.iconBox {
+  width: 34px;
+  height: 34px;
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: transform 0.25s cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+.portalCard:hover .iconBox {
+  transform: scale(1.08);
+}
+
+.portalInfo {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  flex: 1;
+}
+
+.portalTitle {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  line-height: 1.3;
+  transition: color 0.18s ease;
+}
+
+.portalCard:hover .portalTitle {
+  color: var(--accent) !important;
+}
+
+.portalDesc {
+  font-size: 11px;
+  color: var(--ink-3);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.3;
+  margin-top: 1px;
+  transition: color 0.18s ease;
+}
+
+.portalCard:hover .portalDesc {
+  color: #334155 !important;
+}
+
+.arrowIcon {
+  opacity: 0.35;
+  transition: opacity 0.2s ease, transform 0.2s ease, color 0.2s ease;
+  font-size: 12px;
+  color: var(--ink);
+}
+
+.portalCard:hover .arrowIcon {
+  opacity: 1;
+  transform: translate(2px, -2px);
+  color: var(--accent) !important;
+}
+
+.dropdownFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10px;
+  padding: 10px 6px 2px 6px;
+  border-top: 1px solid var(--line);
+  font-size: 12px;
+  color: var(--ink-3);
+}
+
+.supportLink {
+  color: var(--accent);
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+.supportLink:hover {
+  color: var(--accent-dark);
+  text-decoration: underline;
 }
 
 /* --- right cluster --- */
@@ -140,15 +746,11 @@
   align-items: center;
   gap: 14px;
 }
-/* ============ MOBILE NAVIGATION ============
-   The pill can't carry four links plus the toggle at phone widths, so below
-   900px the links move into a drawer behind a menu button. Previously they
-   were simply `display: none` — the header had no navigation at all. */
 
+/* ============ MOBILE NAVIGATION ============ */
 .burger {
   display: none;
   position: relative;
-  /* 44px: the minimum comfortable touch target */
   width: 44px;
   height: 44px;
   border-radius: 999px;
@@ -198,6 +800,19 @@
   transform: translateY(-10px) scale(0.985);
   transform-origin: 50% 0;
   transition: opacity 0.32s ease, transform 0.42s var(--ease-out-expo);
+  max-height: calc(100vh - 120px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(20, 20, 20, 0.25) transparent;
+}
+.sheet::-webkit-scrollbar {
+  display: block !important;
+  width: 5px !important;
+}
+.sheet::-webkit-scrollbar-thumb {
+  background: rgba(20, 20, 20, 0.25) !important;
+  border-radius: 999px !important;
 }
 .sheetOpen {
   opacity: 1;
@@ -207,25 +822,229 @@
   display: flex;
   flex-direction: column;
 }
-.sheet a {
-  /* a generous touch target — 52px, comfortably over the 44px minimum */
+.sheet > nav > a {
   display: flex;
   align-items: center;
-  min-height: 52px;
+  min-height: 48px;
   padding: 0 18px;
   border-radius: 14px;
-  font-size: 16px;
+  font-size: 15.5px;
   font-weight: 700;
   color: var(--ink-2);
   transition: background 0.25s ease, color 0.25s ease;
 }
-.sheet a:active {
+.sheet > nav > a:active {
   background: var(--ink);
   color: #fff;
 }
 .sheetOn {
   color: var(--ink);
   background: rgba(20, 20, 20, 0.05);
+}
+
+/* Mobile Services Accordion */
+.mobileServicesSection {
+  margin: 4px 0;
+  border-radius: 14px;
+  background: rgba(20, 20, 20, 0.02);
+  border: 1px solid var(--line);
+  overflow: hidden;
+}
+
+.mobileServicesTrigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  min-height: 48px;
+  padding: 0 18px;
+  font-size: 15.5px;
+  font-weight: 700;
+  color: var(--ink-2);
+  background: transparent;
+  cursor: pointer;
+}
+
+.mobileServicesContent {
+  padding: 4px 10px 10px 10px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.mobileAllLink {
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  color: var(--accent) !important;
+  min-height: 38px !important;
+  padding: 0 12px !important;
+}
+
+.mobileGroupBlock {
+  border-radius: 10px;
+  background: #fff;
+  border: 1px solid rgba(20, 20, 20, 0.06);
+  overflow: hidden;
+}
+
+.mobileGroupHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px 14px;
+  background: transparent;
+  cursor: pointer;
+  text-align: left;
+}
+
+.mobileGroupName {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.mobileGroupCount {
+  font-size: 11px;
+  font-weight: 700;
+  background: var(--ph);
+  color: var(--ink-3);
+  padding: 2px 7px;
+  border-radius: 999px;
+}
+
+.mobileSubList {
+  padding: 6px 12px 10px 12px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.mobileSubLink {
+  min-height: 42px !important;
+  padding: 8px 12px !important;
+  border-radius: 8px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  justify-content: center !important;
+  background: transparent !important;
+  transition: background 0.18s ease !important;
+}
+
+.mobileSubLink:hover,
+.mobileSubLink:active {
+  background: rgba(13, 148, 136, 0.08) !important;
+}
+
+.mobileSubLink:hover .mobileSubName,
+.mobileSubLink:active .mobileSubName {
+  color: #0f766e !important;
+}
+
+.mobileSubName {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ink);
+  transition: color 0.18s ease;
+}
+
+.mobileSubDesc {
+  font-size: 11px;
+  color: var(--ink-3);
+  font-weight: 400;
+  margin-top: 1px;
+}
+
+/* Mobile Portal Login Section */
+.mobileLoginSection {
+  margin-top: 8px;
+  border-top: 1px solid var(--line);
+  padding-top: 8px;
+}
+
+.mobileLoginTrigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  min-height: 48px;
+  padding: 0 16px;
+  border-radius: 14px;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--ink);
+  background: rgba(20, 20, 20, 0.03);
+  border: 1px solid var(--line);
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.mobileLoginTrigger:hover {
+  background: rgba(20, 20, 20, 0.06);
+}
+
+.mobileLoginTriggerLeft {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.mobileCountBadge {
+  font-size: 11px;
+  font-weight: 700;
+  background: var(--ink);
+  color: #fff;
+  padding: 1px 7px;
+  border-radius: 999px;
+  margin-left: 2px;
+}
+
+.mobileGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 6px;
+  padding: 8px 2px 4px 2px;
+  max-height: 280px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(20, 20, 20, 0.25) transparent;
+}
+
+.mobileGrid::-webkit-scrollbar {
+  display: block !important;
+  width: 5px !important;
+}
+
+.mobileGrid::-webkit-scrollbar-thumb {
+  background: rgba(20, 20, 20, 0.25) !important;
+  border-radius: 999px !important;
+}
+
+.mobilePortalCard {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: #fff;
+  border: 1px solid var(--line);
+  text-decoration: none;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.mobilePortalCard:hover,
+.mobilePortalCard:active {
+  background: rgba(255, 46, 15, 0.05) !important;
+  border-color: rgba(255, 46, 15, 0.15) !important;
+}
+
+.mobilePortalCard:hover .portalTitle,
+.mobilePortalCard:active .portalTitle {
+  color: var(--accent) !important;
 }
 
 /* tap-anywhere-to-close, behind the drawer */
@@ -243,6 +1062,32 @@
 .scrimOn {
   opacity: 1;
   pointer-events: auto;
+}
+
+@media (max-width: 1140px) and (min-width: 901px) {
+  .cap {
+    gap: 8px;
+    padding: 10px 12px 10px 16px;
+  }
+  .links {
+    gap: 2px;
+    font-size: 12.5px;
+  }
+  .navLink,
+  .links > a,
+  .loginTrigger,
+  .servicesTrigger {
+    padding: 6px 8px;
+  }
+  .servicesDropdownMenu {
+    width: 580px;
+  }
+  .servicesLeftCol {
+    width: 220px;
+  }
+  .dropdownMenu {
+    width: 480px;
+  }
 }
 
 @media (max-width: 900px) {
