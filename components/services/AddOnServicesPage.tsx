@@ -143,7 +143,7 @@ export default function AddOnServicesPage() {
                   <input
                     type="text"
                     required
-                    placeholder="Subhadeep Chanda"
+                    placeholder="Your Name"
                     value={formName}
                     onChange={(e) => setFormName(e.target.value)}
                     className={styles.formInput}

@@ -483,7 +483,7 @@ export default function TunnelIntro({ text = "WEBCZAR" }: { text?: string }) {
         ) : (
           <span className={styles.fallback}>{text}</span>
         )}
-        <h1 className={styles.srOnly}>Subhadeep Chanda — Webczar Solutions</h1>
+        <h1 className={styles.srOnly}>Webczar Solutions — Technology &amp; Digital Solutions</h1>
 
         <p className={styles.hint} aria-hidden="true">
           {t("intro.scroll")}

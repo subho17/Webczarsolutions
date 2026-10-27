@@ -322,7 +322,7 @@ export default function Nav() {
           <img
             src="/images/Screenshot_2026-09-16_125328-removebg-preview.png"
             alt="Webczar Solutions"
-            style={{ width: "135px", height: "auto", display: "block" }}
+            style={{ width: "124px", height: "auto", display: "block" }}
           />
         </Link>
 

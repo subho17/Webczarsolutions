@@ -1,6 +1,6 @@
-# Subhadeep Chanda — Webczar Solutions
+# Gagan Kalra — Webczar Solutions
 
-Official portfolio and website of **Subhadeep Chanda**, Founder & Technology Director at Webczar Solutions. A single-page cinematic experience: full-screen scenes stacked on top of each other, each one rising over the last as you scroll, with scroll-driven set pieces inside them.
+Official portfolio and website of **Gagan Kalra**, Founder & Technology Director at Webczar Solutions. A single-page cinematic experience: full-screen scenes stacked on top of each other, each one rising over the last as you scroll, with scroll-driven set pieces inside them.
 
 **Website:** [webczarsolutions.com](https://www.webczarsolutions.com) ·
 **Profiles:** [LinkedIn](https://www.linkedin.com/company/webczar-solutions) ·

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Instrument_Serif, Caveat } from "next/font/google";
 import SmoothScroll from "@/components/layout/SmoothScroll";
 import { LanguageProvider } from "@/lib/i18n";
-import { SITE_URL, PERSON } from "@/lib/site";
+import { SITE_URL, COMPANY } from "@/lib/site";
 import "./globals.css";
 
 const inter = Inter({
@@ -24,17 +24,17 @@ const caveat = Caveat({
 });
 
 const DESCRIPTION =
-  "Subhadeep Chanda — Technology & Digital Solutions. Web development, AI systems, cloud architecture, and modern digital transformation with Webczar Solutions.";
+  "Webczar Solutions — Premier technology and digital solutions company specializing in custom software development, cloud systems, and performance marketing in Chandigarh, Mohali & Panchkula.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Subhadeep Chanda — Webczar Solutions",
-    template: "%s",
+    default: "Webczar Solutions — Technology & Digital Solutions",
+    template: "%s | Webczar Solutions",
   },
   description: DESCRIPTION,
   openGraph: {
-    title: "Subhadeep Chanda — Webczar Solutions",
+    title: "Webczar Solutions — Technology & Digital Solutions",
     description: DESCRIPTION,
     url: SITE_URL,
     siteName: "Webczar Solutions",
@@ -43,20 +43,22 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Subhadeep Chanda — Webczar Solutions",
+    title: "Webczar Solutions — Technology & Digital Solutions",
     description: DESCRIPTION,
   },
 };
 
-const personJsonLd = {
+const orgJsonLd = {
   "@context": "https://schema.org",
-  "@type": "Person",
-  name: PERSON.name,
-  jobTitle: PERSON.jobTitle,
-  email: `mailto:${PERSON.email}`,
-  address: { "@type": "PostalAddress", addressCountry: "IN" },
+  "@type": "Organization",
+  name: COMPANY.name,
   url: SITE_URL,
-  ...(PERSON.sameAs.length ? { sameAs: PERSON.sameAs } : {}),
+  logo: `${SITE_URL}/images/Screenshot_2026-09-16_125328-removebg-preview.png`,
+  email: `mailto:${COMPANY.email}`,
+  telephone: COMPANY.phone,
+  address: { "@type": "PostalAddress", addressCountry: "IN" },
+  description: COMPANY.description,
+  sameAs: COMPANY.sameAs,
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
@@ -71,7 +73,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         </LanguageProvider>
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd) }}
         />
       </body>
     </html>

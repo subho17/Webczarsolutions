@@ -17,7 +17,7 @@ const MARQUEE_ROWS = [
       "Product Strategy",
       "UI/UX Architecture",
     ],
-    velocity: 32,
+    velocity: -80,
   },
   {
     items: [
@@ -28,7 +28,7 @@ const MARQUEE_ROWS = [
       "Design Engineering",
       "Motion Design",
     ],
-    velocity: 32,
+    velocity: 80,
   },
 ];
 

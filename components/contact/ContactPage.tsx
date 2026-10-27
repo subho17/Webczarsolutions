@@ -9,11 +9,13 @@ import styles from "./ContactPage.module.css";
 
 const SERVICES = [
   "Custom Web & Next.js Apps",
+  "Branding / Designing",
   "AI & LLM Automations",
   "Performance SEO & PPC",
   "UI/UX & Brand Experience",
   "Enterprise Cloud & APIs",
   "Bulk SMS & RCS Messaging",
+  "Other / Custom Service",
 ];
 
 const BUDGETS = [
@@ -51,6 +53,7 @@ export default function ContactPage() {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [company, setCompany] = useState("");
+  const [customService, setCustomService] = useState("");
   const [message, setMessage] = useState("");
   const [agreed, setAgreed] = useState(false);
   const [submitting, setSubmitting] = useState(false);
@@ -80,7 +83,9 @@ export default function ContactPage() {
     setEmail("");
     setPhone("");
     setCompany("");
+    setCustomService("");
     setMessage("");
+    setSelectedServices(["Custom Web & Next.js Apps"]);
     setSubmitted(false);
   };
 
@@ -126,54 +131,34 @@ export default function ContactPage() {
                   <div className={styles.methodContent}>
                     <b>Call or WhatsApp</b>
                     <a href="tel:9988221729">+91 99882 21729</a>
-                    <p className={styles.methodSub}>Mon – Sat, 9:00 AM – 7:00 PM IST</p>
+                    <p className={styles.methodSub}>24 x 7 (Monday to Sunday)</p>
                   </div>
                 </div>
 
                 <div className={styles.methodItem}>
                   <div className={styles.methodIcon}>📍</div>
                   <div className={styles.methodContent}>
-                    <b>Tricity Tech Headquarters</b>
-                    <span>Chandigarh · Mohali · Panchkula · Zirakpur, India</span>
+                    <b>Offices &amp; Locations</b>
+                    <span>(Tricity), Ambala, Karnal, IND, UK, CA, AUS</span>
                     <p className={styles.methodSub}>Global delivery across 15+ countries</p>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Trust & Guarantee Card */}
-            <div className={styles.trustCard}>
-              <ul className={styles.trustList}>
-                <li className={styles.trustItem}>
-                  <span className={styles.trustCheck}>✓</span>
-                  <span>4-Hour Business Response Guarantee</span>
-                </li>
-                <li className={styles.trustItem}>
-                  <span className={styles.trustCheck}>✓</span>
-                  <span>Mutual NDA Signed Prior to Deep Dives</span>
-                </li>
-                <li className={styles.trustItem}>
-                  <span className={styles.trustCheck}>✓</span>
-                  <span>100% Client Codebase &amp; IP Ownership</span>
-                </li>
-                <li className={styles.trustItem}>
-                  <span className={styles.trustCheck}>✓</span>
-                  <span>30-Day Post-Launch Stabilization Warranty</span>
-                </li>
-              </ul>
-            </div>
+
 
             {/* Founder Consultation Note */}
             <div className={styles.founderCard}>
               <Image
                 src="/images/founder.jpg"
-                alt="Subhadeep Chanda"
+                alt="Gagan Kalra"
                 width={52}
                 height={52}
                 className={styles.founderAvatar}
               />
               <div className={styles.founderDetails}>
-                <b>Gagan kalra </b>
+                <b>Gagan Kalra</b>
                 <span>Founder &amp; Technology Director</span>
                 <p style={{ fontSize: "12px", color: "var(--ink-2)", marginTop: "4px" }}>
                   &ldquo;Every project proposal is personally architected to deliver measurable
@@ -190,8 +175,8 @@ export default function ContactPage() {
                 <div className={styles.successIcon}>✓</div>
                 <h3 className={styles.successTitle}>Inquiry Successfully Received!</h3>
                 <p className={styles.successText}>
-                  Thank you, <b>{name || "friend"}</b>. Our technology director Subhadeep
-                  Chanda and the strategy team have received your project details. We will review
+                  Thank you, <b>{name || "friend"}</b>. Our technology director Gagan
+                  Kalra and the strategy team have received your project details. We will review
                   your requirements and respond within 4 hours.
                 </p>
                 <button type="button" onClick={resetForm} className={styles.resetBtn}>
@@ -228,6 +213,23 @@ export default function ContactPage() {
                         );
                       })}
                     </div>
+                    {selectedServices.includes("Other / Custom Service") && (
+                      <div style={{ marginTop: "12px" }}>
+                        <input
+                          type="text"
+                          placeholder="Write freely what custom service or feature you require..."
+                          value={customService}
+                          onChange={(e) => setCustomService(e.target.value)}
+                          className={styles.formInput}
+                          style={{
+                            fontSize: "14px",
+                            padding: "11px 15px",
+                            borderColor: "var(--accent, #ff2e0f)",
+                            background: "#fffaf9",
+                          }}
+                        />
+                      </div>
+                    )}
                   </div>
 
                   {/* Budget Selector */}
@@ -258,7 +260,7 @@ export default function ContactPage() {
                       <input
                         id="contact-name"
                         type="text"
-                        placeholder="Subhadeep Chanda"
+                        placeholder="Your Name"
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                         className={styles.formInput}
@@ -291,7 +293,7 @@ export default function ContactPage() {
                       <input
                         id="contact-phone"
                         type="tel"
-                        placeholder="+91 99882 21729"
+                        placeholder="+91 98765 43210"
                         value={phone}
                         onChange={(e) => setPhone(e.target.value)}
                         className={styles.formInput}
@@ -316,12 +318,12 @@ export default function ContactPage() {
                   {/* Project Details */}
                   <div className={styles.formGroup}>
                     <label className={styles.formLabel} htmlFor="contact-brief">
-                      Project Details &amp; Objectives *
+                      Project Details &amp; Custom Requirements *
                     </label>
                     <textarea
                       id="contact-brief"
                       rows={4}
-                      placeholder="Tell us about your product, desired launch date, target audience, and key deliverables..."
+                      placeholder="Write freely what you require — project goals, custom features, brand/design specs, deliverables, or timelines..."
                       value={message}
                       onChange={(e) => setMessage(e.target.value)}
                       className={styles.formTextarea}

@@ -213,7 +213,7 @@ export default function ServiceDetailPage({ service }: Props) {
               <li className={styles.deliverableItem}>
                 <span className={styles.checkMark}>✓</span>
                 <span style={{ color: "#d8d8e0" }}>
-                  Direct communication with Founder Subhadeep Chanda
+                  Direct communication with Founder Gagan Kalra
                 </span>
               </li>
             </ul>
@@ -235,7 +235,7 @@ export default function ServiceDetailPage({ service }: Props) {
                   <input
                     type="text"
                     required
-                    placeholder="e.g. Subhadeep Chanda"
+                    placeholder="Your Name"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     className={styles.formInput}
@@ -259,7 +259,7 @@ export default function ServiceDetailPage({ service }: Props) {
                   <input
                     type="tel"
                     required
-                    placeholder="+91 99882 21729"
+                    placeholder="+91 98765 43210"
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
                     className={styles.formInput}

@@ -303,7 +303,7 @@ function ServicesHubContent() {
               <span className={styles.pillarIcon}>🤝</span>
               <h4 className={styles.pillarTitle}>Direct Leadership Access</h4>
               <p className={styles.pillarDesc}>
-                Collaborate directly with Founder Subhadeep Chanda and senior
+                Collaborate directly with Founder Gagan Kalra and senior
                 technical architects without layers of account middle-men.
               </p>
             </div>
@@ -346,7 +346,7 @@ function ServicesHubContent() {
                     <input
                       type="text"
                       required
-                      placeholder="e.g. Subhadeep Chanda"
+                      placeholder="Your Name"
                       value={formName}
                       onChange={(e) => setFormName(e.target.value)}
                       className={styles.formInput}
@@ -370,7 +370,7 @@ function ServicesHubContent() {
                     <input
                       type="tel"
                       required
-                      placeholder="+91 99882 21729"
+                      placeholder="+91 98765 43210"
                       value={formPhone}
                       onChange={(e) => setFormPhone(e.target.value)}
                       className={styles.formInput}

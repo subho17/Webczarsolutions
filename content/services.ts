@@ -783,7 +783,7 @@ export const SERVICES: ServiceItem[] = [
     ],
     whyWebczar: [
       "Rigorous adherence to clean architecture principles and maintainable code",
-      "Direct communication with senior engineers and Founder Subhadeep Chanda",
+      "Direct communication with senior engineers and Founder Gagan Kalra",
       "100% intellectual property assignment upon milestone completion",
       "Guaranteed post-launch SLA support and security patch monitoring",
     ],

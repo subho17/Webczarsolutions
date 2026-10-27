@@ -4,10 +4,10 @@
   position: relative;
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
-  padding: clamp(10px, 1.4vh, 22px) 0;
+  padding: clamp(14px, 1.8vh, 26px) 0;
   display: flex;
   flex-direction: column;
-  gap: clamp(6px, 0.9vh, 12px);
+  gap: clamp(8px, 1.1vh, 16px);
   overflow: hidden;
   background: #fff;
   flex-shrink: 0;
@@ -16,7 +16,7 @@
 .row {
   overflow: hidden;
   white-space: nowrap;
-  padding: 2px 0;
+  padding: 4px 0;
 }
 
 .track {
@@ -37,7 +37,7 @@
 .solidText,
 .outlineText {
   font-weight: 900;
-  font-size: clamp(24px, min(3.8vw, 4.8vh), 48px);
+  font-size: clamp(32px, min(5vw, 6vh), 60px);
   letter-spacing: -0.035em;
   line-height: 1.1;
   text-transform: none;
@@ -47,16 +47,16 @@
 }
 .outlineText {
   color: transparent;
-  -webkit-text-stroke: clamp(1.5px, 0.16vw, 2.2px) var(--ink);
+  -webkit-text-stroke: clamp(1.6px, 0.18vw, 2.4px) var(--ink);
 }
 
 .dot {
   display: inline-block;
-  width: clamp(8px, 0.8vw, 13px);
-  height: clamp(8px, 0.8vw, 13px);
+  width: clamp(10px, 0.95vw, 15px);
+  height: clamp(10px, 0.95vw, 15px);
   border-radius: 50%;
   background-color: var(--accent);
-  margin: 0 clamp(20px, 2.6vw, 44px);
+  margin: 0 clamp(22px, 2.8vw, 46px);
   flex-shrink: 0;
   align-self: center;
   transform: translateY(-0.06em);

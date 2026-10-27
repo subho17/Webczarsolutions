@@ -47,7 +47,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
     y: -8,
   },
   {
-    name: "Subhadeep Chanda",
+    name: "Gagan Kalra",
     role: "Founder & Tech Director",
     src: "/images/team/team-3.jpg",
     focus: "center 20%",
@@ -131,17 +131,28 @@ const MARKS: Record<string, ReactNode> = {
       <path d="M12 0a12 12 0 0 0-4.37 23.18c-.07-.95-.14-2.42.03-3.46l1.24-5.26s-.31-.62-.31-1.54c0-1.45.84-2.53 1.89-2.53.89 0 1.32.67 1.32 1.47 0 .9-.57 2.24-.87 3.48-.25 1.04.52 1.88 1.54 1.88 1.85 0 3.28-1.95 3.28-4.77 0-2.5-1.79-4.24-4.36-4.24-2.97 0-4.72 2.23-4.72 4.53 0 .9.35 1.86.78 2.38.09.1.1.19.07.3-.08.33-.26 1.04-.3 1.18-.05.21-.17.26-.39.16-1.46-.68-2.37-2.82-2.37-4.54 0-3.7 2.69-7.1 7.76-7.1 4.07 0 7.24 2.9 7.24 6.78 0 4.05-2.55 7.31-6.09 7.31-1.19 0-2.31-.62-2.69-1.35l-.73 2.79c-.27 1.02-.99 2.3-1.47 3.08A12 12 0 1 0 12 0z" />
     </svg>
   ),
+  whatsapp: (
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.312.045-.634.088-2.029-.488-1.745-.722-2.884-2.493-2.97-2.608-.088-.117-.708-.941-.708-1.796 0-.854.448-1.275.608-1.449.16-.174.348-.217.464-.217.116 0 .232.001.333.007.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86.174.086.275.073.376-.043.101-.116.433-.506.549-.68.116-.173.231-.145.39-.086s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.099.824zm-3.392-12.416c-5.523 0-10 4.477-10 10 0 1.764.457 3.423 1.258 4.872l-1.336 4.887 5.011-1.314c1.401.763 3.002 1.195 4.706 1.195 5.523 0 10-4.477 10-10s-4.477-10-10-10z" />
+    </svg>
+  ),
+  google: (
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.067 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z" />
+    </svg>
+  ),
 };
 
 /* Company social links */
 const SOCIALS = [
-  { name: "Facebook", mark: "facebook", href: "https://www.facebook.com/webczarsolutions" },
-  { name: "Instagram", mark: "instagram", href: "https://www.instagram.com/webczarsolutions" },
-  { name: "YouTube", mark: "youtube", href: "https://www.youtube.com/@webczarsolutions" },
-  { name: "X", mark: "x", href: "https://x.com/webczarsolutions" },
-  { name: "LinkedIn", mark: "linkedin", href: "https://www.linkedin.com/company/webczarsolutions" },
-  { name: "Pinterest", mark: "pinterest", href: "https://www.pinterest.com/webczarsolutions" },
-  { name: "Email", glyph: "@", href: "mailto:info@webczarsolutions.com" },
+  { name: "Facebook", mark: "facebook", href: "https://www.facebook.com/webczarsolutions/" },
+  { name: "Instagram", mark: "instagram", href: "https://www.instagram.com/webczarsolutions/" },
+  { name: "YouTube", mark: "youtube", href: "https://www.youtube.com/channel/UCsmqfDaULklu3RR7iy5BwBQ" },
+  { name: "X", mark: "x", href: "https://x.com/webczarsolution" },
+  { name: "LinkedIn", mark: "linkedin", href: "https://www.linkedin.com/in/gagan-kalra-462bb1343/" },
+  { name: "Pinterest", mark: "pinterest", href: "https://in.pinterest.com/smsmediagrpchd/" },
+  { name: "WhatsApp", mark: "whatsapp", href: "https://whatsapp.com/channel/0029Vaf8Pq40lwgrhkGwJU3o" },
+  { name: "Google", mark: "google", href: "https://share.google/p1v6dLB0JHKNpodWx" },
 ] as const;
 
 export default function Connect() {
@@ -294,7 +305,7 @@ export default function Connect() {
             rel={s.href.startsWith("http") ? "noreferrer" : undefined}
           >
             <span className={styles.glyph}>
-              {"mark" in s ? MARKS[s.mark] : s.glyph}
+              {"mark" in s ? MARKS[s.mark] : null}
             </span>
             <span className={styles.roll}>
               <span>{s.name}</span>

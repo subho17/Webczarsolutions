@@ -172,7 +172,7 @@ export default function AboutPage() {
           <div className={styles.founderBox}>
             <div className={styles.founderProfile}>
               <span className={styles.founderBadge}>LEADERSHIP &amp; VISION</span>
-              <h3 className={styles.founderName}>Subhadeep Chanda</h3>
+              <h3 className={styles.founderName}>Gagan Kalra</h3>
               <span className={styles.founderRole}>Founder &amp; Technology Director</span>
 
               <div className={styles.founderContactList}>
@@ -191,7 +191,7 @@ export default function AboutPage() {
               </blockquote>
               <p className={styles.founderBio}>
                 With over a decade of hands-on experience in full-stack web architectures,
-                cloud engineering, AI workflows, and digital marketing systems, Subhadeep actively
+                cloud engineering, AI workflows, and digital marketing systems, Gagan actively
                 guides the technical strategy, architecture reviews, and client partnerships
                 at Webczar Solutions.
               </p>

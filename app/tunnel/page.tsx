@@ -7,7 +7,7 @@ import LabBar from "./LabBar";
    effect can be approved on its own before it's placed. */
 
 export const metadata: Metadata = {
-  title: "Tunnel Type — Lab · Subhadeep Chanda",
+  title: "Tunnel Type — Lab · Webczar Solutions",
   robots: { index: false },
 };
 

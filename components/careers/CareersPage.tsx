@@ -8,16 +8,51 @@ import styles from "./CareersPage.module.css";
 interface JobRole {
   id: string;
   title: string;
-  dept: "Engineering" | "AI & Data" | "Design" | "Growth & Marketing";
+  dept:
+    | "Corporate Sales & Operations"
+    | "Engineering"
+    | "AI & Data"
+    | "Design"
+    | "Growth & Marketing";
   location: string;
   type: string;
   experience: string;
+  salary?: string;
+  workingHours?: string;
+  industry?: string;
   overview: string;
   responsibilities: string[];
   requirements: string[];
 }
 
 const JOBS: JobRole[] = [
+  {
+    id: "corporate-sales-operations",
+    title: "Corporate Sales & Operations Executive",
+    dept: "Corporate Sales & Operations",
+    location: "Chandigarh / Mohali (Hybrid / On-Site)",
+    type: "Full-Time",
+    experience: "Fresher to 3 Years",
+    salary: "₹10,000–₹25,000 per month",
+    workingHours: "8 hours per day",
+    industry: "IT/Software & Digital Marketing Agency",
+    overview:
+      "Drive corporate client acquisition and business operations at Webczar Solutions. Promote high-impact IT solutions, custom software, websites, and digital marketing services to prospective corporate clients while ensuring smooth coordination and service delivery between clients and internal teams.",
+    responsibilities: [
+      "Generate leads and acquire new corporate clients.",
+      "Promote IT solutions, software services, websites, and digital marketing services.",
+      "Handle client communication, follow-ups, and meetings.",
+      "Prepare quotations, proposals, and sales reports.",
+      "Coordinate with internal teams to ensure smooth service delivery.",
+    ],
+    requirements: [
+      "Eligibility: Fresher to 3 years of experience in sales, operations, or client relationship management.",
+      "Skills Required: Good communication, convincing, negotiation, and client-handling skills.",
+      "Enthusiasm for IT solutions, software development, and digital marketing services.",
+      "High ownership mindset with punctuality in follow-ups and professional client etiquette.",
+      "Available for full-time schedule (8 hours per day).",
+    ],
+  },
   {
     id: "fullstack-lead",
     title: "Senior Full-Stack Engineer (React 19 / Next.js / TypeScript)",
@@ -30,7 +65,7 @@ const JOBS: JobRole[] = [
     responsibilities: [
       "Lead frontend and backend engineering for enterprise web platforms and client software.",
       "Design robust TypeScript architectures with zero-runtime defects and high test coverage.",
-      "Collaborate directly with Founder Subhadeep Chanda to translate client needs into scalable tech.",
+      "Collaborate directly with Founder Gagan Kalra to translate client needs into scalable tech.",
       "Mentor junior engineers and champion code quality, performance profiling, and modern CI/CD.",
     ],
     requirements: [
@@ -123,7 +158,7 @@ const JOBS: JobRole[] = [
 
 export default function CareersPage() {
   const [selectedDept, setSelectedDept] = useState("All");
-  const [expandedJob, setExpandedJob] = useState<string | null>("fullstack-lead");
+  const [expandedJob, setExpandedJob] = useState<string | null>("corporate-sales-operations");
   const [appliedRole, setAppliedRole] = useState(JOBS[0].title);
   const [candidateName, setCandidateName] = useState("");
   const [candidateEmail, setCandidateEmail] = useState("");
@@ -133,7 +168,14 @@ export default function CareersPage() {
   const [submitting, setSubmitting] = useState(false);
   const [appliedSuccess, setAppliedSuccess] = useState(false);
 
-  const departments = ["All", "Engineering", "AI & Data", "Design", "Growth & Marketing"];
+  const departments = [
+    "All",
+    "Corporate Sales & Operations",
+    "Engineering",
+    "AI & Data",
+    "Design",
+    "Growth & Marketing",
+  ];
 
   const filteredJobs = JOBS.filter(
     (job) => selectedDept === "All" || job.dept === selectedDept
@@ -186,7 +228,7 @@ export default function CareersPage() {
               <span className={styles.perkIcon}>💡</span>
               <h3 className={styles.perkTitle}>Direct Mentorship</h3>
               <p className={styles.perkDesc}>
-                Collaborate directly with Founder Subhadeep Chanda on real commercial architecture
+                Collaborate directly with Founder Gagan Kalra on real commercial architecture
                 and business strategy.
               </p>
             </div>
@@ -251,6 +293,9 @@ export default function CareersPage() {
                         <span>📍 {job.location}</span>
                         <span>💼 {job.type}</span>
                         <span>⭐ {job.experience}</span>
+                        {job.salary && (
+                          <span className={styles.jobSalaryBadge}>💰 {job.salary}</span>
+                        )}
                       </div>
                     </div>
 
@@ -276,8 +321,31 @@ export default function CareersPage() {
                     <div className={styles.jobExpanded}>
                       <p className={styles.jobExpandedDesc}>{job.overview}</p>
 
+                      {(job.industry || job.salary || job.workingHours) && (
+                        <div className={styles.jobQuickDetails}>
+                          {job.industry && (
+                            <div className={styles.quickDetailItem}>
+                              <span className={styles.quickDetailLabel}>Industry:</span>
+                              <span className={styles.quickDetailValue}>{job.industry}</span>
+                            </div>
+                          )}
+                          {job.salary && (
+                            <div className={styles.quickDetailItem}>
+                              <span className={styles.quickDetailLabel}>Salary:</span>
+                              <span className={styles.quickDetailValue}>{job.salary}</span>
+                            </div>
+                          )}
+                          {job.workingHours && (
+                            <div className={styles.quickDetailItem}>
+                              <span className={styles.quickDetailLabel}>Working Hours:</span>
+                              <span className={styles.quickDetailValue}>{job.workingHours}</span>
+                            </div>
+                          )}
+                        </div>
+                      )}
+
                       <div>
-                        <h4 className={styles.jobSectionHead}>Key Responsibilities:</h4>
+                        <h4 className={styles.jobSectionHead}>Job Responsibilities:</h4>
                         <ul className={styles.jobBullets}>
                           {job.responsibilities.map((r, rIdx) => (
                             <li key={rIdx} className={styles.jobBulletItem}>
@@ -288,7 +356,7 @@ export default function CareersPage() {
                       </div>
 
                       <div>
-                        <h4 className={styles.jobSectionHead}>Requirements &amp; Experience:</h4>
+                        <h4 className={styles.jobSectionHead}>Eligibility &amp; Skills Required:</h4>
                         <ul className={styles.jobBullets}>
                           {job.requirements.map((req, reqIdx) => (
                             <li key={reqIdx} className={styles.jobBulletItem}>
@@ -296,6 +364,18 @@ export default function CareersPage() {
                             </li>
                           ))}
                         </ul>
+                      </div>
+
+                      <div className={styles.jobApplyPrompt}>
+                        <span>
+                          📩 <strong>Interested candidates can apply now!</strong> Submit the form below or email your resume directly to{" "}
+                          <a
+                            href="mailto:info@webczarsolutions.com?subject=Application%20for%20Corporate%20Sales%20%26%20Operations%20Executive"
+                            className={styles.mailLink}
+                          >
+                            Info@webczarsolutions.com
+                          </a>
+                        </span>
                       </div>
                     </div>
                   )}
@@ -336,7 +416,13 @@ export default function CareersPage() {
                   <span className={styles.kicker}>QUICK APPLICATION</span>
                   <h3 className={styles.applyTitle}>Direct Application Form</h3>
                   <p className={styles.applyDesc}>
-                    Skip recruiter intermediaries. Apply directly to our leadership team.
+                    Skip recruiter intermediaries. Apply directly to our leadership team or send your CV to{" "}
+                    <a
+                      href="mailto:info@webczarsolutions.com?subject=Job%20Application%20-%20Webczar%20Solutions"
+                      className={styles.mailLink}
+                    >
+                      info@webczarsolutions.com
+                    </a>.
                   </p>
                 </div>
 
@@ -362,7 +448,7 @@ export default function CareersPage() {
                       <label className={styles.formLabel}>Your Full Name *</label>
                       <input
                         type="text"
-                        placeholder="Subhadeep Chanda"
+                        placeholder="Your Name"
                         value={candidateName}
                         onChange={(e) => setCandidateName(e.target.value)}
                         className={styles.formInput}
@@ -388,7 +474,7 @@ export default function CareersPage() {
                       <label className={styles.formLabel}>Phone / WhatsApp Number *</label>
                       <input
                         type="tel"
-                        placeholder="+91 99882 21729"
+                        placeholder="+91 98765 43210"
                         value={candidatePhone}
                         onChange={(e) => setCandidatePhone(e.target.value)}
                         className={styles.formInput}
@@ -399,11 +485,11 @@ export default function CareersPage() {
 
                   <div className={styles.formGroup}>
                     <label className={styles.formLabel}>
-                      Portfolio / GitHub / LinkedIn URL *
+                      Resume / LinkedIn / Portfolio URL *
                     </label>
                     <input
                       type="url"
-                      placeholder="https://github.com/your-username or https://linkedin.com/in/..."
+                      placeholder="https://linkedin.com/in/... or Google Drive resume link"
                       value={portfolioUrl}
                       onChange={(e) => setPortfolioUrl(e.target.value)}
                       className={styles.formInput}

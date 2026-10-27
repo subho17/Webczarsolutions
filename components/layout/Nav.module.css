@@ -17,20 +17,21 @@
   pointer-events: auto;
   display: flex;
   align-items: center;
-  gap: 18px;
-  width: min(1080px, 100%);
-  background: rgba(255, 255, 255, 0.84);
+  gap: 20px;
+  width: fit-content;
+  max-width: min(1140px, calc(100% - 32px));
+  background: rgba(255, 255, 255, 0.88);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid var(--line);
   border-radius: 999px;
-  padding: 12px 14px 12px 24px;
+  padding: 8px 18px 8px 22px;
   box-shadow: 0 10px 34px -10px rgba(20, 20, 20, 0.08);
-  transition: box-shadow 0.35s ease, padding 0.35s ease, background 0.35s ease, width 0.35s ease;
+  transition: box-shadow 0.35s ease, padding 0.35s ease, background 0.35s ease;
 }
 .scrolled .cap {
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding-top: 6px;
+  padding-bottom: 6px;
   background: rgba(255, 255, 255, 0.95);
   box-shadow: 0 16px 44px -12px rgba(20, 20, 20, 0.14);
 }
@@ -39,7 +40,7 @@
   font-weight: 900;
   font-size: 18px;
   letter-spacing: -0.02em;
-  margin-right: auto;
+  margin-right: 0;
   transition: letter-spacing 0.35s cubic-bezier(0.33, 1, 0.68, 1);
   display: flex;
   align-items: center;
@@ -62,7 +63,7 @@
 .links {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 3px;
   font-size: 13.5px;
   font-weight: 600;
   color: var(--ink-2);
@@ -72,12 +73,18 @@
 .links > a,
 .linkBtn {
   position: relative;
-  padding: 7px 13px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 7px 12px;
   border-radius: 999px;
   overflow: hidden;
   isolation: isolate;
   transition: color 0.3s ease, background 0.2s ease;
   white-space: nowrap;
+  font-family: inherit;
+  font-size: 13.5px;
+  line-height: 1;
 }
 .navLink::before,
 .links > a::before,
@@ -166,11 +173,14 @@
   position: relative;
   display: inline-flex;
   align-items: center;
-  gap: 5px;
-  padding: 7px 13px;
+  justify-content: center;
+  gap: 4px;
+  padding: 7px 12px;
   border-radius: 999px;
+  font-family: inherit;
   font-size: 13.5px;
   font-weight: 600;
+  line-height: 1;
   color: var(--ink-2);
   background: transparent;
   cursor: pointer;
@@ -480,13 +490,17 @@
   position: relative;
   display: inline-flex;
   align-items: center;
-  gap: 5px;
-  padding: 7px 13px;
+  justify-content: center;
+  gap: 4px;
+  padding: 7px 12px;
   border-radius: 999px;
+  font-family: inherit;
   font-size: 13.5px;
   font-weight: 600;
+  line-height: 1;
   color: var(--ink-2);
   background: transparent;
+  border: none;
   cursor: pointer;
   transition: color 0.25s ease, background 0.25s ease;
   white-space: nowrap;
@@ -526,7 +540,8 @@
 .chevron {
   transition: transform 0.3s cubic-bezier(0.33, 1, 0.68, 1), stroke 0.25s ease;
   display: inline-block;
-  margin-top: 1px;
+  margin-top: 0;
+  flex-shrink: 0;
 }
 
 .chevronOpen {

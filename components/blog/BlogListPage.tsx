@@ -109,7 +109,7 @@ export default function BlogListPage() {
               <h2 className={styles.featuredTitle}>{featured.title}</h2>
               <p className={styles.featuredDesc}>{featured.oneLiner}</p>
               <div className={styles.featuredMeta}>
-                <span>By Subhadeep Chanda</span>
+                <span>By Webczar Solutions</span>
                 <span>·</span>
                 <span>{featured.study?.timeline || "5 min read"}</span>
               </div>

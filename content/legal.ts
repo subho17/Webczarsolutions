@@ -79,7 +79,7 @@ export const TERMS_DATA: LegalDocument = {
       num: "01",
       title: "Acceptance of Terms & Corporate Entity Information",
       content: [
-        "These Terms and Conditions (\"Terms\", \"Agreement\") constitute a legally binding contract entered into by and between you (hereinafter referred to as \"Client\", \"User\", \"you\", or \"your\") and Webczar Solutions (hereinafter referred to as \"Webczar Solutions\", \"Webczar\", \"Company\", \"we\", \"us\", or \"our\"), led by Founder & Technology Director Subhadeep Chanda, headquartered in the Chandigarh Tricity region (Chandigarh, Mohali, Panchkula, Zirakpur), Punjab / Haryana, India.",
+        "These Terms and Conditions (\"Terms\", \"Agreement\") constitute a legally binding contract entered into by and between you (hereinafter referred to as \"Client\", \"User\", \"you\", or \"your\") and Webczar Solutions (hereinafter referred to as \"Webczar Solutions\", \"Webczar\", \"Company\", \"we\", \"us\", or \"our\"), led by Founder & Technology Director Gagan Kalra, headquartered in the Chandigarh Tricity region (Chandigarh, Mohali, Panchkula, Zirakpur), Punjab / Haryana, India.",
         "By accessing, browsing, commissioning services from, or interacting with our official web properties (including https://webczarsolutions.com and associated subdomains) or signing any Statement of Work (SOW), proposal, or contract referencing these Terms, you acknowledge that you have read, understood, and agreed to be bound by these Terms in full.",
         "If you are entering into this Agreement on behalf of a company, corporate enterprise, or other legal entity, you represent and warrant that you possess the full legal authority to bind that entity to these provisions.",
       ],
@@ -263,8 +263,8 @@ export const TERMS_DATA: LegalDocument = {
       ],
       bullets: [
         "Entity Name: Webczar Solutions",
-        "Leadership: Subhadeep Chanda (Founder & Technology Director)",
-        "Official Email: info@webczarsolutions.com / subhadeep@webczarsolutions.com",
+        "Leadership: Gagan Kalra (Founder & Technology Director)",
+        "Official Email: info@webczarsolutions.com",
         "Phone / WhatsApp: +91 99882 21729",
         "Office Location: Chandigarh · Mohali · Panchkula · Zirakpur (Tricity Tech Corridor), India",
       ],
@@ -310,7 +310,7 @@ export const PRIVACY_DATA: LegalDocument = {
       num: "01",
       title: "Scope, Commitment & Data Controller Identification",
       content: [
-        "Webczar Solutions (\"Webczar\", \"Company\", \"we\", \"us\", or \"our\"), led by Founder & Technology Director Subhadeep Chanda, respects your fundamental privacy rights and is dedicated to preserving the confidentiality of personal and business data entrusted to us.",
+        "Webczar Solutions (\"Webczar\", \"Company\", \"we\", \"us\", or \"our\"), led by Founder & Technology Director Gagan Kalra, respects your fundamental privacy rights and is dedicated to preserving the confidentiality of personal and business data entrusted to us.",
         "This comprehensive Privacy Policy (\"Policy\") delineates how we collect, store, process, transmit, and protect data when you visit our website (https://webczarsolutions.com), engage our engineering and marketing services, communicate via email or WhatsApp, or utilize any digital software solutions developed by us.",
         "Under applicable privacy frameworks—including the Indian Digital Personal Data Protection Act, 2023 (DPDPA), the General Data Protection Regulation (EU GDPR), and the UK GDPR—Webczar Solutions operates as the Data Fiduciary / Data Controller for personal data gathered directly via our digital properties and sales channels.",
       ],
@@ -491,9 +491,9 @@ export const PRIVACY_DATA: LegalDocument = {
         "In accordance with the Indian Information Technology Act, 2000 and the Digital Personal Data Protection Act, 2023, as well as global GDPR provisions, our designated Grievance & Data Protection Officer is:",
       ],
       bullets: [
-        "Data Protection Officer: Subhadeep Chanda",
+        "Data Protection Officer: Gagan Kalra",
         "Role: Founder & Technology Director, Webczar Solutions",
-        "Official Email: info@webczarsolutions.com / subhadeep@webczarsolutions.com",
+        "Official Email: info@webczarsolutions.com",
         "Direct Phone / WhatsApp: +91 99882 21729",
         "Headquarters: Chandigarh · Mohali · Panchkula · Zirakpur (Tricity), Punjab / Haryana, India",
         "Response Timetable: We acknowledge all privacy inquiries within 48 hours and provide substantive resolution within 15 business days.",
@@ -735,8 +735,8 @@ export const WHATSAPP_OPT_OUT_DATA: LegalDocument = {
         "If you have requested an opt-out and continue to receive automated messages, or have any concerns regarding messaging compliance, please immediately contact our Compliance Officer at:",
       ],
       bullets: [
-        "Officer: Subhadeep Chanda (Founder & Technology Director)",
-        "Compliance Email: info@webczarsolutions.com / subhadeep@webczarsolutions.com",
+        "Officer: Gagan Kalra (Founder & Technology Director)",
+        "Compliance Email: info@webczarsolutions.com",
         "Direct Phone / WhatsApp: +91 99882 21729",
         "Address: Webczar Solutions, Tricity Tech Corridor, Chandigarh · Mohali, India",
       ],

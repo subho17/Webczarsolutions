@@ -5,14 +5,14 @@ import ContactPage from "@/components/contact/ContactPage";
 export const metadata: Metadata = {
   title: "Contact Us — Webczar Solutions | Request a Proposal",
   description:
-    "Get in touch with Webczar Solutions. Request a custom web development, AI integration, or digital marketing proposal from Founder Subhadeep Chanda.",
+    "Get in touch with Webczar Solutions. Request a custom web development, AI integration, or digital marketing proposal for your business.",
   alternates: {
     canonical: `${SITE_URL}/contact`,
   },
   openGraph: {
     title: "Contact Us — Webczar Solutions | Request a Proposal",
     description:
-      "Get in touch with Webczar Solutions. Request a custom web development, AI integration, or digital marketing proposal from Founder Subhadeep Chanda.",
+      "Get in touch with Webczar Solutions. Request a custom web development, AI integration, or digital marketing proposal for your business.",
     url: `${SITE_URL}/contact`,
     siteName: COMPANY.name,
     type: "website",
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Contact Us — Webczar Solutions | Request a Proposal",
     description:
-      "Get in touch with Webczar Solutions. Request a custom web development, AI integration, or digital marketing proposal from Founder Subhadeep Chanda.",
+      "Get in touch with Webczar Solutions. Request a custom web development, AI integration, or digital marketing proposal for your business.",
   },
 };
 

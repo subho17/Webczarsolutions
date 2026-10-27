@@ -28,8 +28,6 @@ const USEFUL_LINKS = [
   { label: "WhatsApp Opt-In Policy", href: "/whatsapp-opt-in" },
   { label: "WhatsApp Opt-Out Policy", href: "/whatsapp-opt-out" },
   { label: "RCS Communication Policy", href: "/rcs-policy" },
-  { label: "Security", href: "mailto:info@webczarsolutions.com?subject=Security%20Inquiry%20-%20Webczar" },
-  { label: "XML Sitemap", href: "/sitemap.xml" },
 ];
 
 export default function Footer() {
@@ -101,19 +99,19 @@ export default function Footer() {
 
           <div className={styles.badges}>
             <span className={styles.badge}>
-              <span className={styles.badgeDot} /> Tricity &amp; Global Delivery
+              <span className={styles.badgeDot} /> Software Solutions
             </span>
             <span className={styles.badge}>
-              <span className={styles.badgeDot} /> 24/7 Client Support
+              <span className={styles.badgeDot} /> Branding &amp; Designing
             </span>
             <span className={styles.badge}>
-              <span className={styles.badgeDot} /> ISO-Standard Code
+              <span className={styles.badgeDot} /> Digital Marketing
             </span>
           </div>
 
           <div className={styles.founderBlock}>
             <span className={styles.founderLbl}>Founder &amp; Director:</span>
-            <span className={styles.founderName}>Subhadeep Chanda</span>
+            <span className={styles.founderName}>Gagan Kalra</span>
           </div>
         </div>
 
@@ -169,7 +167,7 @@ export default function Footer() {
             <p className={styles.contactItem}>
               <b>Location:</b>
               <span>
-                Chandigarh · Mohali · Zirakpur · Panchkula (Tricity), India
+                (Tricity), Ambala, Karnal, IND, UK, CA, AUS
               </span>
             </p>
             <p className={styles.contactItem}>
@@ -183,8 +181,8 @@ export default function Footer() {
               <a href="tel:9988221729">+91 99882 21729</a>
             </p>
             <p className={styles.contactItem}>
-              <b>Hours:</b>
-              <span>Mon – Sat: 9:00 AM – 7:00 PM IST</span>
+              <b>Time:</b>
+              <span>24 x 7 (Monday to Sunday)</span>
             </p>
           </div>
 
@@ -222,60 +220,68 @@ export default function Footer() {
           <span className={styles.socialPrompt}>Connect with Webczar:</span>
           <div className={styles.socialLinks}>
             <a
-              href="https://www.facebook.com/webczarsolutions"
+              href="https://www.facebook.com/webczarsolutions/"
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               className={styles.socialChip}
             >
               Facebook ↗
             </a>
             <a
-              href="https://www.instagram.com/webczarsolutions"
+              href="https://www.instagram.com/webczarsolutions/"
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               className={styles.socialChip}
             >
               Instagram ↗
             </a>
             <a
-              href="https://www.youtube.com/@webczarsolutions"
+              href="https://www.youtube.com/channel/UCsmqfDaULklu3RR7iy5BwBQ"
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               className={styles.socialChip}
             >
               YouTube ↗
             </a>
             <a
-              href="https://x.com/webczarsolutions"
+              href="https://x.com/webczarsolution"
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               className={styles.socialChip}
             >
               X ↗
             </a>
             <a
-              href="https://www.linkedin.com/company/webczarsolutions"
+              href="https://www.linkedin.com/in/gagan-kalra-462bb1343/"
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               className={styles.socialChip}
             >
               LinkedIn ↗
             </a>
             <a
-              href="https://www.pinterest.com/webczarsolutions"
+              href="https://in.pinterest.com/smsmediagrpchd/"
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               className={styles.socialChip}
             >
               Pinterest ↗
             </a>
             <a
-              href="https://api.whatsapp.com/send/?phone=919988221729&text&type=phone_number&app_absent=0"
+              href="https://whatsapp.com/channel/0029Vaf8Pq40lwgrhkGwJU3o"
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               className={styles.socialChip}
             >
               WhatsApp ↗
+            </a>
+            <a
+              href="https://share.google/p1v6dLB0JHKNpodWx"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.socialChip}
+            >
+              Google ↗
             </a>
           </div>
         </div>
@@ -289,8 +295,6 @@ export default function Footer() {
       <div className={styles.bottomBar}>
         <div className={styles.bottomLeft}>
           <span>© {new Date().getFullYear()} Webczar Solutions. All rights reserved.</span>
-          <span className={styles.divider}>·</span>
-          <span>Crafted with precision by <b>Subhadeep Chanda</b></span>
         </div>
         <div className={styles.legalLinks}>
           <Link href="/privacy" className={styles.legalLink}>
