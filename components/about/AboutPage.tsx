@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import Nav from "@/components/layout/Nav";
 import Footer from "@/components/layout/Footer/Footer";
 import styles from "./AboutPage.module.css";
@@ -171,6 +172,15 @@ export default function AboutPage() {
         <section className={styles.section}>
           <div className={styles.founderBox}>
             <div className={styles.founderProfile}>
+              <div className={styles.founderPhotoWrap}>
+                <Image
+                  src="/images/gagan-kalra.png"
+                  alt="Gagan Kalra — Founder & Technology Director"
+                  width={96}
+                  height={96}
+                  className={styles.founderPhoto}
+                />
+              </div>
               <span className={styles.founderBadge}>LEADERSHIP &amp; VISION</span>
               <h3 className={styles.founderName}>Gagan Kalra</h3>
               <span className={styles.founderRole}>Founder &amp; Technology Director</span>

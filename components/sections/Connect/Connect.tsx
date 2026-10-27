@@ -50,7 +50,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
     name: "Gagan Kalra",
     role: "Founder & Tech Director",
     src: "/images/team/team-3.jpg",
-    focus: "center 20%",
+    focus: "center 12%",
     rotate: 4,
     z: -5,
     y: 0,

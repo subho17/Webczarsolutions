@@ -49,6 +49,14 @@ export const LOGIN_PORTALS: LoginPortal[] = [
     category: "whatsapp",
   },
   {
+    id: "promotional-virtual-whatsapp",
+    title: "Promotional Virtual WhatsApp",
+    url: "http://wappro.webczarsolutions.com/",
+    description: "Send promotional messages to customers without saving every number in your contacts",
+    tag: "Virtual WA",
+    category: "whatsapp",
+  },
+  {
     id: "whatsapp-api",
     title: "WhatsApp API",
     url: "https://wapi.webczarsolutions.com",

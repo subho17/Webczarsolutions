@@ -31,6 +31,8 @@ function getPortalBg(id: string): string {
       return "rgba(245, 158, 11, 0.12)";
     case "whatsapp-iq":
       return "rgba(239, 68, 68, 0.1)";
+    case "promotional-virtual-whatsapp":
+      return "rgba(37, 211, 102, 0.14)";
     case "whatsapp-api":
       return "rgba(37, 211, 102, 0.14)";
     case "dlt-smartping":
@@ -52,6 +54,8 @@ function getPortalColor(id: string): string {
       return "#d97706";
     case "whatsapp-iq":
       return "#dc2626";
+    case "promotional-virtual-whatsapp":
+      return "#16a34a";
     case "whatsapp-api":
       return "#16a34a";
     case "dlt-smartping":
@@ -101,6 +105,12 @@ function getPortalIcon(id: string) {
           <line x1="12" y1="17" x2="12" y2="21" />
         </svg>
       );
+    case "promotional-virtual-whatsapp":
+      return (
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
+        </svg>
+      );
     case "whatsapp-api":
       return (
         <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -128,9 +138,9 @@ export default function Nav() {
 
   // Services dropdown state
   const [servicesOpen, setServicesOpen] = useState(false);
-  const [activeServiceGroup, setActiveServiceGroup] = useState<string>("verticals");
+  const [activeServiceGroup, setActiveServiceGroup] = useState<string>("whatsapp-messaging");
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
-  const [mobileActiveGroup, setMobileActiveGroup] = useState<string | null>("verticals");
+  const [mobileActiveGroup, setMobileActiveGroup] = useState<string | null>("whatsapp-messaging");
   const servicesRef = useRef<HTMLDivElement>(null);
   const leaveServicesTimerRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -460,22 +470,29 @@ export default function Nav() {
                       </div>
 
                       <div className={styles.subGrid}>
-                        {currentServiceGroup.items?.map((sub) => (
-                          <Link
-                            key={sub.name}
-                            href={sub.href}
-                            className={styles.subItem}
-                            onClick={() => setServicesOpen(false)}
-                          >
-                            <div className={styles.subItemLeft}>
-                              <span className={styles.subItemName}>{sub.name}</span>
-                              {sub.desc && (
-                                <span className={styles.subItemDesc}>{sub.desc}</span>
-                              )}
-                            </div>
-                            <span className={styles.subItemArrow}>→</span>
-                          </Link>
-                        ))}
+                        {currentServiceGroup.items?.map((sub) => {
+                          const isExternal = sub.href.startsWith("http");
+                          return (
+                            <Link
+                              key={sub.name}
+                              href={sub.href}
+                              className={styles.subItem}
+                              onClick={() => setServicesOpen(false)}
+                              target={isExternal ? "_blank" : undefined}
+                              rel={isExternal ? "noopener noreferrer" : undefined}
+                            >
+                              <div className={styles.subItemLeft}>
+                                <span className={styles.subItemName}>{sub.name}</span>
+                                {sub.desc && (
+                                  <span className={styles.subItemDesc}>{sub.desc}</span>
+                                )}
+                              </div>
+                              <span className={styles.subItemArrow}>
+                                {isExternal ? "↗" : "→"}
+                              </span>
+                            </Link>
+                          );
+                        })}
                       </div>
                     </div>
                   </div>
@@ -697,21 +714,28 @@ export default function Nav() {
 
                             {isGroupOpen && (
                               <div className={styles.mobileSubList}>
-                                {group.items?.map((sub) => (
-                                  <Link
-                                    key={sub.name}
-                                    href={sub.href}
-                                    className={styles.mobileSubLink}
-                                    onClick={() => setMenuOpen(false)}
-                                  >
-                                    <span className={styles.mobileSubName}>{sub.name}</span>
-                                    {sub.desc && (
-                                      <span className={styles.mobileSubDesc}>
-                                        {sub.desc}
+                                {group.items?.map((sub) => {
+                                  const isExternal = sub.href.startsWith("http");
+                                  return (
+                                    <Link
+                                      key={sub.name}
+                                      href={sub.href}
+                                      className={styles.mobileSubLink}
+                                      onClick={() => setMenuOpen(false)}
+                                      target={isExternal ? "_blank" : undefined}
+                                      rel={isExternal ? "noopener noreferrer" : undefined}
+                                    >
+                                      <span className={styles.mobileSubName}>
+                                        {sub.name} {isExternal && "↗"}
                                       </span>
-                                    )}
-                                  </Link>
-                                ))}
+                                      {sub.desc && (
+                                        <span className={styles.mobileSubDesc}>
+                                          {sub.desc}
+                                        </span>
+                                      )}
+                                    </Link>
+                                  );
+                                })}
                               </div>
                             )}
                           </div>

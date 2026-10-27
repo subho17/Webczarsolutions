@@ -287,6 +287,21 @@
   gap: 12px;
 }
 
+.founderPhotoWrap {
+  margin-bottom: 4px;
+}
+
+.founderPhoto {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center 12%;
+  border: 3px solid var(--accent, #ff2e0f);
+  box-shadow: 0 8px 24px rgba(255, 46, 15, 0.28);
+  display: block;
+}
+
 .founderBadge {
   font-size: 11.5px;
   font-weight: 800;

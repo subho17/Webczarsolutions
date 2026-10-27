@@ -24,17 +24,17 @@ const caveat = Caveat({
 });
 
 const DESCRIPTION =
-  "Webczar Solutions — Premier technology and digital solutions company specializing in custom software development, cloud systems, and performance marketing in Chandigarh, Mohali & Panchkula.";
+  "Webczar Solutions is a creative technology company specializing in Branding, Digital Marketing, and Software Development. Led by Founder & Technology Director Gagan Kalra.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Webczar Solutions — Technology & Digital Solutions",
+    default: "Gagan Kalra — Webczar Solutions",
     template: "%s | Webczar Solutions",
   },
   description: DESCRIPTION,
   openGraph: {
-    title: "Webczar Solutions — Technology & Digital Solutions",
+    title: "Gagan Kalra — Webczar Solutions",
     description: DESCRIPTION,
     url: SITE_URL,
     siteName: "Webczar Solutions",
@@ -43,22 +43,56 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Webczar Solutions — Technology & Digital Solutions",
+    title: "Gagan Kalra — Webczar Solutions",
     description: DESCRIPTION,
+  },
+  icons: {
+    icon: [
+      { url: "/icon.svg", type: "image/svg+xml" },
+      { url: "/icon.png", sizes: "48x48", type: "image/png" },
+      { url: "/favicon.ico", sizes: "any" },
+    ],
+    shortcut: ["/favicon.ico"],
+    apple: [
+      { url: "/apple-icon.png", sizes: "180x180", type: "image/png" },
+    ],
   },
 };
 
 const orgJsonLd = {
   "@context": "https://schema.org",
-  "@type": "Organization",
-  name: COMPANY.name,
-  url: SITE_URL,
-  logo: `${SITE_URL}/images/Screenshot_2026-09-16_125328-removebg-preview.png`,
-  email: `mailto:${COMPANY.email}`,
-  telephone: COMPANY.phone,
-  address: { "@type": "PostalAddress", addressCountry: "IN" },
-  description: COMPANY.description,
-  sameAs: COMPANY.sameAs,
+  "@graph": [
+    {
+      "@type": "Organization",
+      name: COMPANY.name,
+      url: SITE_URL,
+      logo: `${SITE_URL}/images/Screenshot_2026-09-16_125328-removebg-preview.png`,
+      email: `mailto:${COMPANY.email}`,
+      telephone: COMPANY.phone,
+      founder: {
+        "@type": "Person",
+        name: "Gagan Kalra",
+        jobTitle: "Founder & Technology Director",
+        sameAs: "https://www.linkedin.com/in/gagan-kalra-462bb1343/",
+      },
+      address: { "@type": "PostalAddress", addressCountry: "IN" },
+      description: COMPANY.description,
+      sameAs: COMPANY.sameAs,
+    },
+    {
+      "@type": "Person",
+      name: "Gagan Kalra",
+      jobTitle: "Founder & Technology Director",
+      worksFor: {
+        "@type": "Organization",
+        name: "Webczar Solutions",
+      },
+      url: SITE_URL,
+      sameAs: [
+        "https://www.linkedin.com/in/gagan-kalra-462bb1343/",
+      ],
+    },
+  ],
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

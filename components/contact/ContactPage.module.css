@@ -258,11 +258,14 @@
 }
 
 .founderAvatar {
-  width: 52px;
-  height: 52px;
+  width: 56px;
+  height: 56px;
   border-radius: 50%;
   object-fit: cover;
-  border: 2px solid var(--accent, #ff2e0f);
+  object-position: center 12%;
+  border: 2.5px solid var(--accent, #ff2e0f);
+  flex-shrink: 0;
+  box-shadow: 0 4px 14px rgba(255, 46, 15, 0.18);
 }
 
 .founderDetails b {

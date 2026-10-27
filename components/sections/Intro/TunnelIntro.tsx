@@ -2,7 +2,7 @@
 
 /*
  * SECTION 01 — THE OPENING. The live Three.js Gallery Tunnel seen through
- * "SUBHADEEP", stretched into a ~5.5-viewport cinematic journey that hands
+ * "WEBCZAR", stretched into a ~5.5-viewport cinematic journey that hands
  * over to the real Hero.
  *
  * Journey design:

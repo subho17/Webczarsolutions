@@ -151,10 +151,10 @@ export default function ContactPage() {
             {/* Founder Consultation Note */}
             <div className={styles.founderCard}>
               <Image
-                src="/images/founder.jpg"
-                alt="Gagan Kalra"
-                width={52}
-                height={52}
+                src="/images/gagan-kalra.png"
+                alt="Gagan Kalra — Founder & Technology Director"
+                width={56}
+                height={56}
                 className={styles.founderAvatar}
               />
               <div className={styles.founderDetails}>

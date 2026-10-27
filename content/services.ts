@@ -1400,6 +1400,7 @@ export const SERVICES: ServiceItem[] = [
     ],
     deliverables: [
       "Full Meta Business Manager verification & WhatsApp Cloud API configuration",
+      "Promotional Virtual WhatsApp panel for broadcasts without saving contacts",
       "Interactive conversational bot flows with custom button menus",
       "Pre-approved template message setup for marketing, utility & authentication",
       "CRM webhook integration (HubSpot, Shopify, WooCommerce, Zoho)",
@@ -1453,6 +1454,10 @@ export const SERVICES: ServiceItem[] = [
       {
         q: "Can WhatsApp send automated order updates from my Shopify store?",
         a: "Yes! We can configure instant automated alerts for order confirmations, shipping tracking numbers, and abandoned cart recovery.",
+      },
+      {
+        q: "Can I send promotional WhatsApp messages to customers without saving their numbers?",
+        a: "Yes! With Webczar's Promotional Virtual WhatsApp panel (wappro.webczarsolutions.com), you can dispatch promotional broadcasts and media directly to customers without having to save every number in your contacts.",
       },
     ],
   },

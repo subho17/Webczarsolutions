@@ -15,6 +15,33 @@ export interface NavServiceGroup {
 
 export const SERVICES_NAV: NavServiceGroup[] = [
   {
+    id: "whatsapp-messaging",
+    title: "WhatsApp & Messaging",
+    hasSubmenu: true,
+    items: [
+      {
+        name: "Promotional Virtual WhatsApp",
+        href: "http://wappro.webczarsolutions.com/",
+        desc: "Send promotional messages to customers without saving every number in your contacts",
+      },
+      {
+        name: "Official WhatsApp Cloud API",
+        href: "/services/whatsapp-marketing",
+        desc: "Green tick verification, chatbots & CRM integration",
+      },
+      {
+        name: "Bulk SMS Gateway",
+        href: "/contact?service=Bulk+SMS",
+        desc: "DLT-compliant promotional & transactional messaging",
+      },
+      {
+        name: "RCS Business Messaging",
+        href: "/contact?service=RCS+Messaging",
+        desc: "Interactive rich media cards & verified sender branding",
+      },
+    ],
+  },
+  {
     id: "verticals",
     title: "Other Business Verticals",
     hasSubmenu: true,
