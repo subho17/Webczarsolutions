@@ -49,13 +49,13 @@ html.lenis body {
 
 /* Custom sleek scrollbar on the right side of the website */
 html {
-  scrollbar-width: thin;
+  scrollbar-width: auto;
   scrollbar-color: #3e4451 #f1f3f5;
 }
 
 ::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
+  width: 14px;
+  height: 14px;
 }
 
 ::-webkit-scrollbar-track {
@@ -65,7 +65,7 @@ html {
 ::-webkit-scrollbar-thumb {
   background: #3e4451;
   border-radius: 999px;
-  border: 2px solid #f1f3f5;
+  border: 3px solid #f1f3f5;
   background-clip: padding-box;
   transition: background-color 0.2s ease;
 }
@@ -75,19 +75,19 @@ html {
 }
 
 ::-webkit-scrollbar-button:single-button:vertical:decrement {
-  height: 12px;
-  width: 10px;
+  height: 14px;
+  width: 14px;
   background-position: center center;
   background-repeat: no-repeat;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 10 10'><polygon points='5,2 8,7 2,7' fill='%233e4451'/></svg>");
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'><polygon points='6,2 10,8 2,8' fill='%233e4451'/></svg>");
 }
 
 ::-webkit-scrollbar-button:single-button:vertical:increment {
-  height: 12px;
-  width: 10px;
+  height: 14px;
+  width: 14px;
   background-position: center center;
   background-repeat: no-repeat;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 10 10'><polygon points='5,8 2,3 8,3' fill='%233e4451'/></svg>");
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'><polygon points='6,10 2,4 10,4' fill='%233e4451'/></svg>");
 }
 
 body {
