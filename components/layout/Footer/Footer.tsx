@@ -166,7 +166,18 @@ export default function Footer() {
           <h4 className={styles.colTitle}>Contact &amp; Offices</h4>
           <div className={styles.contactBlock}>
             <p className={styles.contactItem}>
-              <b>Location:</b>
+              <b>Office Address:</b>
+              <a
+                href="https://share.google/p1v6dLB0JHKNpodWx"
+                target="_blank"
+                rel="noopener noreferrer"
+                title="View on Google Maps"
+              >
+                IM Punjab, Unit 51, 2nd Floor, Kalkat Bhawan, Block C, Kissan Vikas Chamber, Chandigarh Int&apos;l Airport Rd, Gmada Aerocity, Sahibzada Ajit Singh Nagar, Chachu Majra, Punjab 140306
+              </a>
+            </p>
+            <p className={styles.contactItem}>
+              <b>Global Locations:</b>
               <span>
                 (Tricity), Ambala, Karnal, IND, UK, CA, AUS
               </span>

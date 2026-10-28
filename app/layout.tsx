@@ -78,7 +78,15 @@ const orgJsonLd = {
         jobTitle: "Founder & Technology Director",
         sameAs: "https://www.linkedin.com/in/gagan-kalra-462bb1343/",
       },
-      address: { "@type": "PostalAddress", addressCountry: "IN" },
+      address: {
+        "@type": "PostalAddress",
+        streetAddress:
+          "IM Punjab, Unit 51, 2nd Floor, Kalkat Bhawan, Block C, Kissan Vikas Chamber, Chandigarh Int'l Airport Rd, Gmada Aerocity",
+        addressLocality: "Sahibzada Ajit Singh Nagar, Chachu Majra",
+        addressRegion: "Punjab",
+        postalCode: "140306",
+        addressCountry: "IN",
+      },
       description: COMPANY.description,
       sameAs: COMPANY.sameAs,
     },

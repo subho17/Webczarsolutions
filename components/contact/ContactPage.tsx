@@ -138,7 +138,23 @@ export default function ContactPage() {
                 <div className={styles.methodItem}>
                   <div className={styles.methodIcon}>📍</div>
                   <div className={styles.methodContent}>
-                    <b>Offices &amp; Locations</b>
+                    <b>Office Address</b>
+                    <a
+                      href="https://share.google/p1v6dLB0JHKNpodWx"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{ display: "block", lineHeight: "1.45" }}
+                    >
+                      IM Punjab, Unit 51, 2nd Floor, Kalkat Bhawan, Block C, Kissan Vikas Chamber, Chandigarh Int&apos;l Airport Rd, Gmada Aerocity, Sahibzada Ajit Singh Nagar, Chachu Majra, Punjab 140306
+                    </a>
+                    <p className={styles.methodSub}>Rated 4.8 ★ (33 reviews) on Google · View on Maps ↗</p>
+                  </div>
+                </div>
+
+                <div className={styles.methodItem}>
+                  <div className={styles.methodIcon}>🌐</div>
+                  <div className={styles.methodContent}>
+                    <b>Global Presence &amp; Regional Hubs</b>
                     <span>(Tricity), Ambala, Karnal, IND, UK, CA, AUS</span>
                     <p className={styles.methodSub}>Global delivery across 15+ countries</p>
                   </div>

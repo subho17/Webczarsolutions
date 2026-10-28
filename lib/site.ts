@@ -9,8 +9,7 @@ export const COMPANY = {
   name: "Webczar Solutions",
   tagline: "Technology & Digital Solutions",
   email: "info@webczarsolutions.com",
-  phone: "+91 99882 21729",
-  location: "India",
+  location: "IM Punjab, Unit 51, 2nd Floor, Kalkat Bhawan, Block C, Kissan Vikas Chamber, Chandigarh Int'l Airport Rd, Gmada Aerocity, Sahibzada Ajit Singh Nagar, Chachu Majra, Punjab 140306",
   description:
     "Webczar Solutions is a technology and digital solutions company focused on helping businesses build, transform, and grow in the digital world.",
   sameAs: [
