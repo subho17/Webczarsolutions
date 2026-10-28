@@ -19,7 +19,7 @@ const COMPANY_LINKS = [
   { label: "Add-On Services", href: "/add-on-services" },
   { label: "Blogs", href: "/blog" },
   { label: "Contact Us", href: "/contact" },
-  { label: "Career (Join Webczar)", href: "/careers" },
+  { label: "Careers", href: "/careers" },
 ];
 
 const USEFUL_LINKS = [
