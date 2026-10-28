@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { scrollToHash } from "@/lib/lenis";
 import styles from "./Footer.module.css";
 
 const SERVICES_LIST = [
@@ -45,7 +46,7 @@ export default function Footer() {
 
   const scrollToTop = (e: React.MouseEvent) => {
     e.preventDefault();
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    scrollToHash("#top");
   };
 
   return (
@@ -327,10 +328,6 @@ export default function Footer() {
           <span className={styles.divider}>·</span>
           <Link href="/careers" className={styles.legalLink}>
             Careers
-          </Link>
-          <span className={styles.divider}>·</span>
-          <Link href="/admin" className={styles.legalLink} title="Blog Admin Panel">
-            Admin
           </Link>
         </div>
       </div>

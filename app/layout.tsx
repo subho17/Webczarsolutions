@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Instrument_Serif, Caveat } from "next/font/google";
 import SmoothScroll from "@/components/layout/SmoothScroll";
+import FloatingNav from "@/components/layout/FloatingNav";
 import { LanguageProvider } from "@/lib/i18n";
 import { SITE_URL, COMPANY } from "@/lib/site";
 import "./globals.css";
@@ -105,7 +106,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <body>
         <LanguageProvider>
-          <SmoothScroll>{children}</SmoothScroll>
+          <SmoothScroll>
+            {children}
+            <FloatingNav />
+          </SmoothScroll>
         </LanguageProvider>
         <script
           type="application/ld+json"
