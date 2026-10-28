@@ -7,6 +7,7 @@ import { gsap, ScrollTrigger } from "@/lib/gsap";
 import { useLang } from "@/lib/i18n";
 import { LOGIN_PORTALS } from "@/content/loginPortals";
 import { SERVICES_NAV } from "@/content/servicesNav";
+import { getLenis } from "@/lib/lenis";
 import styles from "./Nav.module.css";
 
 const LINKS = [
@@ -325,10 +326,29 @@ export default function Nav() {
   const currentServiceGroup =
     SERVICES_NAV.find((g) => g.id === activeServiceGroup) || SERVICES_NAV[0];
 
+  const handleHomeClick = (e: React.MouseEvent) => {
+    if (pathname === "/" || pathname === "") {
+      e.preventDefault();
+      const lenis = getLenis();
+      if (lenis) {
+        lenis.scrollTo(0, { duration: 1.1 });
+      } else {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+      if (typeof window !== "undefined" && window.location.hash) {
+        history.pushState(null, "", window.location.pathname);
+      }
+    } else {
+      const lenis = getLenis();
+      lenis?.scrollTo(0, { immediate: true });
+      window.scrollTo(0, 0);
+    }
+  };
+
   return (
     <header className={styles.wrap} ref={ref}>
       <div className={styles.cap}>
-        <Link href="/" className={styles.logo} aria-label={t("nav.home")}>
+        <Link href="/" className={styles.logo} onClick={handleHomeClick} aria-label={t("nav.home")}>
           <img
             src="/images/Screenshot_2026-09-16_125328-removebg-preview.png"
             alt="Webczar Solutions"
@@ -500,12 +520,14 @@ export default function Nav() {
               );
             }
 
+            const isHome = l.key === "nav.home" || l.href === "/";
             return (
               <Link
                 key={l.key}
                 href={l.href}
                 className={`${styles.navLink} ${isOn ? styles.on : ""}`}
                 aria-current={isOn ? "page" : undefined}
+                onClick={isHome ? handleHomeClick : undefined}
               >
                 <span className={styles.roll}>
                   <span>{t(l.key)}</span>
@@ -746,13 +768,17 @@ export default function Nav() {
               );
             }
 
+            const isHome = l.key === "nav.home" || l.href === "/";
             return (
               <Link
                 key={l.key}
                 href={l.href}
                 className={isOn ? styles.sheetOn : ""}
                 aria-current={isOn ? "page" : undefined}
-                onClick={() => setMenuOpen(false)}
+                onClick={(e) => {
+                  setMenuOpen(false);
+                  if (isHome) handleHomeClick(e);
+                }}
               >
                 {t(l.key)}
               </Link>

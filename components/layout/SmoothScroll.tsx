@@ -18,7 +18,7 @@ export default function SmoothScroll({ children }: { children: ReactNode }) {
     if ("scrollRestoration" in window.history) {
       window.history.scrollRestoration = "manual";
     }
-    if (!window.location.hash) {
+    if (!window.location.hash || window.location.hash === "#home" || window.location.hash === "#top") {
       const reset = () => {
         window.scrollTo(0, 0);
         const lenis = getLenis();

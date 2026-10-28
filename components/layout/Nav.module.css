@@ -45,6 +45,7 @@
   display: flex;
   align-items: center;
   flex-shrink: 0;
+  cursor: pointer;
 }
 .logo:hover {
   letter-spacing: 0.01em;
