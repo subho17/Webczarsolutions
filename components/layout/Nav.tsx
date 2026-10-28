@@ -610,7 +610,6 @@ export default function Nav() {
                         <span>{portal.title}</span>
                         <span className={styles.arrowIcon}>↗</span>
                       </div>
-                      <span className={styles.portalDesc}>{portal.description}</span>
                     </div>
                   </a>
                 ))}
@@ -820,7 +819,6 @@ export default function Nav() {
                         <span>{portal.title}</span>
                         <span className={styles.arrowIcon}>↗</span>
                       </div>
-                      <span className={styles.portalDesc}>{portal.tag}</span>
                     </div>
                   </a>
                 ))}

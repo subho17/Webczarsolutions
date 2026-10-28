@@ -554,7 +554,8 @@
   position: absolute;
   top: calc(100% + 14px);
   right: 0;
-  width: 530px;
+  width: 480px;
+  max-width: calc(100vw - 32px);
   background: rgba(255, 255, 255, 0.96);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
@@ -654,7 +655,7 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 9px 11px;
+  padding: 8px 10px;
   border-radius: 12px;
   background: transparent !important;
   border: 1px solid transparent;
@@ -662,6 +663,7 @@
   transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
   position: relative;
   cursor: pointer;
+  min-height: 48px;
 }
 
 .portalCard:hover {
@@ -671,9 +673,9 @@
 }
 
 .iconBox {
-  width: 34px;
-  height: 34px;
-  border-radius: 9px;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -687,39 +689,31 @@
 
 .portalInfo {
   display: flex;
-  flex-direction: column;
+  align-items: center;
   min-width: 0;
   flex: 1;
 }
 
 .portalTitle {
   font-size: 13px;
-  font-weight: 700;
+  font-weight: 600;
   color: var(--ink);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  line-height: 1.3;
+  width: 100%;
+  gap: 6px;
+  line-height: 1.25;
   transition: color 0.18s ease;
+}
+
+.portalTitle > span:first-child {
+  flex: 1;
+  min-width: 0;
 }
 
 .portalCard:hover .portalTitle {
   color: var(--accent) !important;
-}
-
-.portalDesc {
-  font-size: 11px;
-  color: var(--ink-3);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  line-height: 1.3;
-  margin-top: 1px;
-  transition: color 0.18s ease;
-}
-
-.portalCard:hover .portalDesc {
-  color: #334155 !important;
 }
 
 .arrowIcon {
