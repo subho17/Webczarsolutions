@@ -20,6 +20,7 @@ const COMPANY_LINKS = [
   { label: "Add-On Services", href: "/add-on-services" },
   { label: "Blogs", href: "/blog" },
   { label: "Contact Us", href: "/contact" },
+  { label: "Our Team", href: "/team" },
   { label: "Careers", href: "/careers" },
 ];
 

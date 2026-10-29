@@ -10,6 +10,7 @@ import Experience from "@/components/sections/Experience/Experience";
 import Certifications from "@/components/sections/Certifications/Certifications";
 import Gallery from "@/components/sections/Gallery/Gallery";
 import Connect from "@/components/sections/Connect/Connect";
+import TeamSection from "@/components/sections/Team/TeamSection";
 import Footer from "@/components/layout/Footer/Footer";
 
 /*
@@ -79,7 +80,11 @@ export default function Home() {
           <Connect />
         </Scene>
 
-        {/* the footer frame rises over the connect scene and covers it */}
+        <Scene order={11} runway={1.0} id="team">
+          <TeamSection />
+        </Scene>
+
+        {/* the footer frame rises over the team scene and covers it */}
         <div className="finalFrame">
           <Footer />
         </div>
