@@ -212,6 +212,38 @@
   box-shadow: 0 0 6px rgba(5, 150, 105, 0.4);
 }
 
+.officeBlock {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--ink-2, #4b5563);
+  margin-bottom: 20px;
+  max-width: 340px;
+  background: rgba(20, 20, 20, 0.03);
+  border: 1px solid var(--line, #ededef);
+  border-radius: 10px;
+  padding: 9px 12px;
+}
+
+.officeIcon {
+  font-size: 14px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.officeText {
+  color: var(--ink, #141414);
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.officeText:hover {
+  color: var(--accent, #ff2e0f);
+}
+
 .founderBlock {
   margin-top: auto;
   padding-top: 14px;

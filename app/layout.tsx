@@ -81,8 +81,8 @@ const orgJsonLd = {
       address: {
         "@type": "PostalAddress",
         streetAddress:
-          "IM Punjab, Unit 51, 2nd Floor, Kalkat Bhawan, Block C, Kissan Vikas Chamber, Chandigarh Int'l Airport Rd, Gmada Aerocity",
-        addressLocality: "Sahibzada Ajit Singh Nagar, Chachu Majra",
+          "Unit 51, Level 2, Kalkat Bhawan, Airport Rd, Aerocity/C",
+        addressLocality: "Mohali, Sahibzada Ajit Singh Nagar",
         addressRegion: "Punjab",
         postalCode: "140306",
         addressCountry: "IN",

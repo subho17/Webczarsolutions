@@ -110,6 +110,19 @@ export default function Footer() {
             </span>
           </div>
 
+          <div className={styles.officeBlock}>
+            <span className={styles.officeIcon}>📍</span>
+            <a
+              href="https://share.google/p1v6dLB0JHKNpodWx"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.officeText}
+              title="View on Google Maps"
+            >
+              Unit 51, Level 2, Kalkat Bhawan, Airport Rd, Aerocity/C, Mohali, Punjab
+            </a>
+          </div>
+
           <div className={styles.founderBlock}>
             <span className={styles.founderLbl}>Founder &amp; Director:</span>
             <span className={styles.founderName}>Gagan Kalra</span>
@@ -173,7 +186,7 @@ export default function Footer() {
                 rel="noopener noreferrer"
                 title="View on Google Maps"
               >
-                IM Punjab, Unit 51, 2nd Floor, Kalkat Bhawan, Block C, Kissan Vikas Chamber, Chandigarh Int&apos;l Airport Rd, Gmada Aerocity, Sahibzada Ajit Singh Nagar, Chachu Majra, Punjab 140306
+                Unit 51, Level 2, Kalkat Bhawan, Airport Rd, Aerocity/C, Mohali, Punjab
               </a>
             </p>
             <p className={styles.contactItem}>

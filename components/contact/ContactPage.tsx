@@ -145,7 +145,7 @@ export default function ContactPage() {
                       rel="noopener noreferrer"
                       style={{ display: "block", lineHeight: "1.45" }}
                     >
-                      IM Punjab, Unit 51, 2nd Floor, Kalkat Bhawan, Block C, Kissan Vikas Chamber, Chandigarh Int&apos;l Airport Rd, Gmada Aerocity, Sahibzada Ajit Singh Nagar, Chachu Majra, Punjab 140306
+                      Unit 51, Level 2, Kalkat Bhawan, Airport Rd, Aerocity/C, Mohali, Punjab
                     </a>
                     <p className={styles.methodSub}>Rated 4.8 ★ (33 reviews) on Google · View on Maps ↗</p>
                   </div>
