@@ -263,7 +263,7 @@ export default function TeamSection() {
       gsap.from(`.${styles.head} > *`, {
         y: 28,
         autoAlpha: 0,
-        duration: 0.8,
+        duration: 0.9,
         ease: EASE.outExpo,
         stagger: 0.08,
         immediateRender: false,
@@ -468,9 +468,8 @@ export default function TeamSection() {
                   </div>
                   <div className={styles.cardScrim} />
                   <span
-                    className={`${styles.cardBadge} ${
-                      item.category === "leadership" ? styles.cardBadgeAccent : ""
-                    }`}
+                    className={`${styles.cardBadge} ${item.category === "leadership" ? styles.cardBadgeAccent : ""
+                      }`}
                   >
                     {item.tag}
                   </span>
