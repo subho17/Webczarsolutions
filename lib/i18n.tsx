@@ -48,7 +48,7 @@ export const DICT: Record<string, Entry> = {
     en: "Technology & Digital Solutions",
     fr: "Solutions technologiques & numériques",
   },
-  "hero.h1a": { en: "Building Digital", fr: "Construire des solutions" },
+  "hero.h1a": { en: "Building Webczar", fr: "Construire des solutions Webczar" },
   "hero.h1aEm": { en: "Solutions.", fr: "numériques." },
   "hero.h1b": { en: "That Drive", fr: "Qui propulsent" },
   "hero.h1bEm": { en: "Growth.", fr: "la croissance." },
