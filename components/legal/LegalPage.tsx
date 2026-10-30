@@ -415,9 +415,9 @@ export default function LegalPage({ doc }: { doc: LegalDocument }) {
                   Email Us Directly
                 </a>
                 <a
-                  href="https://api.whatsapp.com/send/?phone=919988221729&text=Hello%20Webczar,%20I%20have%20a%20question%20regarding%20your%20legal%20terms."
+                  href="https://wa.me/919988221729"
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                   className={styles.supportBtnSecondary}
                 >
                   WhatsApp Support ↗

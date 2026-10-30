@@ -254,7 +254,13 @@ export default function Connect() {
           {t("connect.lede")}
         </p>
         <div className={styles.cta}>
-          <Button href="mailto:info@webczarsolutions.com" variant="primary" arrow>
+          <Button
+            href="https://wa.me/919988221729"
+            target="_blank"
+            rel="noopener noreferrer"
+            variant="primary"
+            arrow
+          >
             {t("connect.cta")}
           </Button>
         </div>

@@ -8,24 +8,54 @@
    it, so a partially translated study still renders — untranslated fields
    fall through to English instead of disappearing. */
 
+import { useState, useEffect } from "react";
 import Link from "next/link";
-import { PROJECTS } from "@/content/projects";
+import { PROJECTS, type Project } from "@/content/projects";
+import { fetchLivePosts } from "@/lib/postsClient";
 import { useLang, L } from "@/lib/i18n";
 import { renderMarkdown } from "@/lib/markdown";
 import styles from "./case.module.css";
 
 export default function CaseView({ slug }: { slug: string }) {
   const { t, lang } = useLang();
+  const [project, setProject] = useState<Project | null>(() => {
+    return PROJECTS.find((p) => p.slug === slug) || null;
+  });
+  const [allProjects, setAllProjects] = useState<Project[]>(PROJECTS);
 
-  const project = PROJECTS.find((p) => p.slug === slug);
-  if (!project) return null; /* the server component already called notFound() */
+  useEffect(() => {
+    void fetchLivePosts().then((posts) => {
+      if (posts && posts.length > 0) {
+        setAllProjects(posts);
+        const match = posts.find((p) => p.slug === slug);
+        if (match) {
+          setProject(match);
+        }
+      }
+    });
+  }, [slug]);
+
+  if (!project) {
+    return (
+      <main className={styles.page}>
+        <div className={styles.bar}>
+          <Link href="/blog" className={styles.back}>
+            {t("case.back")}
+          </Link>
+        </div>
+        <div style={{ textAlign: "center", padding: "80px 20px" }}>
+          <h2>Loading article...</h2>
+        </div>
+      </main>
+    );
+  }
 
   const fr = lang === "fr" ? project.fr : undefined;
   const study = { ...project.study, ...(fr?.study ?? {}) };
   const tags = fr?.tags ?? project.tags;
 
-  const idx = PROJECTS.indexOf(project);
-  const next = PROJECTS[(idx + 1) % PROJECTS.length];
+  const idx = allProjects.indexOf(project);
+  const next = allProjects[idx >= 0 ? (idx + 1) % allProjects.length : 0];
 
   return (
     <main className={styles.page}>

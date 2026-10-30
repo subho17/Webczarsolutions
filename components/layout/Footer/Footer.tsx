@@ -20,6 +20,7 @@ const COMPANY_LINKS = [
   { label: "Add-On Services", href: "/add-on-services" },
   { label: "Blogs", href: "/blog" },
   { label: "Contact Us", href: "/contact" },
+  { label: "Pay Online", href: "/pay-now" },
   { label: "Our Team", href: "/team" },
   { label: "Careers", href: "/careers" },
 ];
@@ -70,9 +71,9 @@ export default function Footer() {
               Get a Free Proposal <span>→</span>
             </Link>
             <a
-              href="https://api.whatsapp.com/send/?phone=919988221729&text=Hello%20Webczar,%20I'd%20like%20to%20discuss%20a%20project."
+              href="https://wa.me/919988221729"
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               className={styles.ctaSecondaryBtn}
             >
               WhatsApp Us <span>↗</span>

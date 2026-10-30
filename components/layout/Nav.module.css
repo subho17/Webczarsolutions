@@ -757,6 +757,7 @@
   display: flex;
   align-items: center;
   gap: 14px;
+  margin-left: auto;
 }
 
 /* ============ MOBILE NAVIGATION ============ */
@@ -852,6 +853,30 @@
 .sheetOn {
   color: var(--ink);
   background: rgba(20, 20, 20, 0.05);
+}
+
+.payNowLink {
+  color: #0284c7 !important;
+  font-weight: 700 !important;
+}
+
+.sheetPayNow {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  color: #0284c7 !important;
+  font-weight: 800 !important;
+  background: rgba(2, 132, 199, 0.05) !important;
+}
+
+.payNowBadge {
+  font-size: 11px;
+  font-weight: 800;
+  color: #0284c7;
+  background: rgba(2, 132, 199, 0.1);
+  padding: 3px 8px;
+  border-radius: 999px;
+  letter-spacing: 0.02em;
 }
 
 /* Mobile Services Accordion */
@@ -1112,6 +1137,7 @@
   }
   .cap {
     width: 100%;
+    justify-content: space-between;
     gap: 12px;
     padding: 8px 8px 8px 18px;
   }
@@ -1119,6 +1145,9 @@
     font-size: 17px;
   }
   .right {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
     gap: 10px;
   }
   .burger {
@@ -1139,7 +1168,12 @@
     padding: 0 10px;
   }
   .cap {
+    width: 100%;
+    justify-content: space-between;
     padding: 6px 6px 6px 14px;
+  }
+  .right {
+    margin-left: auto;
   }
   .sheet {
     left: 10px;

@@ -88,9 +88,14 @@ export default function AboutPage() {
             <Link href="/services" className={styles.primaryCta}>
               Explore Our Capabilities <span>→</span>
             </Link>
-            <Link href="/contact" className={styles.secondaryCta}>
+            <a
+              href="https://wa.me/919988221729"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.secondaryCta}
+            >
               Start a Conversation <span>↗</span>
-            </Link>
+            </a>
           </div>
         </section>
 
@@ -188,6 +193,7 @@ export default function AboutPage() {
               <div className={styles.founderContactList}>
                 <span>Email: <a href="mailto:info@webczarsolutions.com">info@webczarsolutions.com</a></span>
                 <span>Direct: <a href="tel:9988221729">+91 99882 21729</a></span>
+                <span>WhatsApp: <a href="https://wa.me/919988221729" target="_blank" rel="noopener noreferrer">Chat on WhatsApp ↗</a></span>
                 <span>Location: Chandigarh Tech Corridor, India</span>
               </div>
             </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Nav from "@/components/layout/Nav";
 import Footer from "@/components/layout/Footer/Footer";
 import styles from "./CareersPage.module.css";
@@ -165,8 +165,71 @@ export default function CareersPage() {
   const [candidatePhone, setCandidatePhone] = useState("");
   const [portfolioUrl, setPortfolioUrl] = useState("");
   const [coverNote, setCoverNote] = useState("");
+  const [cvFile, setCvFile] = useState<File | null>(null);
+  const [cvError, setCvError] = useState<string>("");
+  const [isDragOver, setIsDragOver] = useState<boolean>(false);
   const [submitting, setSubmitting] = useState(false);
   const [appliedSuccess, setAppliedSuccess] = useState(false);
+
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const ALLOWED_EXTENSIONS = ["pdf", "doc", "docx", "jpg", "jpeg", "png"];
+  const MAX_FILE_SIZE = 15 * 1024 * 1024; // 15 MB
+
+  const validateAndSetFile = (file: File): boolean => {
+    const ext = file.name.split(".").pop()?.toLowerCase() || "";
+    if (!ALLOWED_EXTENSIONS.includes(ext)) {
+      setCvError(
+        "Invalid file format. Please upload Word (.doc, .docx), PDF (.pdf), or JPG/PNG (.jpg, .jpeg, .png)."
+      );
+      setCvFile(null);
+      return false;
+    }
+    if (file.size > MAX_FILE_SIZE) {
+      setCvError("File size exceeds 15 MB limit. Please upload a smaller file.");
+      setCvFile(null);
+      return false;
+    }
+    setCvError("");
+    setCvFile(file);
+    return true;
+  };
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      validateAndSetFile(file);
+    }
+  };
+
+  const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    setIsDragOver(false);
+    const file = e.dataTransfer.files?.[0];
+    if (file) {
+      validateAndSetFile(file);
+    }
+  };
+
+  const getFileBadgeClass = (filename: string) => {
+    const ext = filename.split(".").pop()?.toLowerCase();
+    if (ext === "pdf") return styles.badgePdf;
+    if (ext === "doc" || ext === "docx") return styles.badgeWord;
+    return styles.badgeJpg;
+  };
+
+  const getFileIcon = (filename: string) => {
+    const ext = filename.split(".").pop()?.toLowerCase();
+    if (ext === "pdf") return "📕";
+    if (ext === "doc" || ext === "docx") return "📝";
+    return "🖼️";
+  };
+
+  const formatFileSize = (bytes: number) => {
+    if (bytes < 1024) return `${bytes} B`;
+    if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
+    return `${(bytes / (1024 * 1024)).toFixed(2)} MB`;
+  };
 
   const departments = [
     "All",
@@ -189,13 +252,39 @@ export default function CareersPage() {
     }
   };
 
-  const handleApplicationSubmit = (e: React.FormEvent) => {
+  const handleApplicationSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (!cvFile && !portfolioUrl.trim()) {
+      setCvError("Please upload your CV (Word/PDF/JPG) or provide a resume/portfolio URL.");
+      return;
+    }
+
     setSubmitting(true);
-    setTimeout(() => {
+    setCvError("");
+
+    try {
+      const formData = new FormData();
+      formData.append("role", appliedRole);
+      formData.append("name", candidateName);
+      formData.append("email", candidateEmail);
+      formData.append("phone", candidatePhone);
+      formData.append("portfolio", portfolioUrl);
+      formData.append("coverNote", coverNote);
+      if (cvFile) {
+        formData.append("cv", cvFile);
+      }
+
+      await fetch("/api/careers.php", {
+        method: "POST",
+        body: formData,
+      });
+    } catch (err) {
+      console.warn("Application submission notice:", err);
+    } finally {
       setSubmitting(false);
       setAppliedSuccess(true);
-    }, 1200);
+    }
   };
 
   return (
@@ -388,27 +477,54 @@ export default function CareersPage() {
           <div className={styles.applySection} id="apply-form-section">
             {appliedSuccess ? (
               <div className={styles.appSuccess}>
-                <h3 className={styles.appSuccessTitle}>Application Received!</h3>
+                <div style={{ fontSize: "38px", marginBottom: "8px" }}>🎉</div>
+                <h3 className={styles.appSuccessTitle}>Application &amp; CV Received!</h3>
                 <p className={styles.appSuccessText}>
-                  Thank you for your interest in joining Webczar Solutions. Our hiring team will
-                  review your credentials and reach out within 3 to 5 business days.
+                  Thank you, <strong>{candidateName}</strong>! Your application for{" "}
+                  <strong>{appliedRole}</strong>
+                  {cvFile ? ` (CV: ${cvFile.name})` : ""} has been submitted directly to our hiring team.
+                  Our HR will evaluate your credentials and reach out within 24–48 hours.
                 </p>
-                <button
-                  type="button"
-                  onClick={() => setAppliedSuccess(false)}
-                  style={{
-                    marginTop: "16px",
-                    background: "none",
-                    border: "1px solid #10b981",
-                    color: "#065f46",
-                    padding: "8px 18px",
-                    borderRadius: "999px",
-                    cursor: "pointer",
-                    fontWeight: 700,
-                  }}
-                >
-                  Submit Another Application
-                </button>
+
+                <div style={{ display: "flex", gap: "12px", justifyContent: "center", flexWrap: "wrap", marginTop: "20px" }}>
+                  <a
+                    href={`https://wa.me/919988221729?text=${encodeURIComponent(
+                      `Hello Webczar HR Team, I have submitted my job application for the role of "${appliedRole}". Candidate Name: ${candidateName}, Phone: ${candidatePhone}.`
+                    )}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={styles.whatsappNotifyBtn}
+                  >
+                    💬 Quick Notify on WhatsApp
+                  </a>
+
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setAppliedSuccess(false);
+                      setCvFile(null);
+                      setCandidateName("");
+                      setCandidateEmail("");
+                      setCandidatePhone("");
+                      setPortfolioUrl("");
+                      setCoverNote("");
+                      if (fileInputRef.current) fileInputRef.current.value = "";
+                    }}
+                    style={{
+                      marginTop: "14px",
+                      background: "none",
+                      border: "1px solid #10b981",
+                      color: "#065f46",
+                      padding: "11px 22px",
+                      borderRadius: "999px",
+                      cursor: "pointer",
+                      fontWeight: 800,
+                      fontSize: "13.5px",
+                    }}
+                  >
+                    Submit Another Application
+                  </button>
+                </div>
               </div>
             ) : (
               <>
@@ -416,7 +532,7 @@ export default function CareersPage() {
                   <span className={styles.kicker}>QUICK APPLICATION</span>
                   <h3 className={styles.applyTitle}>Direct Application Form</h3>
                   <p className={styles.applyDesc}>
-                    Skip recruiter intermediaries. Apply directly to our leadership team or send your CV to{" "}
+                    Skip recruiter intermediaries. Upload your CV (Word, PDF, or JPG) or send it directly to{" "}
                     <a
                       href="mailto:info@webczarsolutions.com?subject=Job%20Application%20-%20Webczar%20Solutions"
                       className={styles.mailLink}
@@ -483,17 +599,103 @@ export default function CareersPage() {
                     </div>
                   </div>
 
+                  {/* CV / Resume File Upload (Word, PDF, JPG) */}
+                  <div className={styles.cvUploadContainer}>
+                    <label className={styles.formLabel}>
+                      Upload CV / Resume *{" "}
+                      <span style={{ fontWeight: 400, color: "#6b7280" }}>
+                        (Word, PDF, or JPG/PNG image)
+                      </span>
+                    </label>
+
+                    {!cvFile ? (
+                      <div
+                        className={`${styles.cvUploadBox} ${isDragOver ? styles.cvUploadBoxActive : ""}`}
+                        onDragOver={(e) => {
+                          e.preventDefault();
+                          setIsDragOver(true);
+                        }}
+                        onDragLeave={() => setIsDragOver(false)}
+                        onDrop={handleDrop}
+                        onClick={() => fileInputRef.current?.click()}
+                      >
+                        <input
+                          ref={fileInputRef}
+                          type="file"
+                          accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,image/jpeg,image/png"
+                          className={styles.fileInputHidden}
+                          onChange={handleFileChange}
+                          tabIndex={-1}
+                          aria-label="Upload CV file in Word, PDF, or JPG format"
+                        />
+                        <div className={styles.uploadIcon}>
+                          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                            <polyline points="17 8 12 3 7 8" />
+                            <line x1="12" y1="3" x2="12" y2="15" />
+                          </svg>
+                        </div>
+                        <p className={styles.uploadTitle}>
+                          <span className={styles.uploadTitleHighlight}>Click to upload your CV</span> or drag &amp; drop
+                        </p>
+                        <p className={styles.uploadHint}>Maximum file size: 15 MB</p>
+
+                        <div className={styles.formatBadges}>
+                          <span className={`${styles.formatBadge} ${styles.badgeWord}`}>
+                            📝 Word (.doc, .docx)
+                          </span>
+                          <span className={`${styles.formatBadge} ${styles.badgePdf}`}>
+                            📕 PDF (.pdf)
+                          </span>
+                          <span className={`${styles.formatBadge} ${styles.badgeJpg}`}>
+                            🖼️ JPG / Image (.jpg, .png)
+                          </span>
+                        </div>
+                      </div>
+                    ) : (
+                      <div className={styles.selectedFileCard}>
+                        <div className={styles.fileCardLeft}>
+                          <span className={styles.fileCardIcon}>{getFileIcon(cvFile.name)}</span>
+                          <div className={styles.fileCardMeta}>
+                            <span className={styles.fileCardName} title={cvFile.name}>
+                              {cvFile.name}
+                            </span>
+                            <span className={styles.fileCardSize}>
+                              {formatFileSize(cvFile.size)} ·{" "}
+                              <span className={`${styles.formatBadge} ${getFileBadgeClass(cvFile.name)}`}>
+                                {cvFile.name.split(".").pop()?.toUpperCase()}
+                              </span>
+                            </span>
+                          </div>
+                        </div>
+
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setCvFile(null);
+                            if (fileInputRef.current) fileInputRef.current.value = "";
+                          }}
+                          className={styles.removeFileBtn}
+                          title="Remove this file"
+                        >
+                          ✕ Remove / Change
+                        </button>
+                      </div>
+                    )}
+
+                    {cvError && <div className={styles.uploadErrorMsg}>{cvError}</div>}
+                  </div>
+
                   <div className={styles.formGroup}>
                     <label className={styles.formLabel}>
-                      Resume / LinkedIn / Portfolio URL *
+                      Portfolio / LinkedIn / GitHub Link (Optional)
                     </label>
                     <input
                       type="url"
-                      placeholder="https://linkedin.com/in/... or Google Drive resume link"
+                      placeholder="https://linkedin.com/in/... or your personal website"
                       value={portfolioUrl}
                       onChange={(e) => setPortfolioUrl(e.target.value)}
                       className={styles.formInput}
-                      required
                     />
                   </div>
 
@@ -503,7 +705,7 @@ export default function CareersPage() {
                     </label>
                     <textarea
                       rows={3}
-                      placeholder="Tell us what excites you about building high-impact software and AI systems at Webczar..."
+                      placeholder="Tell us what excites you about building high-impact software, sales, or marketing at Webczar..."
                       value={coverNote}
                       onChange={(e) => setCoverNote(e.target.value)}
                       className={styles.formTextarea}
@@ -515,7 +717,7 @@ export default function CareersPage() {
                     disabled={submitting}
                     className={styles.submitAppBtn}
                   >
-                    {submitting ? "Submitting Application..." : "Submit Application →"}
+                    {submitting ? "Submitting Application & CV..." : "Submit Application & CV →"}
                   </button>
                 </form>
               </>

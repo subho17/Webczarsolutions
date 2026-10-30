@@ -18,6 +18,7 @@ const LINKS = [
   { key: "nav.blog", href: "/blog", path: "/blog" },
   { key: "nav.careers", href: "/careers", path: "/careers" },
   { key: "nav.contact", href: "/contact", path: "/contact" },
+  { key: "nav.payNow", href: "/pay-now", path: "/pay-now" },
 ];
 
 function getPortalBg(id: string): string {
@@ -521,11 +522,12 @@ export default function Nav() {
             }
 
             const isHome = l.key === "nav.home" || l.href === "/";
+            const isPayNow = l.key === "nav.payNow";
             return (
               <Link
                 key={l.key}
                 href={l.href}
-                className={`${styles.navLink} ${isOn ? styles.on : ""}`}
+                className={`${styles.navLink} ${isOn ? styles.on : ""} ${isPayNow ? styles.payNowLink : ""}`}
                 aria-current={isOn ? "page" : undefined}
                 onClick={isHome ? handleHomeClick : undefined}
               >
@@ -769,18 +771,20 @@ export default function Nav() {
             }
 
             const isHome = l.key === "nav.home" || l.href === "/";
+            const isPayNow = l.key === "nav.payNow";
             return (
               <Link
                 key={l.key}
                 href={l.href}
-                className={isOn ? styles.sheetOn : ""}
+                className={`${isOn ? styles.sheetOn : ""} ${isPayNow ? styles.sheetPayNow : ""}`}
                 aria-current={isOn ? "page" : undefined}
                 onClick={(e) => {
                   setMenuOpen(false);
                   if (isHome) handleHomeClick(e);
                 }}
               >
-                {t(l.key)}
+                <span>{t(l.key)}</span>
+                {isPayNow && <span className={styles.payNowBadge}>💳 Fast &amp; Secure</span>}
               </Link>
             );
           })}

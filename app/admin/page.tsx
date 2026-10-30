@@ -5,6 +5,7 @@ import Link from "next/link";
 import { POSTS } from "@/content/posts";
 import type { Project } from "@/content/types";
 import { renderMarkdown, countWords } from "@/lib/markdown";
+import { fetchLivePosts, cacheSinglePost, removeCachedPost } from "@/lib/postsClient";
 import styles from "./admin.module.css";
 
 const ADMIN_PASS = "webczar2026";
@@ -127,59 +128,71 @@ export default function AdminPage() {
 
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
-  // Check local bridge health and sync posts
-  const checkBridge = useCallback(async () => {
+  type StorageMode = "cloud" | "bridge" | "local";
+  const [storageMode, setStorageMode] = useState<StorageMode>("cloud");
+
+  // Check storage backends (Hostinger PHP cloud API -> local bridge -> localStorage)
+  const checkStorage = useCallback(async () => {
+    // 1. Check live cloud endpoint (Hostinger Apache / PHP)
     try {
-      const res = await fetch(`${BRIDGE_URL}/api/health`, { method: "GET" });
+      const res = await fetch("/api/posts.php?health=1", { cache: "no-store" });
       if (res.ok) {
-        setBridgeOnline(true);
-        // Load live posts from disk
-        const postsRes = await fetch(`${BRIDGE_URL}/api/posts`);
-        const data = await postsRes.json();
-        if (data.success && Array.isArray(data.posts) && data.posts.length > 0) {
-          setPosts(data.posts);
+        const data = await res.json();
+        if (data && data.ok) {
+          setStorageMode("cloud");
+          setBridgeOnline(true);
+          const livePosts = await fetchLivePosts();
+          if (livePosts.length > 0) {
+            setPosts(livePosts);
+          }
+          return;
         }
-      } else {
-        setBridgeOnline(false);
       }
-    } catch {
-      setBridgeOnline(false);
+    } catch {}
+
+    // 2. Check local bridge if running on localhost
+    if (typeof window !== "undefined" && (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1")) {
+      try {
+        const res = await fetch(`${BRIDGE_URL}/api/health`, { method: "GET" });
+        if (res.ok) {
+          setStorageMode("bridge");
+          setBridgeOnline(true);
+          const postsRes = await fetch(`${BRIDGE_URL}/api/posts`);
+          const data = await postsRes.json();
+          if (data.success && Array.isArray(data.posts) && data.posts.length > 0) {
+            setPosts(data.posts);
+          }
+          return;
+        }
+      } catch {}
+    }
+
+    // 3. Fallback: local mode
+    setStorageMode("local");
+    setBridgeOnline(false);
+    const cached = await fetchLivePosts();
+    if (cached.length > 0) {
+      setPosts(cached);
     }
   }, []);
 
   useEffect(() => {
     let isMounted = true;
 
-    async function loadBridge() {
-      try {
-        const res = await fetch(`${BRIDGE_URL}/api/health`, { method: "GET" });
-        if (!isMounted) return;
-        if (res.ok) {
-          setBridgeOnline(true);
-          const postsRes = await fetch(`${BRIDGE_URL}/api/posts`);
-          if (!isMounted) return;
-          const data = await postsRes.json();
-          if (data.success && Array.isArray(data.posts) && data.posts.length > 0) {
-            setPosts(data.posts);
-          }
-        } else {
-          setBridgeOnline(false);
-        }
-      } catch {
-        if (isMounted) setBridgeOnline(false);
-      }
+    async function init() {
+      await checkStorage();
     }
 
-    void loadBridge();
+    void init();
     const interval = setInterval(() => {
-      void loadBridge();
-    }, 6000);
+      if (isMounted) void checkStorage();
+    }, 8000);
 
     return () => {
       isMounted = false;
       clearInterval(interval);
     };
-  }, []);
+  }, [checkStorage]);
 
   const showToast = (msg: string) => {
     setToastMsg(msg);
@@ -237,26 +250,37 @@ export default function AdminPage() {
   const handleDelete = async (slug: string) => {
     if (!window.confirm(`Are you sure you want to delete post "${slug}"?`)) return;
 
-    if (bridgeOnline) {
-      try {
+    try {
+      if (storageMode === "cloud") {
+        const res = await fetch(`/api/posts.php?slug=${encodeURIComponent(slug)}&pass=${encodeURIComponent(ADMIN_PASS)}`, {
+          method: "DELETE",
+        });
+        const d = await res.json();
+        if (d && d.success) {
+          removeCachedPost(slug);
+          showToast(`Post "${slug}" removed from server!`);
+          await checkStorage();
+          return;
+        }
+      } else if (storageMode === "bridge") {
         const res = await fetch(`${BRIDGE_URL}/api/posts?slug=${encodeURIComponent(slug)}`, {
           method: "DELETE",
         });
         const d = await res.json();
-        if (d.success) {
+        if (d && d.success) {
+          removeCachedPost(slug);
           showToast(`Post "${slug}" deleted and index synced!`);
-          checkBridge();
-        } else {
-          alert(`Failed to delete: ${d.error}`);
+          await checkStorage();
+          return;
         }
-      } catch (err: unknown) {
-        const msg = err instanceof Error ? err.message : String(err);
-        alert(`Error deleting post: ${msg}`);
       }
-    } else {
-      setPosts((prev) => prev.filter((p) => p.slug !== slug));
-      showToast(`Removed "${slug}" from current view (bridge offline)`);
+    } catch (err: unknown) {
+      console.error(err);
     }
+
+    removeCachedPost(slug);
+    setPosts((prev) => prev.filter((p) => p.slug !== slug));
+    showToast(`Removed "${slug}" from current view`);
   };
 
   // Save / Publish Post
@@ -280,40 +304,72 @@ export default function AdminPage() {
 
     setIsSaving(true);
 
-    if (bridgeOnline) {
-      try {
+    try {
+      // 1. Try Cloud API (Hostinger PHP)
+      if (storageMode === "cloud") {
+        const res = await fetch("/api/posts.php", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ post: currentPost, originalSlug, pass: ADMIN_PASS }),
+        });
+        const result = await res.json();
+        if (result && result.success) {
+          cacheSinglePost(currentPost, originalSlug);
+          showToast(`✓ Successfully published "${currentPost.title}" live!`);
+          setOriginalSlug(currentPost.slug);
+          await checkStorage();
+          setViewMode("list");
+          setIsSaving(false);
+          return;
+        } else {
+          throw new Error(result?.error || "Failed to publish to server");
+        }
+      }
+
+      // 2. Try Local Node Bridge (localhost:3001)
+      if (storageMode === "bridge") {
         const res = await fetch(`${BRIDGE_URL}/api/posts`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ post: currentPost, originalSlug }),
         });
         const result = await res.json();
-        if (result.success) {
-          showToast(`✓ Published "${currentPost.slug}" and synchronized index.ts!`);
+        if (result && result.success) {
+          cacheSinglePost(currentPost, originalSlug);
+          showToast(`✓ Published "${currentPost.slug}" and synchronized disk files!`);
           setOriginalSlug(currentPost.slug);
-          checkBridge();
+          await checkStorage();
           setViewMode("list");
+          setIsSaving(false);
+          return;
         } else {
-          alert(`Save error: ${result.error}`);
+          throw new Error(result?.error || "Failed to save via bridge");
         }
-      } catch (err: unknown) {
-        const msg = err instanceof Error ? err.message : String(err);
-        alert(`Failed to save via bridge: ${msg}`);
       }
-    } else {
-      // Fallback: Trigger instant file download & copy to clipboard
+
+      // 3. Fallback: Save to localStorage and download JSON as backup
+      cacheSinglePost(currentPost, originalSlug);
       handleDownloadJson();
       copyJsonToClipboard();
-      // Update local state so it appears in the table
       setPosts((prev) => {
         const filtered = prev.filter((p) => p.slug !== (originalSlug || currentPost.slug));
         return [currentPost, ...filtered];
       });
-      showToast("✓ Downloaded post JSON! (Run `npm run admin` for direct 1-click disk saving)");
+      showToast("✓ Saved post to local browser & downloaded JSON!");
       setViewMode("list");
+    } catch (err: unknown) {
+      const msg = err instanceof Error ? err.message : String(err);
+      cacheSinglePost(currentPost, originalSlug);
+      setPosts((prev) => {
+        const filtered = prev.filter((p) => p.slug !== (originalSlug || currentPost.slug));
+        return [currentPost, ...filtered];
+      });
+      handleDownloadJson();
+      alert(`Notice: Could not sync to server (${msg}). Post has been saved safely in your browser storage and downloaded to your device.`);
+      setViewMode("list");
+    } finally {
+      setIsSaving(false);
     }
-
-    setIsSaving(false);
   };
 
   // Download single JSON
@@ -469,9 +525,24 @@ export default function AdminPage() {
         </div>
 
         <div className={styles.statusCluster}>
-          <div className={styles.syncIndicator} title={bridgeOnline ? "Connected to local file sync daemon" : "Run `npm run admin` in terminal for automatic disk sync"}>
-            <span className={bridgeOnline ? styles.dotOnline : styles.dotOffline} />
-            <span>{bridgeOnline ? "Bridge Online (Port 3001)" : "Bridge Offline"}</span>
+          <div
+            className={styles.syncIndicator}
+            title={
+              storageMode === "cloud"
+                ? "Connected to live server endpoint (/api/posts.php)"
+                : storageMode === "bridge"
+                ? "Connected to local file sync daemon"
+                : "Saving to browser storage & JSON backup"
+            }
+          >
+            <span className={storageMode === "cloud" || storageMode === "bridge" ? styles.dotOnline : styles.dotOffline} />
+            <span>
+              {storageMode === "cloud"
+                ? "Cloud Server Online"
+                : storageMode === "bridge"
+                ? "Local Bridge (3001)"
+                : "Browser Storage Mode"}
+            </span>
           </div>
 
           <div className={styles.actionLinks}>
@@ -517,9 +588,9 @@ export default function AdminPage() {
               </div>
               <div className={styles.statCard}>
                 <span className={styles.statNum}>
-                  {bridgeOnline ? "Auto-Sync" : "Ready"}
+                  {storageMode === "cloud" ? "Cloud Sync" : bridgeOnline ? "Auto-Sync" : "Local Sync"}
                 </span>
-                <span className={styles.statLabel}>Filesystem Engine</span>
+                <span className={styles.statLabel}>Publish Engine</span>
               </div>
             </div>
 
@@ -1381,7 +1452,13 @@ export default function AdminPage() {
                   disabled={isSaving}
                   className={styles.primaryActionBtn}
                 >
-                  {isSaving ? "Saving..." : bridgeOnline ? "🚀 Publish & Auto-Sync" : "💾 Save & Download JSON"}
+                  {isSaving
+                    ? "Publishing..."
+                    : storageMode === "cloud"
+                    ? "🚀 Publish to Live Website"
+                    : storageMode === "bridge"
+                    ? "🚀 Publish & Auto-Sync"
+                    : "🚀 Save & Publish"}
                 </button>
               </div>
             </div>

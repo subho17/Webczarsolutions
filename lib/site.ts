@@ -5,6 +5,8 @@
 export const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 
+export const WHATSAPP_DIRECT_URL = "https://wa.me/919988221729";
+
 export const COMPANY = {
   name: "Webczar Solutions",
   tagline: "Technology & Digital Solutions",

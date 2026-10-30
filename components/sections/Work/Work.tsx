@@ -7,11 +7,12 @@
  * Touch / reduced motion: a native horizontal snap row, same cards.
  */
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { gsap, ScrollTrigger, EASE } from "@/lib/gsap";
 import { sceneScrub } from "@/lib/scene";
-import { PROJECTS } from "@/content/projects";
+import { PROJECTS, type Project } from "@/content/projects";
+import { fetchLivePosts } from "@/lib/postsClient";
 import styles from "./Work.module.css";
 import { useLang, L } from "@/lib/i18n";
 
@@ -23,6 +24,15 @@ const pad = (n: number) => String(n).padStart(2, "0");
 export default function Work() {
   const root = useRef<HTMLElement>(null);
   const { t, lang } = useLang();
+  const [projects, setProjects] = useState<Project[]>(PROJECTS);
+
+  useEffect(() => {
+    void fetchLivePosts().then((posts) => {
+      if (posts && posts.length > 0) {
+        setProjects(posts);
+      }
+    });
+  }, []);
 
   useEffect(() => {
     const el = root.current;
@@ -93,7 +103,7 @@ export default function Work() {
        cards through a hidden state. The row simply renders. */
 
     return () => mm.revert();
-  }, []);
+  }, [projects]);
 
   return (
     <section className={styles.work} id="work" ref={root}>
@@ -115,7 +125,7 @@ export default function Work() {
 
       <div className={styles.stage}>
         <div className={styles.track}>
-          {PROJECTS.map((p, i) => (
+          {projects.map((p, i) => (
             <article className={styles.card} key={p.slug} style={{ zIndex: 100 - i }}>
               <Link className={styles.inner} href={`/blog/${p.slug}`}>
                 <div
@@ -192,9 +202,9 @@ export default function Work() {
       </div>
 
       <div className={styles.foot}>
-        <span className={styles.count}>01 / {pad(PROJECTS.length)}</span>
+        <span className={styles.count}>01 / {pad(projects.length)}</span>
         <div className={styles.dots}>
-          {PROJECTS.map((p, i) => (
+          {projects.map((p, i) => (
             <span key={p.slug} className={`${styles.dot} ${i === 0 ? styles.dotOn : ""}`} />
           ))}
         </div>

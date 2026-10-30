@@ -19,10 +19,10 @@ const SERVICES = [
 ];
 
 const BUDGETS = [
-  "< ₹1 Lakh / $1.5k",
-  "₹1L – ₹5L / $5k",
-  "₹5L – ₹15L / $15k",
-  "Enterprise ₹15L+",
+  "₹25k – ₹75k",
+  "₹75k – ₹1.5L",
+  "₹1.5L – ₹5L",
+  "Above Enterprise ₹5L",
 ];
 
 const FAQS = [
@@ -48,7 +48,7 @@ export default function ContactPage() {
   const [selectedServices, setSelectedServices] = useState<string[]>([
     "Custom Web & Next.js Apps",
   ]);
-  const [budget, setBudget] = useState<string>("₹1L – ₹5L / $5k");
+  const [budget, setBudget] = useState<string>("₹75k – ₹1.5L");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -86,6 +86,7 @@ export default function ContactPage() {
     setCustomService("");
     setMessage("");
     setSelectedServices(["Custom Web & Next.js Apps"]);
+    setBudget("₹75k – ₹1.5L");
     setSubmitted(false);
   };
 
@@ -130,7 +131,17 @@ export default function ContactPage() {
                   <div className={styles.methodIcon}>📞</div>
                   <div className={styles.methodContent}>
                     <b>Call or WhatsApp</b>
-                    <a href="tel:9988221729">+91 99882 21729</a>
+                    <div style={{ display: "flex", gap: "10px", alignItems: "center", flexWrap: "wrap", marginTop: "2px" }}>
+                      <a href="tel:9988221729">+91 99882 21729</a>
+                      <a
+                        href="https://wa.me/919988221729"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{ color: "#16a34a", fontWeight: 600, fontSize: "13px" }}
+                      >
+                        Chat on WhatsApp ↗
+                      </a>
+                    </div>
                     <p className={styles.methodSub}>24 x 7 (Monday to Sunday)</p>
                   </div>
                 </div>
@@ -250,7 +261,7 @@ export default function ContactPage() {
 
                   {/* Budget Selector */}
                   <div className={styles.formGroup}>
-                    <label className={styles.formLabel}>Estimated Investment Range</label>
+                    <label className={styles.formLabel}>Monthly Investment Range</label>
                     <div className={styles.budgetPills}>
                       {BUDGETS.map((b) => (
                         <button

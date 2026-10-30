@@ -204,6 +204,10 @@ ${entries}
 `;
 
 fs.writeFileSync(indexPath, output, "utf8");
+
+const publicDataPath = path.join(root, "public", "posts-data.json");
+fs.writeFileSync(publicDataPath, JSON.stringify(posts.map((p) => p.post), null, 2), "utf8");
+
 console.log(
-  `✓ posts: ${posts.length} record${posts.length === 1 ? "" : "s"} → ${rel(indexPath)}`
+  `✓ posts: ${posts.length} record${posts.length === 1 ? "" : "s"} → ${rel(indexPath)} & ${rel(publicDataPath)}`
 );

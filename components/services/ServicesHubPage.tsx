@@ -328,6 +328,29 @@ function ServicesHubContent() {
                 <li>✓ Transparent milestone-based estimates</li>
                 <li>✓ Fast kickoff within 3 to 5 business days</li>
               </ul>
+              <div style={{ marginTop: "22px" }}>
+                <a
+                  href="https://wa.me/919988221729"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: "8px",
+                    background: "#25D366",
+                    color: "#ffffff",
+                    fontWeight: 700,
+                    fontSize: "13.5px",
+                    padding: "10px 20px",
+                    borderRadius: "999px",
+                    textDecoration: "none",
+                    boxShadow: "0 4px 14px rgba(37, 211, 102, 0.3)",
+                  }}
+                >
+                  <span>Chat on WhatsApp Directly</span>
+                  <span>↗</span>
+                </a>
+              </div>
             </div>
 
             <div className={styles.inquiryRight}>

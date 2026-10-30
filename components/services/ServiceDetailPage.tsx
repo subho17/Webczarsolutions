@@ -64,11 +64,11 @@ export default function ServiceDetailPage({ service }: Props) {
               Request {service.shortTitle} Proposal <span>→</span>
             </a>
             <a
-              href={`https://api.whatsapp.com/send/?phone=919988221729&text=Hello%20Webczar,%20I'd%20like%20to%20discuss%20${encodeURIComponent(
+              href={`https://wa.me/919988221729?text=Hello%20Webczar,%20I'd%20like%20to%20discuss%20${encodeURIComponent(
                 service.title
               )}.`}
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               className={styles.secondaryCta}
             >
               WhatsApp Us <span>↗</span>

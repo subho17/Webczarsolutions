@@ -1,10 +1,45 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useLang } from "@/lib/i18n";
+import { fetchLivePosts } from "@/lib/postsClient";
+import CaseView from "@/app/work/[slug]/CaseView";
 
 export default function NotFound() {
   const { t } = useLang();
+  const [blogSlug, setBlogSlug] = useState<string | null>(null);
+  const [isChecking, setIsChecking] = useState<boolean>(true);
+
+  useEffect(() => {
+    if (typeof window === "undefined") {
+      setIsChecking(false);
+      return;
+    }
+
+    const pathname = window.location.pathname.replace(/\/+$/, "");
+    const parts = pathname.split("/").filter(Boolean);
+    if ((parts[0] === "blog" || parts[0] === "work") && parts[1]) {
+      const candidateSlug = parts[1];
+      void fetchLivePosts().then((posts) => {
+        const found = posts.find((p) => p.slug === candidateSlug);
+        if (found) {
+          setBlogSlug(candidateSlug);
+        }
+        setIsChecking(false);
+      });
+    } else {
+      setIsChecking(false);
+    }
+  }, []);
+
+  if (blogSlug) {
+    return <CaseView slug={blogSlug} />;
+  }
+
+  if (isChecking) {
+    return null;
+  }
 
   return (
     <main

@@ -1,8 +1,9 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import Link from "next/link";
 import { PROJECTS, type Project } from "@/content/projects";
+import { fetchLivePosts } from "@/lib/postsClient";
 import Nav from "@/components/layout/Nav";
 import Footer from "@/components/layout/Footer/Footer";
 import styles from "./BlogListPage.module.css";
@@ -18,11 +19,20 @@ const CATEGORIES = [
 ];
 
 export default function BlogListPage() {
+  const [allPosts, setAllPosts] = useState<Project[]>(PROJECTS);
   const [selectedCat, setSelectedCat] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
 
+  useEffect(() => {
+    void fetchLivePosts().then((posts) => {
+      if (posts && posts.length > 0) {
+        setAllPosts(posts);
+      }
+    });
+  }, []);
+
   const filteredPosts = useMemo(() => {
-    return PROJECTS.filter((post) => {
+    return allPosts.filter((post) => {
       const matchCat =
         selectedCat === "All" ||
         post.tags.some((t) => t.toLowerCase().includes(selectedCat.toLowerCase()));
@@ -36,9 +46,9 @@ export default function BlogListPage() {
 
       return matchCat && matchSearch;
     });
-  }, [selectedCat, searchQuery]);
+  }, [allPosts, selectedCat, searchQuery]);
 
-  const featured = PROJECTS[0];
+  const featured = allPosts[0];
 
   return (
     <div className={styles.page}>
